@@ -14,14 +14,39 @@ export default function Experience() {
         <h2 className="text-3xl font-bold">Experience</h2>
         <div className="mt-4 text-lg">
           <h3 className="font-semibold">
-            Senior Product Engineer at Autonomys
+            Senior Software Engineer at Autonomys
           </h3>
           <p>
             Apr 2024 - Present · Palo Alto, California, United States · Remote
           </p>
           <p>
-            Building the foundation layer for AI & Web 3.0, focusing on
-            full-stack development with Next.js, TypeScript, and Solidity.
+            As a Senior Software Engineer, working in the product team at Autonomys, I focus on hands-on development to build and enhance blockchain and Web3 solutions, ensuring performance, scalability, and usability for both end-users and developers.
+          </p>
+          <ul className="list-disc ml-5">
+            <li>
+              Indexer Development: Designed and implemented a set of robust indexers powering the Block Explorer, enabling seamless access to blockchain data.
+            </li>
+            <li>
+              Front-End Migration: Maintained and migrated the Block Explorer front end from a React SPA to Next.js, achieving significant improvements in performance, scalability, and maintainability.
+            </li>
+            <li>
+              User Experience Enhancements: Brainstormed and implemented features to enhance the Block Explorer, including a staking interface, wallet integration, mainnet allocation section, leaderboard functionality, and advanced search and filtering capabilities.
+            </li>
+            <li>
+              SDK Development: Created a developer SDK to streamline and simplify interaction with the consensus chain, improving the developer experience.
+            </li>
+            <li>
+              Permanent Data Storage: Brainstormed and developed a first proof of concept for an on-chain permanent data storage tool leveraging IPLD and DAG data structure.
+            </li>
+            <li>
+              Metamask Snap Integration: Developed a custom Metamask Snap, enabling direct interaction with the Substrate consensus chain through the Metamask browser extension.
+            </li>
+            <li>
+              EVM Testnet Tools: Built a suite of tools for the testnet EVM chain, including a faucet Discord bot, a web faucet, and a subgraph.
+            </li>
+          </ul>
+          <p>
+            This role has provided me the opportunity to contribute directly to both user-facing applications and developer tools, leveraging my technical expertise to build scalable and impactful solutions in the blockchain ecosystem.
           </p>
           <div className="flex space-x-2 mt-2">
             <Badge text="Solidity" />
@@ -31,6 +56,7 @@ export default function Experience() {
             <Badge text="Polkadot.js" />
             <Badge text="Python" />
             <Badge text="MetaMask Snap" />
+            <Badge text="IPLD" />
           </div>
         </div>
         <div className="mt-6 text-lg">
@@ -212,7 +238,7 @@ export default function Experience() {
             May 2021 - 2022 · 9 mos
           </p>
           <p>
-            [dev in prod] Development of a decentralized autonomous foundation
+            Development of a decentralized autonomous foundation
             focused on helping ecological non-profits, with the help of
             decentralized finance and gamification.
           </p>
