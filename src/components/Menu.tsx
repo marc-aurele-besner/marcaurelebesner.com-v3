@@ -33,15 +33,13 @@ export default function Menu() {
                 Experience
               </a>
             </motion.li>
-            {
-              /* <motion.li
+            <motion.li
               initial={{ opacity: 0.5 }}
               whileHover={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
             >
               <a href="#projects" className="text-grayTone hover:text-lightCyan">Projects</a>
-            </motion.li> */
-            }
+            </motion.li>
           </ul>
         </nav>
       </div>

@@ -32,7 +32,7 @@ export default function Header() {
                 Experience
               </a>
             </li>
-            {/* <li className="p-2"><a href="#projects" className="text-grayTone hover:text-lightCyan">Projects</a></li> */}
+            <li className="p-2"><a href="#projects" className="text-grayTone hover:text-lightCyan">Projects</a></li>
           </ul>
         </nav>
       )}

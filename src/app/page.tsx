@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import About from "../components/About";
 import Experience from "../components/Experience";
-// import Projects from '../components/Projects';
+import Projects from "@/components/Projects";
 
 export default function HomePage() {
   return (
@@ -26,8 +26,7 @@ export default function HomePage() {
       >
         <Experience />
       </motion.section>
-      {
-        /* <motion.section
+      <motion.section
         id="projects"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -35,8 +34,7 @@ export default function HomePage() {
         transition={{ duration: 0.5 }}
       >
         <Projects />
-      </motion.section> */
-      }
+      </motion.section>
     </div>
   );
 }
