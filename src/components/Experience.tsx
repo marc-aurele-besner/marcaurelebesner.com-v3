@@ -4,281 +4,77 @@ import Badge from "./Badge";
 export default function Experience() {
   return (
     <motion.section
-      className="min-h-screen flex flex-col items-center justify-center py-12"
+      className="w-full flex flex-col items-center justify-start py-12 px-4 sm:px-6 lg:px-8"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      <div className="max-w-3xl">
-        <h2 className="text-3xl font-bold">Experience</h2>
-        <div className="mt-4 text-lg">
-          <h3 className="font-semibold">
-            Senior Software Engineer at Autonomys
-          </h3>
-          <p>
-            Apr 2024 - Present · Palo Alto, California, United States · Remote
-          </p>
-          <p>
-            As a Senior Software Engineer, working in the product team at Autonomys, I focus on hands-on development to build and enhance blockchain and Web3 solutions, ensuring performance, scalability, and usability for both end-users and developers.
-          </p>
-          <ul className="list-disc ml-5">
-            <li>
-              Indexer Development: Designed and implemented a set of robust indexers powering the Block Explorer, enabling seamless access to blockchain data.
-            </li>
-            <li>
-              Front-End Migration: Maintained and migrated the Block Explorer front end from a React SPA to Next.js, achieving significant improvements in performance, scalability, and maintainability.
-            </li>
-            <li>
-              User Experience Enhancements: Brainstormed and implemented features to enhance the Block Explorer, including a staking interface, wallet integration, mainnet allocation section, leaderboard functionality, and advanced search and filtering capabilities.
-            </li>
-            <li>
-              SDK Development: Created a developer SDK to streamline and simplify interaction with the consensus chain, improving the developer experience.
-            </li>
-            <li>
-              Permanent Data Storage: Brainstormed and developed a first proof of concept for an on-chain permanent data storage tool leveraging IPLD and DAG data structure.
-            </li>
-            <li>
-              Metamask Snap Integration: Developed a custom Metamask Snap, enabling direct interaction with the Substrate consensus chain through the Metamask browser extension.
-            </li>
-            <li>
-              EVM Testnet Tools: Built a suite of tools for the testnet EVM chain, including a faucet Discord bot, a web faucet, and a subgraph.
-            </li>
-          </ul>
-          <p>
-            This role has provided me the opportunity to contribute directly to both user-facing applications and developer tools, leveraging my technical expertise to build scalable and impactful solutions in the blockchain ecosystem.
-          </p>
-          <div className="flex space-x-2 mt-2">
-            <Badge text="Solidity" />
-            <Badge text="TypeScript" />
-            <Badge text="React.js" />
-            <Badge text="Next.js" />
-            <Badge text="Polkadot.js" />
-            <Badge text="Python" />
-            <Badge text="MetaMask Snap" />
-            <Badge text="IPLD" />
+      <div className="w-full max-w-3xl">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6">Experience</h2>
+        <div className="space-y-8">
+          <div className="text-base sm:text-lg">
+            <h3 className="font-semibold text-xl sm:text-2xl">
+              Senior Software Engineer at Autonomys
+            </h3>
+            <p className="text-sm sm:text-base text-gray-600">
+              Apr 2024 - Present · Palo Alto, California, United States · Remote
+            </p>
+            <p className="mt-2">
+              As a Senior Software Engineer, working in the product team at Autonomys, I focus on hands-on development to build and enhance blockchain and Web3 solutions, ensuring performance, scalability, and usability for both end-users and developers.
+            </p>
+            <ul className="list-disc list-inside mt-2 space-y-1">
+              <li>Indexer Development: Designed and implemented a set of robust indexers powering the Block Explorer, enabling seamless access to blockchain data.</li>
+              <li>Front-End Migration: Maintained and migrated the Block Explorer front end from a React SPA to Next.js, achieving significant improvements in performance, scalability, and maintainability.</li>
+              <li>User Experience Enhancements: Brainstormed and implemented features to enhance the Block Explorer, including a staking interface, wallet integration, mainnet allocation section, leaderboard functionality, and advanced search and filtering capabilities.</li>
+              <li>SDK Development: Created a developer SDK to streamline and simplify interaction with the consensus chain, improving the developer experience.</li>
+              <li>Permanent Data Storage: Brainstormed and developed a first proof of concept for an on-chain permanent data storage tool leveraging IPLD and DAG data structure.</li>
+              <li>Metamask Snap Integration: Developed a custom Metamask Snap, enabling direct interaction with the Substrate consensus chain through the Metamask browser extension.</li>
+              <li>EVM Testnet Tools: Built a suite of tools for the testnet EVM chain, including a faucet Discord bot, a web faucet, and a subgraph.</li>
+            </ul>
+            <p className="mt-2">
+              This role has provided me the opportunity to contribute directly to both user-facing applications and developer tools, leveraging my technical expertise to build scalable and impactful solutions in the blockchain ecosystem.
+            </p>
+            <div className="flex flex-wrap mt-2 gap-2">
+              <Badge text="Solidity" />
+              <Badge text="TypeScript" />
+              <Badge text="React.js" />
+              <Badge text="Next.js" />
+              <Badge text="Polkadot.js" />
+              <Badge text="Python" />
+              <Badge text="MetaMask Snap" />
+              <Badge text="IPLD" />
+            </div>
           </div>
-        </div>
-        <div className="mt-6 text-lg">
-          <h3 className="font-semibold">
-            Full-Stack Web3 & Solidity Engineer at Oamo
-          </h3>
-          <p>
-            Mar 2023 - Apr 2024 · Montreal, Quebec, Canada · Remote
-          </p>
-          <p>
-            As a key member of a small, early-stage team at Oamo, I played a
-            pivotal role in building two web applications—one customer-facing
-            and another for organizational use. My contributions spanned across
-            several critical areas:
-          </p>
-          <ul className="list-disc ml-5">
-            <li>
-              Smart Contract Development: Authored smart contracts for reward
-              payouts and profile management, seamlessly integrating these with
-              the business logic.
-            </li>
-            <li>
-              Decentralized Systems Integration: Implemented features using
-              Ceramic Network (decentralized database) and implemented
-              encryption/decryption flows via Lit Protocol.
-            </li>
-            <li>
-              Digital Identity Management: Handled Decentralized Identifiers
-              (DIDs), ensuring robust identity verification and profile
-              management processes.
-            </li>
-            <li>
-              Core Business Logic: Envisioned, planned, and implemented
-              significant portions of the core business logic, focusing on Sybil
-              attack protection and developing a comprehensive user profile
-              system.
-            </li>
-          </ul>
-          <p>
-            My role emphasized delivering holistic solutions in a dynamic
-            startup setting, enhancing user engagement and operational
-            efficiency through cutting-edge Web3 technologies.
-          </p>
-          <div className="flex space-x-2 mt-2">
-            <Badge text="Solidity" />
-            <Badge text="Web3" />
-            <Badge text="Node.js" />
-            <Badge text="React.js" />
-            <Badge text="Next.js" />
-            <Badge text="Lit Protocol" />
-            <Badge text="Ceramic" />
-            <Badge text="IPFS" />
-          </div>
-        </div>
-        <div className="mt-6 text-lg">
-          <h3 className="font-semibold">Smart Contract Engineer at Gluwa</h3>
-          <p>
-            Feb 2022 - 2023 · San Francisco, California, United States · Remote
-          </p>
-          <p>
-            Core Responsibilities: Developed and tested smart contracts for
-            financial applications including staking, DAOs, and multi-signature
-            wallets using Solidity, Hardhat, and Foundry.
-          </p>
-          <p>
-            Tool Development: Engineered tools to enhance smart contract
-            interaction and efficiency for developers not specialized in Web3
-            technologies:
-          </p>
-          <ul className="list-disc ml-5">
-            <li>
-              UI Dashboard: Facilitated easier contract interaction for
-              developers unfamiliar with Solidity.
-            </li>
-            <li>
-              Automated Reporting: Provided tools for streamlined performance
-              and transaction monitoring.
-            </li>
-            <li>
-              Malicious Transaction Detection: Improved security with proactive
-              detection systems.
-            </li>
-          </ul>
-          <div className="flex space-x-2 mt-2">
-            <Badge text="Solidity" />
-            <Badge text="Smart Contracts" />
-            <Badge text="Security" />
-            <Badge text="Ethers.js" />
-            <Badge text="React.js" />
-            <Badge text="Ethereum" />
-          </div>
-        </div>
-        <div className="mt-6 text-lg">
-          <h3 className="font-semibold">
-            Blockchain Programming & Smart Contracts Instructor at Indigo
-            Blockchain School
-          </h3>
-          <p>
-            Jan 2023 - Apr 2023 · France · Remote
-          </p>
-          <p>
-            Led a hands-on course on Blockchain Programming & Smart Contracts,
-            teaching students how to write, test, and deploy smart contracts in
-            Solidity using Hardhat and Foundry. Key projects included:
-          </p>
-          <ul className="list-disc ml-5">
-            <li>
-              NFT Contracts: Guided students through the creation of NFTs.
-            </li>
-            <li>
-              NFT Marketplace Contracts: Collaborated on developing functional
-              NFT marketplaces.
-            </li>
-            <li>
-              Multi-signature Wallets: Developed secure multi-signature contract
-              implementations.
-            </li>
-          </ul>
-          <p>
-            This course was highly interactive, focusing not only on
-            demonstrating coding techniques but also on engaging students in
-            writing code collaboratively. I actively participated in coding
-            alongside students, reviewing and debugging their work, and teaching
-            essential skills such as using GitHub and conducting peer code
-            reviews.
-          </p>
-          <div className="flex space-x-2 mt-2">
-            <Badge text="Communication" />
-            <Badge text="Ethereum" />
-            <Badge text="Smart Contracts" />
-            <Badge text="Online Teaching" />
-            <Badge text="Solidity" />
-            <Badge text="Blockchain" />
-          </div>
-        </div>
-        <div className="mt-6 text-lg">
-          <h3 className="font-semibold">Développeur at Collage of Myself</h3>
-          <p>
-            Dec 2021 - 2022 · Remote
-          </p>
-          <p>
-            In this self-directed project, I developed a portfolio piece that
-            combined blockchain technology with a creative 3D web experience.
-            Key highlights include:
-          </p>
-          <ul className="list-disc ml-5">
-            <li>
-              NFT Smart Contract Creation: Authored a smart contract for NFTs,
-              enabling the secure minting and management of digital assets.
-            </li>
-            <li>
-              3D Web Gallery Development: Utilized Three.js to build an
-              interactive 3D web gallery that allowed users to view, mint, and
-              manage their NFTs.
-            </li>
-            <li>
-              User Experience Design: Crafted a dedicated holder section to
-              enhance user engagement and interaction with the digital art
-              pieces.
-            </li>
-          </ul>
-          <p>
-            This project showcased my ability to integrate advanced web
-            technologies and blockchain to create a unique and immersive digital
-            art experience, enhancing my portfolio in both technical scope and
-            creative execution.
-          </p>
-          <div className="flex space-x-2 mt-2">
-            <Badge text="Solidity" />
-            <Badge text="TypeScript" />
-            <Badge text="React Three Fiber" />
-            <Badge text="React" />
-            <Badge text="Ethers.js" />
-          </div>
-        </div>
-        <div className="mt-6 text-lg">
-          <h3 className="font-semibold">Developer at Plantswap</h3>
-          <p>
-            May 2021 - 2022 · 9 mos
-          </p>
-          <p>
-            Development of a decentralized autonomous foundation
-            focused on helping ecological non-profits, with the help of
-            decentralized finance and gamification.
-          </p>
-          <div className="flex space-x-2 mt-2">
-            <Badge text="React.js" />
-            <Badge text="Solidity" />
-            <Badge text="Ethers.js" />
-            <Badge text="Ethereum" />
-            <Badge text="Smart Contracts" />
-            <Badge text="TypeScript" />
-          </div>
-        </div>
-        <div className="mt-6 text-lg">
-          <h3 className="font-semibold">
-            Technical Support Specialist at PayFacto
-          </h3>
-          <p>
-            Jun 2020 - Apr 2021 · 11 mos · Montreal, Quebec, Canada · Remote
-          </p>
-          <div className="flex space-x-2 mt-2">
-            <Badge text="PHP" />
-            <Badge text="WordPress" />
-            <Badge text="Node.js" />
-            <Badge text="MySQL" />
-            <Badge text="Employee Training" />
-          </div>
-        </div>
-        <div className="mt-6 text-lg">
-          <h3 className="font-semibold">Content Creator at YouTube</h3>
-          <p>
-            Aug 2019 - Nov 2019 · 4 mos · Canada
-          </p>
-          <p>
-            Cryptocurrency News Presenter
-          </p>
-          <div className="flex space-x-2 mt-2">
-            <Badge text="Blockchain" />
-            <Badge text="Video Editing" />
-            <Badge text="Content Creation" />
-            <Badge text="YouTube" />
+          <div className="text-base sm:text-lg">
+            <h3 className="font-semibold text-xl sm:text-2xl">
+              Full-Stack Web3 & Solidity Engineer at Oamo
+            </h3>
+            <p className="text-sm sm:text-base text-gray-600">
+              Mar 2023 - Apr 2024 · Montreal, Quebec, Canada · Remote
+            </p>
+            <p className="mt-2">
+              As a key member of a small, early-stage team at Oamo, I played a pivotal role in building two web applications—one customer-facing and another for organizational use. My contributions spanned across several critical areas:
+            </p>
+            <ul className="list-disc list-inside mt-2 space-y-1">
+              <li>Smart Contract Development: Authored smart contracts for reward payouts and profile management, seamlessly integrating these with the business logic.</li>
+              <li>Decentralized Systems Integration: Implemented features using Ceramic Network (decentralized database) and implemented encryption/decryption flows via Lit Protocol.</li>
+              <li>Digital Identity Management: Handled Decentralized Identifiers (DIDs), ensuring robust identity verification and profile management processes.</li>
+              <li>Core Business Logic: Envisioned, planned, and implemented significant portions of the core business logic, focusing on Sybil attack protection and developing a comprehensive user profile system.</li>
+            </ul>
+            <p className="mt-2">
+              My role emphasized delivering holistic solutions in a dynamic startup setting, enhancing user engagement and operational efficiency through cutting-edge Web3 technologies.
+            </p>
+            <div className="flex flex-wrap mt-2 gap-2">
+              <Badge text="Solidity" />
+              <Badge text="Web3" />
+              <Badge text="Node.js" />
+              <Badge text="React.js" />
+              <Badge text="Next.js" />
+              <Badge text="Lit Protocol" />
+              <Badge text="Ceramic" />
+              <Badge text="IPFS" />
+            </div>
           </div>
         </div>
       </div>
