@@ -352,8 +352,8 @@ export default function Experience() {
               Jun 2020 - Apr 2021 · 11 mos · Montreal, Quebec, Canada · Remote
             </p>
             <p className="mt-2">
-              Provided technical support for the company's point of sale (POS)
-              software, assisting both colleagues and customers in
+              Provided technical support for the company&apos;s point of sale
+              (POS) software, assisting both colleagues and customers in
               troubleshooting issues and optimizing the use of internal tools to
               ensure less friction.
             </p>
