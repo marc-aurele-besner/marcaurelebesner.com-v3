@@ -43,4 +43,15 @@ export interface ProjectData {
       badges: ['TypeScript', 'SDK', 'Web3', 'AI', 'Blockchain'],
       projectType: 'work',
     },
+    {
+      title: 'Oamo App',
+      description:
+        'Implement a large amount of the business logic for the Oamo app, including web3 wallets, smart contract interactions, and all web2 OAuth flows.',
+      imageSrc: '/images/projects/oamo.png',
+      imageAlt: 'Oamo App',
+      link: 'https://oamo.io',
+      linkText: 'Visit Website',
+      badges: ['TypeScript', 'Next.js', 'React', 'Web3', 'Solidity', 'OAuth'],
+      projectType: 'work',
+    },
   ];
