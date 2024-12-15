@@ -100,6 +100,17 @@ export const projects: ProjectData[] = [
     projectType: "personal",
   },
   {
+    title: "MarcAureleBesner.com (v2)",
+    description:
+      "A personal 3d portfolio website built with React and React Three Fiber",
+    imageSrc: "/images/projects/marc-aurele-besner-v2.png",
+    imageAlt: "MarcAureleBesner.com (v2)",
+    link: "https://v2.marcaurelebesner.com/",
+    repoLink: "https://github.com/marc-aurele-besner/marcaurelebesner.com-v2",
+    badges: ["TypeScript", "Three.js", "React"],
+    projectType: "personal",
+  },
+  {
     title: "CollageOfMyself",
     description:
       "A 3d NFTs Gallery built with Next.js, React Three Fiber for a personal NFT collection.",
@@ -130,6 +141,16 @@ export const projects: ProjectData[] = [
     link: "https://golfalpine.ca/",
     repoLink: "https://github.com/marc-aurele-besner/golfalpine.ca",
     badges: ["TypeScript", "React", "CSS"],
+    projectType: "personal",
+  },
+  {
+    title: "MarcAureleBesner.com (v1)",
+    description: "A very simple portfolio website built with React",
+    imageSrc: "/images/projects/marc-aurele-besner-v1.png",
+    imageAlt: "MarcAureleBesner.com (v1)",
+    link: "https://v1.marcaurelebesner.com/",
+    repoLink: "https://github.com/marc-aurele-besner/marcaurelebesner.com",
+    badges: ["React", "CSS"],
     projectType: "personal",
   },
 ];
