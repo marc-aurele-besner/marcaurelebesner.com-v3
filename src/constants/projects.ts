@@ -69,6 +69,28 @@ export const projects: ProjectData[] = [
     link: "https://mymultisig.app/",
     linkText: "Visit Website",
     badges: ["TypeScript", "Next.js", "React", "Web3", "Solidity"],
-    projectType: "work",
+    projectType: "personal",
+  },
+  {
+    title: "CollageOfMyself",
+    description:
+      "A 3d NFTs Gallery built with Next.js, React Three Fiber for a personal NFT collection.",
+    imageSrc: "/images/projects/collage-of-myself.png",
+    imageAlt: "CollageOfMyself",
+    link: "https://collageofmyself.com/",
+    linkText: "Visit Website",
+    badges: ["TypeScript", "Next.js", "React", "Web3", "Solidity"],
+    projectType: "personal",
+  },
+  {
+    title: "PlantSwap Finance",
+    description:
+      "A decentralized finance (DeFi) platform built with React to provide a user-friendly interface for interacting with multiple smart contracts.",
+    imageSrc: "/images/projects/plantswap.png",
+    imageAlt: "PlantSwap Finance",
+    link: "https://plantswap.finance/",
+    linkText: "Visit Website",
+    badges: ["TypeScript", "Next.js", "React", "Web3", "Solidity"],
+    projectType: "personal",
   },
 ];
