@@ -3,13 +3,31 @@ export interface ProjectData {
   description: string;
   imageSrc: string;
   imageAlt: string;
-  link: string;
-  linkText: string;
+  link?: string;
+  repoLink?: string;
   badges: string[];
   projectType: "personal" | "work";
 }
 
 export const projects: ProjectData[] = [
+  {
+    title: "EternalMint",
+    description:
+      "A simple web app to build and mint NFTs on the Autonomys Network. Using the Autonomys Auto-SDK to simplify the process of interacting with the blockchain. (Upload both the image and metadata to the Consensus Chain and mint the NFT on the Autonomys EVM Chain)",
+    imageSrc: "/images/projects/eternal-mint.png",
+    imageAlt: "EternalMint",
+    link: "https://eternalmint.xyz/",
+    repoLink: "https://github.com/marc-aurele-besner/eternalmint-xyz",
+    badges: [
+      "TypeScript",
+      "Auto-SDK",
+      "IPLD",
+      "IPLD-DAG",
+      "Blockchain",
+      "Solidity",
+    ],
+    projectType: "personal",
+  },
   {
     title: "AI3.info",
     description:
@@ -17,7 +35,7 @@ export const projects: ProjectData[] = [
     imageSrc: "/images/projects/ai3-info.png",
     imageAlt: "AI3.info",
     link: "https://ai3.info",
-    linkText: "Visit Website",
+    repoLink: "https://github.com/marc-aurele-besner/ai3-info",
     badges: [
       "React",
       "Next.js",
@@ -34,9 +52,20 @@ export const projects: ProjectData[] = [
     imageSrc: "/images/projects/astral-block-explorer.png",
     imageAlt: "Astral Block Explorer",
     link: "https://astral.autonomys.xyz/",
-    linkText: "Visit Website",
+    repoLink: "https://github.com/autonomys/astral",
     badges: ["Next.js", "React", "Polkadot.js", "TypeScript", "GraphQL"],
     projectType: "work",
+  },
+  {
+    title: "FileOnChain",
+    description:
+      "A small file uploader that allows you to upload files to substrate networks. Build in 2 days for the Consensus 2024 Hackathon. (won 3rd place)",
+    imageSrc: "/images/projects/fileonchain.png",
+    imageAlt: "FileOnChain",
+    link: "https://fileonchain.org/",
+    repoLink: "https://github.com/marc-aurele-besner/consensus-hackathon-2024",
+    badges: ["TypeScript", "Polkadot.js", "IPLD", "IPLD-DAG", "Blockchain"],
+    projectType: "personal",
   },
   {
     title: "Autonomys Auto-SDK",
@@ -44,8 +73,8 @@ export const projects: ProjectData[] = [
       "Software development kit for AI and Web3 developers that simplifies interacting with the Autonomys Network for those without a deep understanding of blockchains or smart contracts.",
     imageSrc: "/images/projects/autonomys-auto-sdk.png",
     imageAlt: "Autonomys Auto-SDK",
-    link: "https://github.com/autonomys/auto-sdk",
-    linkText: "Visit Repository",
+    link: "https://www.npmjs.com/package/@autonomys/auto-consensus",
+    repoLink: "https://github.com/autonomys/auto-sdk",
     badges: ["TypeScript", "SDK", "Web3", "AI", "Blockchain"],
     projectType: "work",
   },
@@ -56,7 +85,6 @@ export const projects: ProjectData[] = [
     imageSrc: "/images/projects/oamo.png",
     imageAlt: "Oamo App",
     link: "https://oamo.io",
-    linkText: "Visit Website",
     badges: ["TypeScript", "Next.js", "React", "Web3", "Solidity", "OAuth"],
     projectType: "work",
   },
@@ -67,7 +95,7 @@ export const projects: ProjectData[] = [
     imageSrc: "/images/projects/my-multisig.png",
     imageAlt: "MyMultisig",
     link: "https://mymultisig.app/",
-    linkText: "Visit Website",
+    repoLink: "https://github.com/marc-aurele-besner/mymultisig-contract",
     badges: ["TypeScript", "Next.js", "React", "Web3", "Solidity"],
     projectType: "personal",
   },
@@ -78,7 +106,7 @@ export const projects: ProjectData[] = [
     imageSrc: "/images/projects/collage-of-myself.png",
     imageAlt: "CollageOfMyself",
     link: "https://collageofmyself.com/",
-    linkText: "Visit Website",
+    repoLink: "https://github.com/collageofmyself/collageofmyself-contract",
     badges: ["TypeScript", "Next.js", "React", "Web3", "Solidity"],
     projectType: "personal",
   },
@@ -89,8 +117,19 @@ export const projects: ProjectData[] = [
     imageSrc: "/images/projects/plantswap.png",
     imageAlt: "PlantSwap Finance",
     link: "https://plantswap.finance/",
-    linkText: "Visit Website",
+    repoLink: "https://github.com/PlantSwapFinance/plantswapfinance-contracts",
     badges: ["TypeScript", "Next.js", "React", "Web3", "Solidity"],
+    projectType: "personal",
+  },
+  {
+    title: "Golf Alpine",
+    description:
+      "A simple web app for a local golf club, allowing you to book tee times and view the scorecards and other information.",
+    imageSrc: "/images/projects/golf-alpine.png",
+    imageAlt: "Golf Alpine",
+    link: "https://golfalpine.ca/",
+    repoLink: "https://github.com/marc-aurele-besner/golfalpine.ca",
+    badges: ["TypeScript", "React", "CSS"],
     projectType: "personal",
   },
 ];
