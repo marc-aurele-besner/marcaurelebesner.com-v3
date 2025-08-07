@@ -7,38 +7,19 @@ export default function Menu() {
   return (
     <div className="flex flex-col h-full justify-between">
       <div>
-        <h1 className="text-2xl font-bold text-lightCyan mb-8">
+        <h1 className="text-2xl font-bold text-lightCyan mb-8 tracking-tight">
           Marc-Aurele Besner
         </h1>
-        <nav>
-          <ul className="space-y-4">
-            <motion.li
-              initial={{ opacity: 0.5 }}
-              whileHover={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              <a href="#about" className="text-grayTone hover:text-lightCyan">
-                About
-              </a>
+        <nav aria-label="Primary">
+          <ul className="space-y-3">
+            <motion.li initial={{ opacity: 0.7 }} whileHover={{ opacity: 1, x: 4 }} transition={{ duration: 0.2 }}>
+              <a href="#about" className="text-grayTone hover:text-lightCyan transition-colors">About</a>
             </motion.li>
-            <motion.li
-              initial={{ opacity: 0.5 }}
-              whileHover={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              <a
-                href="#experience"
-                className="text-grayTone hover:text-lightCyan"
-              >
-                Experience
-              </a>
+            <motion.li initial={{ opacity: 0.7 }} whileHover={{ opacity: 1, x: 4 }} transition={{ duration: 0.2 }}>
+              <a href="#experience" className="text-grayTone hover:text-lightCyan transition-colors">Experience</a>
             </motion.li>
-            <motion.li
-              initial={{ opacity: 0.5 }}
-              whileHover={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              <a href="#projects" className="text-grayTone hover:text-lightCyan">Projects</a>
+            <motion.li initial={{ opacity: 0.7 }} whileHover={{ opacity: 1, x: 4 }} transition={{ duration: 0.2 }}>
+              <a href="#projects" className="text-grayTone hover:text-lightCyan transition-colors">Projects</a>
             </motion.li>
           </ul>
         </nav>
@@ -48,7 +29,8 @@ export default function Menu() {
           href="https://github.com/marc-aurele-besner"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-grayTone hover:text-lightCyan"
+          className="text-grayTone hover:text-lightCyan transition-colors"
+          aria-label="GitHub"
         >
           <FaGithub size={24} />
         </a>
@@ -56,7 +38,8 @@ export default function Menu() {
           href="https://www.linkedin.com/in/marc-aurele-besner/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-grayTone hover:text-lightCyan"
+          className="text-grayTone hover:text-lightCyan transition-colors"
+          aria-label="LinkedIn"
         >
           <FaLinkedin size={24} />
         </a>
@@ -64,7 +47,8 @@ export default function Menu() {
           href="https://x.com/marcaureleb"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-grayTone hover:text-lightCyan"
+          className="text-grayTone hover:text-lightCyan transition-colors"
+          aria-label="Twitter"
         >
           <FaTwitter size={24} />
         </a>
@@ -72,7 +56,8 @@ export default function Menu() {
           href="https://www.instagram.com/mabesner/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-grayTone hover:text-lightCyan"
+          className="text-grayTone hover:text-lightCyan transition-colors"
+          aria-label="Instagram"
         >
           <FaInstagram size={24} />
         </a>

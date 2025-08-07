@@ -10,6 +10,7 @@ export default function HomePage() {
     <div>
       <motion.section
         id="about"
+        className="scroll-mt-28"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -19,6 +20,7 @@ export default function HomePage() {
       </motion.section>
       <motion.section
         id="experience"
+        className="scroll-mt-28"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -28,6 +30,7 @@ export default function HomePage() {
       </motion.section>
       <motion.section
         id="projects"
+        className="scroll-mt-28"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
