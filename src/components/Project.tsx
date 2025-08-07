@@ -36,15 +36,16 @@ export const Project: FC<ProjectData> = ({
           height={300}
           sizes="(max-width: 768px) 100vw, 33vw"
         />
-        <button
+        <span
           className={`inline-block px-3 py-1 text-xs sm:text-sm font-semibold rounded-full border mt-2 transition-colors duration-300 ${
             projectType === "personal"
               ? "border-lightCyan/60 text-lightCyan bg-transparent hover:bg-lightCyan/10"
               : "border-lightCyan/60 text-lightCyan bg-transparent hover:bg-lightCyan/10"
           }`}
+          aria-label={`Project type: ${projectType === "personal" ? "Personal Project" : "Work Project"}`}
         >
           {projectType === "personal" ? "Personal Project" : "Work Project"}
-        </button>
+        </span>
       </div>
     </a>
     <div className="flex-1 md:ml-4 mt-4 md:mt-0 w-full">

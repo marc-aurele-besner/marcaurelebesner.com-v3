@@ -15,9 +15,34 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://marcaurelebesner.com";
+
 export const metadata: Metadata = {
-  title: "My Portfolio",
-  description: "My personal portfolio website",
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: "Marc‑Aurele Besner — Web3 Full‑Stack Engineer",
+    template: "%s | Marc‑Aurele Besner",
+  },
+  description:
+    "Web3 full‑stack engineer building blockchain apps, smart contracts, and open‑source tools. Portfolio, experience, and selected projects.",
+  alternates: { canonical: "/" },
+  authors: [{ name: "Marc‑Aurele Besner", url: "https://marcaurelebesner.com" }],
+  openGraph: {
+    url: "/",
+    siteName: "Marc‑Aurele Besner",
+    type: "website",
+    title: "Marc‑Aurele Besner — Web3 Full‑Stack Engineer",
+    description:
+      "Web3 full‑stack engineer building blockchain apps, smart contracts, and open‑source tools.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: "@marcaureleb",
+    title: "Marc‑Aurele Besner — Web3 Full‑Stack Engineer",
+    description:
+      "Web3 full‑stack engineer building blockchain apps, smart contracts, and open‑source tools.",
+  },
+  themeColor: "#0a192f",
 };
 
 export default function RootLayout({
