@@ -19,7 +19,7 @@ export default function Experience() {
               Senior Software Engineer at Autonomys
             </h3>
             <p className="text-sm sm:text-base text-gray-600">
-              Apr 2024 - Present · Palo Alto, California, United States · Remote
+              Apr 2024 - Jun 2025 · Palo Alto, California, United States · Remote
             </p>
             <p className="mt-2">
               As a Senior Software Engineer in the product team at Autonomys, I
