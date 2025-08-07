@@ -55,6 +55,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-darkBlue text-grayTone relative overflow-x-hidden`}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 bg-lightCyan text-darkBlue px-3 py-2 rounded"
+        >
+          Skip to main content
+        </a>
         {/* Subtle background glow layers */}
         <div aria-hidden className="pointer-events-none fixed inset-0 -z-10">
           <div className="absolute -top-40 -left-32 h-96 w-96 rounded-full bg-lightCyan/10 blur-3xl" />
@@ -65,7 +71,7 @@ export default function RootLayout({
           <aside className="md:w-72 bg-darkBlue/90 p-8 fixed h-full hidden md:block border-r border-white/5">
             <Menu />
           </aside>
-          <main className="flex-1 overflow-y-auto py-16 md:ml-72 px-4 sm:px-6 lg:px-8">
+          <main id="main-content" className="flex-1 overflow-y-auto py-16 md:ml-72 px-4 sm:px-6 lg:px-8">
             {children}
           </main>
         </div>
