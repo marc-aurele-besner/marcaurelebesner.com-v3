@@ -335,7 +335,7 @@ export default function Experience() {
               <h3 className="font-semibold text-xl sm:text-2xl">Technical Support Specialist at PayFacto</h3>
               <p className="text-sm sm:text-base text-gray-400">Jun 2020 - Apr 2021 · 11 mos · Montreal, Quebec, Canada · Remote</p>
               <p className="mt-2">
-                Provided technical support for the company's point of sale
+                Provided technical support for the company&apos;s point of sale
                 (POS) software, assisting both colleagues and customers in
                 troubleshooting issues and optimizing the use of internal tools to
                 ensure less friction.
