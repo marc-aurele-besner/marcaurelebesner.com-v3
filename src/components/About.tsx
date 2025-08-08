@@ -12,10 +12,13 @@ export default function About() {
     >
       <div className="max-w-3xl px-2">
         <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight bg-gradient-to-r from-lightCyan via-white to-lightCyan/80 bg-clip-text text-transparent tracking-tight">
-          Full‑stack engineer at the intersection of decentralized AI and blockchain.
+          Web3&deAI Full‑stack engineer, building at the intersection of
+          blockchain and decentralized AI.
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-gray-200/90">
-          I design and ship indexers, block explorers, SDKs, and agent frameworks across AI and blockchain. I work with decentralized encryption and permanent storage (IPLD/DAG).
+          I design and build decentralized apps, smart contracts, SDKs, open
+          source tools, block explorers, and AI agents. I&apos;m familiar with
+          decentralized system for encryption and data storage.
         </p>
 
         <div className="mt-6 flex flex-wrap gap-3">
@@ -36,7 +39,14 @@ export default function About() {
 
         <GlassCard className="p-4 mt-8">
           <p className="text-sm text-grayTone">
-            Currently exploring decentralized AI agents with verifiable state, IPLD/DAG storage, and developer tooling at the data layer.
+            Currently exploring AI-assisted DeFi agents and mobile apps.
+            Interested in collaborating or learning more?{" "}
+            <a
+              href="#contact"
+              className="text-lightCyan underline hover:text-lightCyan/80 transition"
+            >
+              Let&apos;s connect!
+            </a>
           </p>
         </GlassCard>
       </div>
