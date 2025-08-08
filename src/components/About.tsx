@@ -12,10 +12,10 @@ export default function About() {
     >
       <div className="max-w-3xl px-2">
         <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight bg-gradient-to-r from-lightCyan via-white to-lightCyan/80 bg-clip-text text-transparent tracking-tight">
-          Web3 Full‑Stack Engineer crafting performant, delightful products.
+          Full‑stack engineer at the intersection of decentralized AI and blockchain.
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-gray-200/90">
-          I build blockchain apps, smart contracts, and open‑source tools. Focused on clear UX, high performance, and developer happiness.
+          I build production systems that connect AI and on‑chain rails: indexers, block explorers, SDKs, and agent frameworks. Experienced with decentralized encryption and permanent storage (IPLD/DAG).
         </p>
 
         <div className="mt-6 flex flex-wrap gap-3">
@@ -36,7 +36,7 @@ export default function About() {
 
         <GlassCard className="p-4 mt-8">
           <p className="text-sm text-grayTone">
-            Currently exploring permanent data storage on-chain with IPLD/DAGs and building dev tooling around it.
+            Currently exploring decentralized AI agents with verifiable state, IPLD/DAG storage, and developer tooling at the data layer.
           </p>
         </GlassCard>
       </div>
