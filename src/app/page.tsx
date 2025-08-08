@@ -20,7 +20,7 @@ export default function HomePage() {
       </motion.section>
       <motion.section
         id="experience"
-        className="scroll-mt-28"
+        className="scroll-mt-28 mt-12"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}

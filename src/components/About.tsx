@@ -1,35 +1,54 @@
 import { motion } from "framer-motion";
+import GlassCard from "./GlassCard";
 
 export default function About() {
   return (
     <motion.section
-      className="flex items-start justify-center pt-4 pb-0"
+      className="flex items-start justify-center pt-6 pb-2"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
       <div className="max-w-3xl px-2">
-        <h2 className="text-3xl font-bold bg-gradient-to-r from-lightCyan to-white bg-clip-text text-transparent">
-          About Me
-        </h2>
-        <p className="mt-4 text-lg leading-relaxed">
-          Hi there! My name is Marc-Aurèle (or Mark), and I&apos;m a Web3
-          full-stack engineer with a passion for blockchain technology, smart
-          contract development, and building open-source tools.
+        <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight bg-gradient-to-r from-lightCyan via-white to-lightCyan/80 bg-clip-text text-transparent tracking-tight">
+          Web3&deAI Full‑stack engineer, building at the intersection of
+          blockchain and decentralized AI.
+        </h1>
+        <p className="mt-4 text-lg leading-relaxed text-gray-200/90">
+          I design and build decentralized apps, smart contracts, SDKs, open
+          source tools, block explorers, and AI agents. I&apos;m familiar with
+          decentralized system for encryption and data storage.
         </p>
-        <p className="mt-4 text-lg leading-relaxed">
-          I truly believe that blockchain technology has the potential to
-          revolutionize the way we interact online, and I&apos;m committed to
-          contributing to its development. I&apos;m always exploring new
-          technologies and frameworks to stay ahead of the curve and bring fresh
-          ideas to the table.
-        </p>
-        <p className="mt-4 text-lg leading-relaxed">
-          I&apos;m dedicated to sharing my knowledge and helping other
-          developers. Teaching and mentoring are my passions, and I believe that
-          by helping others, we can all grow and advance together.
-        </p>
+
+        <div className="mt-6 flex flex-wrap gap-3">
+          <a
+            href="#projects"
+            className="inline-flex items-center gap-2 rounded-lg bg-lightCyan text-darkBlue font-semibold px-4 py-2 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-lightCyan/50 transition"
+          >
+            View Projects
+            <span aria-hidden>↘</span>
+          </a>
+          <a
+            href="#experience"
+            className="inline-flex items-center gap-2 rounded-lg border border-lightCyan/40 text-lightCyan px-4 py-2 hover:bg-lightCyan/10 backdrop-blur-sm transition"
+          >
+            Experience
+          </a>
+        </div>
+
+        <GlassCard className="p-4 mt-8">
+          <p className="text-sm text-grayTone">
+            Currently exploring AI-assisted DeFi agents and mobile apps.
+            Interested in collaborating or learning more?{" "}
+            <a
+              href="#contact"
+              className="text-lightCyan underline hover:text-lightCyan/80 transition"
+            >
+              Let&apos;s connect!
+            </a>
+          </p>
+        </GlassCard>
       </div>
     </motion.section>
   );
