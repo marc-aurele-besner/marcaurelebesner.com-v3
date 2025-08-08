@@ -17,7 +17,7 @@ export default function Projects() {
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-3xl font-bold">Projects</h2>
         </div>
-        {projects.map((project, index) => <Project key={index} {...project} />)}
+        {projects.map((project) => <Project key={project.title} {...project} />)}
       </div>
     </motion.section>
   );
