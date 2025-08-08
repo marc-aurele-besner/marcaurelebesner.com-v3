@@ -11,7 +11,7 @@ export default function Header() {
       <div className="p-4 px-4 flex justify-between items-center">
         <h1 className="text-xl font-semibold text-lightCyan">Marc-Aurele Besner</h1>
         <button
-          className="text-2xl font-bold text-lightCyan rounded-md p-1 focus:outline-none focus:ring-2 focus:ring-lightCyan/50 transition"
+          className="text-2xl font-bold text-lightCyan rounded-md p-1 focus:outline-none focus:ring-2 focus:ring-lightCyan/50 transition hover:scale-105"
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
           aria-controls="mobile-menu"
@@ -30,8 +30,9 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="px-2 pb-3"
+            className="px-2 pb-3 relative"
           >
+            <div className="pointer-events-none absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
             <ul className="flex flex-col items-center gap-1">
               <li className="w-full">
                 <a

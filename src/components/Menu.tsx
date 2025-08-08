@@ -12,15 +12,18 @@ export default function Menu() {
         </h1>
         <nav aria-label="Primary">
           <ul className="space-y-3">
-            <motion.li initial={{ opacity: 0.7 }} whileHover={{ opacity: 1, x: 4 }} transition={{ duration: 0.2 }}>
-              <a href="#about" className="text-grayTone hover:text-lightCyan transition-colors">About</a>
-            </motion.li>
-            <motion.li initial={{ opacity: 0.7 }} whileHover={{ opacity: 1, x: 4 }} transition={{ duration: 0.2 }}>
-              <a href="#experience" className="text-grayTone hover:text-lightCyan transition-colors">Experience</a>
-            </motion.li>
-            <motion.li initial={{ opacity: 0.7 }} whileHover={{ opacity: 1, x: 4 }} transition={{ duration: 0.2 }}>
-              <a href="#projects" className="text-grayTone hover:text-lightCyan transition-colors">Projects</a>
-            </motion.li>
+            {[
+              { href: "#about", label: "About" },
+              { href: "#experience", label: "Experience" },
+              { href: "#projects", label: "Projects" },
+            ].map((item) => (
+              <motion.li key={item.href} initial={{ opacity: 0.7 }} whileHover={{ opacity: 1, x: 4 }} transition={{ duration: 0.2 }}>
+                <a href={item.href} className="group inline-flex items-center gap-2 text-grayTone hover:text-lightCyan transition-colors">
+                  <span className="h-px w-5 bg-lightCyan/0 group-hover:bg-lightCyan/60 transition-all" />
+                  {item.label}
+                </a>
+              </motion.li>
+            ))}
           </ul>
         </nav>
       </div>
