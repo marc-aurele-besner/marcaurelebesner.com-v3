@@ -61,6 +61,15 @@ export default function Header() {
                   Projects
                 </a>
               </li>
+              <li className="w-full">
+                <a
+                  href="#contact"
+                  className="block w-full p-3 text-center rounded-md text-grayTone hover:text-lightCyan hover:bg-white/5 transition"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Contact
+                </a>
+              </li>
             </ul>
           </motion.nav>
         )}

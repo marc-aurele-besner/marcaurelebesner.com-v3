@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import About from "../components/About";
 import Experience from "../components/Experience";
 import Projects from "@/components/Projects";
+import Contact from "@/components/Contact";
 
 export default function HomePage() {
   return (
@@ -37,6 +38,15 @@ export default function HomePage() {
         transition={{ duration: 0.5 }}
       >
         <Projects />
+      </motion.section>
+      <motion.section
+        className="mt-12"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <Contact />
       </motion.section>
     </div>
   );

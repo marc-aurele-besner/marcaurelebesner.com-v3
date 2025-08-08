@@ -16,6 +16,7 @@ export default function Menu() {
               { href: "#about", label: "About" },
               { href: "#experience", label: "Experience" },
               { href: "#projects", label: "Projects" },
+              { href: "#contact", label: "Contact" },
             ].map((item) => (
               <motion.li key={item.href} initial={{ opacity: 0.7 }} whileHover={{ opacity: 1, x: 4 }} transition={{ duration: 0.2 }}>
                 <a href={item.href} className="group inline-flex items-center gap-2 text-grayTone hover:text-lightCyan transition-colors">
