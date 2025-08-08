@@ -15,7 +15,7 @@ export default function About() {
           Full‑stack engineer at the intersection of decentralized AI and blockchain.
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-gray-200/90">
-          I build production systems that connect AI and on‑chain rails: indexers, block explorers, SDKs, and agent frameworks. Experienced with decentralized encryption and permanent storage (IPLD/DAG).
+          I design and ship indexers, block explorers, SDKs, and agent frameworks across AI and blockchain. I work with decentralized encryption and permanent storage (IPLD/DAG).
         </p>
 
         <div className="mt-6 flex flex-wrap gap-3">
