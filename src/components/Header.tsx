@@ -1,16 +1,18 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
+import { siteConfig } from "@/config/site";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <header className="md:hidden sticky top-0 z-50 bg-white/80 dark:bg-darkBlue/80 backdrop-blur border-b border-slate-200 dark:border-white/5">
       <div className="p-4 px-4 flex justify-between items-center">
-        <h1 className="text-xl font-semibold text-[var(--accent)]">Marc-Aurele Besner</h1>
+        <p className="text-xl font-semibold text-[var(--accent)]">{siteConfig.name}</p>
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <button
@@ -25,17 +27,9 @@ export default function Header() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.nav
-            id="mobile-menu"
-            key="mobile-menu"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="px-2 pb-3 relative"
-          >
+      {isOpen && (
+        shouldReduceMotion ? (
+          <nav id="mobile-menu" className="px-2 pb-3 relative">
             <div className="pointer-events-none absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-black/10 dark:via-white/30 to-transparent" />
             <ul className="flex flex-col items-center gap-1">
               <li className="w-full">
@@ -68,16 +62,70 @@ export default function Header() {
               <li className="w-full">
                 <a
                   href="#contact"
-                  className="block w-full p-3 text-center rounded-md text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:bg-black/5 dark:hover:bg-white/5 transition"
+                  className="block w/full p-3 text-center rounded-md text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:bg-black/5 dark:hover:bg-white/5 transition"
                   onClick={() => setIsOpen(false)}
                 >
                   Contact
                 </a>
               </li>
             </ul>
-          </motion.nav>
-        )}
-      </AnimatePresence>
+          </nav>
+        ) : (
+          <AnimatePresence>
+            {isOpen && (
+              <motion.nav
+                id="mobile-menu"
+                key="mobile-menu"
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="px-2 pb-3 relative"
+              >
+                <div className="pointer-events-none absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-black/10 dark:via-white/30 to-transparent" />
+                <ul className="flex flex-col items-center gap-1">
+                  <li className="w-full">
+                    <a
+                      href="#about"
+                      className="block w-full p-3 text-center rounded-md text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:bg-black/5 dark:hover:bg-white/5 transition"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      About
+                    </a>
+                  </li>
+                  <li className="w-full">
+                    <a
+                      href="#experience"
+                      className="block w-full p-3 text-center rounded-md text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:bg-black/5 dark:hover:bg-white/5 transition"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Experience
+                    </a>
+                  </li>
+                  <li className="w-full">
+                    <a
+                      href="#projects"
+                      className="block w-full p-3 text-center rounded-md text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:bg-black/5 dark:hover:bg-white/5 transition"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Projects
+                    </a>
+                  </li>
+                  <li className="w-full">
+                    <a
+                      href="#contact"
+                      className="block w-full p-3 text-center rounded-md text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:bg-black/5 dark:hover:bg-white/5 transition"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Contact
+                    </a>
+                  </li>
+                </ul>
+              </motion.nav>
+            )}
+          </AnimatePresence>
+        )
+      )}
     </header>
   );
 }
