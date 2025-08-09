@@ -11,7 +11,7 @@ export default function About() {
       transition={{ duration: 0.5 }}
     >
       <div className="max-w-3xl px-2">
-        <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight bg-gradient-to-r from-lightCyan via-black dark:via-white to-lightCyan/80 bg-clip-text text-transparent tracking-tight">
+        <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight bg-gradient-to-r from-[var(--accent)] via-black dark:via-white to-slate-900 dark:to-white bg-clip-text text-transparent tracking-tight">
           Web3&deAI Full‑stack engineer, building at the intersection of
           blockchain and decentralized AI.
         </h1>
@@ -24,14 +24,14 @@ export default function About() {
         <div className="mt-6 flex flex-wrap gap-3">
           <a
             href="#projects"
-            className="inline-flex items-center gap-2 rounded-lg bg-lightCyan text-darkBlue font-semibold px-4 py-2 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-lightCyan/50 transition"
+            className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] text-darkBlue font-semibold px-4 py-2 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition"
           >
             View Projects
             <span aria-hidden>↘</span>
           </a>
           <a
             href="#experience"
-            className="inline-flex items-center gap-2 rounded-lg border border-lightCyan/40 text-lightCyan px-4 py-2 hover:bg-lightCyan/10 backdrop-blur-sm transition"
+            className="inline-flex items-center gap-2 rounded-lg border border-[var(--accent-weak)] text-[var(--accent)] px-4 py-2 hover:bg-[var(--accent-bg-weak)] backdrop-blur-sm transition"
           >
             Experience
           </a>
@@ -43,7 +43,7 @@ export default function About() {
             Interested in collaborating or learning more?{" "}
             <a
               href="#contact"
-              className="text-lightCyan underline hover:text-lightCyan/80 transition"
+              className="text-[var(--accent)] underline hover:brightness-110 transition"
             >
               Let&apos;s connect!
             </a>

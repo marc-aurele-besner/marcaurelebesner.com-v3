@@ -9,7 +9,7 @@ export default function Menu() {
     <div className="flex flex-col h-full justify-between">
       <div>
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-bold text-lightCyan tracking-tight">
+          <h1 className="text-2xl font-bold text-[var(--accent)] tracking-tight">
             Marc-Aurele Besner
           </h1>
           <ThemeToggle />
@@ -23,8 +23,8 @@ export default function Menu() {
               { href: "#contact", label: "Contact" },
             ].map((item) => (
               <motion.li key={item.href} initial={{ opacity: 0.7 }} whileHover={{ opacity: 1, x: 4 }} transition={{ duration: 0.2 }}>
-                <a href={item.href} className="group inline-flex items-center gap-2 text-slate-600 dark:text-grayTone hover:text-lightCyan transition-colors">
-                  <span className="h-px w-5 bg-lightCyan/0 group-hover:bg-lightCyan/60 transition-all" />
+                <a href={item.href} className="group inline-flex items-center gap-2 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors">
+                  <span className="h-px w-5 bg-[var(--accent)]/0 group-hover:bg-[var(--accent)] transition-all opacity-60 group-hover:opacity-60" />
                   {item.label}
                 </a>
               </motion.li>
@@ -37,7 +37,7 @@ export default function Menu() {
           href="https://github.com/marc-aurele-besner"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-slate-600 dark:text-grayTone hover:text-lightCyan transition-colors"
+          className="text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors"
           aria-label="GitHub"
         >
           <FaGithub size={24} />
@@ -46,7 +46,7 @@ export default function Menu() {
           href="https://www.linkedin.com/in/marc-aurele-besner/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-slate-600 dark:text-grayTone hover:text-lightCyan transition-colors"
+          className="text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors"
           aria-label="LinkedIn"
         >
           <FaLinkedin size={24} />
@@ -55,7 +55,7 @@ export default function Menu() {
           href="https://x.com/marcaureleb"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-slate-600 dark:text-grayTone hover:text-lightCyan transition-colors"
+          className="text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors"
           aria-label="Twitter"
         >
           <FaTwitter size={24} />
@@ -64,7 +64,7 @@ export default function Menu() {
           href="https://www.instagram.com/mabesner/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-slate-600 dark:text-grayTone hover:text-lightCyan transition-colors"
+          className="text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors"
           aria-label="Instagram"
         >
           <FaInstagram size={24} />

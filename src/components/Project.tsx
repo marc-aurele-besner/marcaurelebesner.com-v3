@@ -41,8 +41,8 @@ export const Project: FC<ProjectData> = ({
           <span
             className={`inline-block px-3 py-1 text-xs sm:text-sm font-semibold rounded-full border mt-2 transition-colors duration-300 ${
               projectType === "personal"
-                ? "border-lightCyan/60 text-lightCyan bg-transparent hover:bg-lightCyan/10"
-                : "border-lightCyan/60 text-lightCyan bg-transparent hover:bg-lightCyan/10"
+                ? "border-[var(--accent-weak)] text-[var(--accent)] bg-transparent hover:bg-[var(--accent-bg-weak)]"
+                : "border-[var(--accent-weak)] text-[var(--accent)] bg-transparent hover:bg-[var(--accent-bg-weak)]"
             }`}
             aria-label={`Project type: ${projectType === "personal" ? "Personal Project" : "Work Project"}`}
           >
@@ -59,7 +59,7 @@ export const Project: FC<ProjectData> = ({
                 href={repoLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-lightCyan hover:text-cyan-300 transition-colors duration-200 flex items-center gap-1"
+                className="text-[var(--accent)] hover:brightness-110 transition-colors duration-200 flex items-center gap-1"
               >
                 Repository <span className="text-sm">↗</span>
               </a>
@@ -69,7 +69,7 @@ export const Project: FC<ProjectData> = ({
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-lightCyan hover:text-cyan-300 transition-colors duration-200 flex items-center gap-1"
+                className="text-[var(--accent)] hover:brightness-110 transition-colors duration-200 flex items-center gap-1"
               >
                 Website <span className="text-sm">↗</span>
               </a>
