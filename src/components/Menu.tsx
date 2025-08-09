@@ -3,15 +3,16 @@
 import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { motion } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
+import { siteConfig } from "@/config/site";
 
 export default function Menu() {
   return (
     <div className="flex flex-col h-full justify-between">
       <div>
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-bold text-[var(--accent)] tracking-tight">
-            Marc-Aurele Besner
-          </h1>
+          <p className="text-2xl font-bold text-[var(--accent)] tracking-tight">
+            {siteConfig.name}
+          </p>
           <ThemeToggle />
         </div>
         <nav aria-label="Primary">
@@ -34,7 +35,7 @@ export default function Menu() {
       </div>
       <div className="flex space-x-4 mt-8">
         <a
-          href="https://github.com/marc-aurele-besner"
+          href={siteConfig.links.github}
           target="_blank"
           rel="noopener noreferrer"
           className="text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors"
@@ -43,7 +44,7 @@ export default function Menu() {
           <FaGithub size={24} />
         </a>
         <a
-          href="https://www.linkedin.com/in/marc-aurele-besner/"
+          href={siteConfig.links.linkedin}
           target="_blank"
           rel="noopener noreferrer"
           className="text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors"
@@ -52,7 +53,7 @@ export default function Menu() {
           <FaLinkedin size={24} />
         </a>
         <a
-          href="https://x.com/marcaureleb"
+          href={siteConfig.links.twitter}
           target="_blank"
           rel="noopener noreferrer"
           className="text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors"
@@ -61,7 +62,7 @@ export default function Menu() {
           <FaTwitter size={24} />
         </a>
         <a
-          href="https://www.instagram.com/mabesner/"
+          href={siteConfig.links.instagram}
           target="_blank"
           rel="noopener noreferrer"
           className="text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors"
