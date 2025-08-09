@@ -7,7 +7,7 @@ export default function Contact() {
       <SectionHeading eyebrow="Contact">
         <span id="contact-title">Get in touch</span>
       </SectionHeading>
-      <p className="text-grayTone max-w-2xl">
+      <p className="text-slate-600 dark:text-grayTone max-w-2xl">
         I’m open to collaborating on interesting projects, discussing Web3, or exploring new opportunities. The fastest way to
         reach me is via LinkedIn or Twitter.
       </p>
@@ -16,7 +16,7 @@ export default function Contact() {
           href="https://www.linkedin.com/in/marc-aurele-besner/"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-md border border-white/10 px-4 py-2 text-grayTone hover:text-lightCyan hover:border-lightCyan/50 transition"
+          className="inline-flex items-center gap-2 rounded-md border border-black/10 dark:border-white/10 px-4 py-2 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition"
         >
           <FaLinkedin />
           LinkedIn
@@ -25,7 +25,7 @@ export default function Contact() {
           href="https://x.com/marcaureleb"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-md border border-white/10 px-4 py-2 text-grayTone hover:text-lightCyan hover:border-lightCyan/50 transition"
+          className="inline-flex items-center gap-2 rounded-md border border-black/10 dark:border-white/10 px-4 py-2 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition"
         >
           <FaTwitter />
           Twitter
@@ -34,7 +34,7 @@ export default function Contact() {
           href="https://github.com/marc-aurele-besner"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-md border border-white/10 px-4 py-2 text-grayTone hover:text-lightCyan hover:border-lightCyan/50 transition"
+          className="inline-flex items-center gap-2 rounded-md border border-black/10 dark:border-white/10 px-4 py-2 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition"
         >
           <FaGithub />
           GitHub

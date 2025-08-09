@@ -5,13 +5,19 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  /* Accent colors (light theme defaults) */
+  --accent: #0ea5a5; /* teal-600 for strong contrast on white */
+  --accent-weak: rgba(14, 165, 165, 0.5);
+  --accent-bg-weak: rgba(14, 165, 165, 0.10);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #e6ecff; /* slightly brighter for contrast on dark */
-  }
+.dark {
+  --background: #0a0a0a;
+  --foreground: #e6ecff; /* slightly brighter for contrast on dark */
+  /* Accent colors (dark theme) */
+  --accent: #64ffda;
+  --accent-weak: rgba(100, 255, 218, 0.5);
+  --accent-bg-weak: rgba(100, 255, 218, 0.10);
 }
 
 html {

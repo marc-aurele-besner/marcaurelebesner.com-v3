@@ -25,7 +25,7 @@ export const Project: FC<ProjectData> = ({
     <GlassCard className="flex flex-col md:flex-row items-center p-6">
       {/* Shine overlay */}
       <div className="pointer-events-none absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity">
-        <div className="absolute inset-0 rounded-xl bg-[linear-gradient(120deg,transparent_0%,rgba(255,255,255,0.06)_30%,transparent_60%)]" />
+        <div className="absolute inset-0 rounded-xl bg-[linear-gradient(120deg,transparent_0%,rgba(0,0,0,0.04)_30%,transparent_60%)] dark:bg-[linear-gradient(120deg,transparent_0%,rgba(255,255,255,0.06)_30%,transparent_60%)]" />
       </div>
 
       <a href={link} target="_blank" rel="noopener noreferrer" className="w-full md:w-1/3">
@@ -41,8 +41,8 @@ export const Project: FC<ProjectData> = ({
           <span
             className={`inline-block px-3 py-1 text-xs sm:text-sm font-semibold rounded-full border mt-2 transition-colors duration-300 ${
               projectType === "personal"
-                ? "border-lightCyan/60 text-lightCyan bg-transparent hover:bg-lightCyan/10"
-                : "border-lightCyan/60 text-lightCyan bg-transparent hover:bg-lightCyan/10"
+                ? "border-[var(--accent-weak)] text-[var(--accent)] bg-transparent hover:bg-[var(--accent-bg-weak)]"
+                : "border-[var(--accent-weak)] text-[var(--accent)] bg-transparent hover:bg-[var(--accent-bg-weak)]"
             }`}
             aria-label={`Project type: ${projectType === "personal" ? "Personal Project" : "Work Project"}`}
           >
@@ -52,14 +52,14 @@ export const Project: FC<ProjectData> = ({
       </a>
       <div className="flex-1 md:ml-4 mt-4 md:mt-0 w-full">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-          <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-white/95">{title}</h3>
+          <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-slate-900 dark:text-white/95">{title}</h3>
           <div className="flex items-center gap-4">
             {repoLink && (
               <a
                 href={repoLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-lightCyan hover:text-cyan-300 transition-colors duration-200 flex items-center gap-1"
+                className="text-[var(--accent)] hover:brightness-110 transition-colors duration-200 flex items-center gap-1"
               >
                 Repository <span className="text-sm">↗</span>
               </a>
@@ -69,14 +69,14 @@ export const Project: FC<ProjectData> = ({
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-lightCyan hover:text-cyan-300 transition-colors duration-200 flex items-center gap-1"
+                className="text-[var(--accent)] hover:brightness-110 transition-colors duration-200 flex items-center gap-1"
               >
                 Website <span className="text-sm">↗</span>
               </a>
             )}
           </div>
         </div>
-        <p className="text-sm sm:text-lg mt-2 text-gray-200/90">{description}</p>
+        <p className="text-sm sm:text-lg mt-2 text-slate-700 dark:text-gray-200/90">{description}</p>
         <div className="flex flex-wrap gap-2 mt-3">
           {badges.map((badge) => (
             <Badge key={badge} text={badge} />
