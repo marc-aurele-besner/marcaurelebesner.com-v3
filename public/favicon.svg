@@ -8,6 +8,6 @@
   <rect width="64" height="64" rx="14" fill="#0a192f"/>
   <!-- Stylized "M" -->
   <path d="M12 46 V18 L22 34 L32 18 V46" fill="none" stroke="url(#accent)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Stylized "A" -->
-  <path d="M36 46 L44 18 L52 46 M40 36 H48" fill="none" stroke="url(#accent)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Stylized "A" (shifted right for more spacing) -->
+  <path d="M39 46 L47 18 L55 46 M43 36 H51" fill="none" stroke="url(#accent)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
