@@ -11,11 +11,11 @@ export default function About() {
       transition={{ duration: 0.5 }}
     >
       <div className="max-w-3xl px-2">
-        <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight bg-gradient-to-r from-lightCyan via-white to-lightCyan/80 bg-clip-text text-transparent tracking-tight">
+        <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight bg-gradient-to-r from-lightCyan via-black dark:via-white to-lightCyan/80 bg-clip-text text-transparent tracking-tight">
           Web3&deAI Full‑stack engineer, building at the intersection of
           blockchain and decentralized AI.
         </h1>
-        <p className="mt-4 text-lg leading-relaxed text-gray-200/90">
+        <p className="mt-4 text-lg leading-relaxed text-slate-700 dark:text-gray-200/90">
           I design and build decentralized apps, smart contracts, SDKs, open
           source tools, block explorers, and AI agents. I&apos;m familiar with
           decentralized system for encryption and data storage.
@@ -38,7 +38,7 @@ export default function About() {
         </div>
 
         <GlassCard className="p-4 mt-8">
-          <p className="text-sm text-grayTone">
+          <p className="text-sm text-slate-600 dark:text-grayTone">
             Currently exploring AI-assisted DeFi agents and mobile apps.
             Interested in collaborating or learning more?{" "}
             <a
