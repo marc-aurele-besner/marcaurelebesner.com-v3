@@ -1,49 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with
-[`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Marc‑Aurele Besner — Portfolio (v3)
 
-## Getting Started
+A fast, accessible personal site built with Next.js 15, React 19 RC, Tailwind CSS, and Framer Motion. It showcases About, Experience, Projects, and Contact sections with dark mode, animated sections, strong SEO, and a strict Content Security Policy.
 
-First, run the development server:
+Live: https://marcaurelebesner.com
+
+## Tech Stack
+- Next.js 15 (App Router)
+- React 19 RC
+- Tailwind CSS
+- Framer Motion
+- next-themes (dark mode)
+
+## Quick Start
+Prerequisites: Node.js 18.18+ (or 20+ recommended) and your preferred package manager.
 
 ```bash
-npm run dev
-# or
+# Install dependencies
+yarn
+# or: npm i
+
+# Start dev server
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# or: npm run dev
+
+# Build for production
+yarn build
+# or: npm run build
+
+# Start production server
+yarn start
+# or: npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the
-result.
+Open http://localhost:3000 to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page
-auto-updates as you edit the file.
+## Configuration
+- Environment variables
+  - `NEXT_PUBLIC_SITE_URL` (optional): Public site URL used for metadata. Defaults to `https://marcaurelebesner.com`.
+- Content & SEO
+  - Edit `src/config/site.ts` to update name, role, description, links, and SEO keywords.
+  - Edit `src/constants/projects.ts` to change the projects list.
+- Theming & Fonts
+  - Dark mode via `next-themes`.
+  - Local Geist fonts configured in `src/app/layout.tsx`.
+- Security
+  - Strict CSP and security headers are defined in `next.config.ts`.
 
-This project uses
-[`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts)
-to automatically optimize and load [Geist](https://vercel.com/font), a new font
-family for Vercel.
+## Scripts
+```json
+{
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "lint": "next lint"
+}
+```
 
-## Learn More
+## Project Structure
+```
+src/
+  app/
+    layout.tsx         # Global layout, metadata, providers, UI shell
+    page.tsx           # Home: About, Experience, Projects, Contact
+    globals.css        # Tailwind base and design tokens
+    contact/           # Contact route
+  components/          # UI components (Header, Menu, Experience, etc.)
+  config/site.ts       # Site metadata and social links
+  constants/projects.ts# Project data
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
+- Recommended: Vercel
+  1) Create a new project in Vercel and import this repo
+  2) (Optional) Add `NEXT_PUBLIC_SITE_URL`
+  3) Deploy. Vercel will run `next build` automatically.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Self‑hosting: `yarn build && yarn start` (ensure Node 18.18+).
 
-You can check out
-[the Next.js GitHub repository](https://github.com/vercel/next.js) - your
-feedback and contributions are welcome!
+## Accessibility & Performance
+- Skip link, focus styles, and semantic sections
+- Prefers-reduced-motion friendly animations
+- Optimized images and font loading
+- Smooth scrolling and dark mode support
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the
-[Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-from the creators of Next.js.
-
-Check out our
-[Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying)
-for more details.
+## License
+MIT © 2024 Marc‑Aurele Besner
