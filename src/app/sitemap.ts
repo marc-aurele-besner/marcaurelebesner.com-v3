@@ -1,17 +1,16 @@
 import type { MetadataRoute } from "next";
-
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://marcaurelebesner.com";
+import { siteConfig } from "@/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: `${baseUrl}/`,
+      url: `${siteConfig.url}/`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
     },
     {
-      url: `${baseUrl}/contact`,
+      url: `${siteConfig.url}/contact`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.7,

@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Spotlight from "../components/Spotlight";
 import Backdrop from "../components/Backdrop";
 import ThemeProvider from "../components/ThemeProvider";
+import { siteConfig } from "@/config/site";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -18,32 +19,35 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://marcaurelebesner.com";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(baseUrl),
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Marc‑Aurele Besner — Web3 Full‑Stack Engineer",
-    template: "%s | Marc‑Aurele Besner",
+    default: `${siteConfig.name} — ${siteConfig.role}`,
+    template: `%s | ${siteConfig.name}`,
   },
-  description:
-    "Web3 full‑stack engineer building blockchain apps, smart contracts, and open‑source tools. Portfolio, experience, and selected projects.",
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
   alternates: { canonical: "/" },
-  authors: [{ name: "Marc‑Aurele Besner", url: "https://marcaurelebesner.com" }],
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  robots: { index: true, follow: true },
+  icons: {
+    icon: "/favicon.svg",
+  },
   openGraph: {
     url: "/",
-    siteName: "Marc‑Aurele Besner",
+    siteName: siteConfig.name,
     type: "website",
-    title: "Marc‑Aurele Besner — Web3 Full‑Stack Engineer",
-    description:
-      "Web3 full‑stack engineer building blockchain apps, smart contracts, and open‑source tools.",
+    title: `${siteConfig.name} — ${siteConfig.role}`,
+    description: siteConfig.description,
+    images: ["/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
-    creator: "@marcaureleb",
-    title: "Marc‑Aurele Besner — Web3 Full‑Stack Engineer",
-    description:
-      "Web3 full‑stack engineer building blockchain apps, smart contracts, and open‑source tools.",
+    creator: siteConfig.twitterHandle,
+    title: `${siteConfig.name} — ${siteConfig.role}`,
+    description: siteConfig.description,
+    images: ["/twitter-image"],
   },
   themeColor: "#0a192f",
 };
