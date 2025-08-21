@@ -12,7 +12,7 @@ This directory contains GitHub Actions workflows for automated testing and deplo
 1. **Setup Environment**
    - Checks out the code
    - Sets up Node.js 18 with npm caching
-   - Installs dependencies
+   - Installs dependencies (using --legacy-peer-deps to resolve React 19 RC compatibility)
 
 2. **Prepare Application**
    - Installs Playwright browsers and dependencies
@@ -46,6 +46,9 @@ This directory contains GitHub Actions workflows for automated testing and deplo
 ### Local Testing
 To test the workflow locally before pushing:
 ```bash
+# Install dependencies (use legacy peer deps if you encounter React version conflicts)
+npm ci --legacy-peer-deps
+
 # Start the development server
 npm run dev
 
