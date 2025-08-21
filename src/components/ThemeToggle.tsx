@@ -15,12 +15,12 @@ export default function ThemeToggle() {
   const current = theme === "system" ? systemTheme : theme;
 
   return (
-    <div className="inline-flex items-center gap-1 rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur px-1 py-1">
+    <div className="inline-flex items-center gap-1 rounded-xl border border-[var(--border)] bg-[var(--surface)]/80 backdrop-blur-xl p-1 shadow-sm">
       <button
         type="button"
         onClick={() => setTheme("light")}
         aria-label="Switch to light theme"
-        className={`p-1.5 rounded-md transition-colors ${current === "light" ? "bg-black/5 dark:bg-white/10 text-slate-900 dark:text-white" : "text-slate-600 dark:text-grayTone"}`}
+        className={`p-2 rounded-lg transition-all duration-200 hover:bg-[var(--surface-hover)] ${current === "light" ? "bg-[var(--accent)] text-white shadow-md" : "text-[var(--foreground)]/70"}`}
       >
         <FiSun size={16} />
       </button>
@@ -28,7 +28,7 @@ export default function ThemeToggle() {
         type="button"
         onClick={() => setTheme("dark")}
         aria-label="Switch to dark theme"
-        className={`p-1.5 rounded-md transition-colors ${current === "dark" ? "bg-black/5 dark:bg-white/10 text-slate-900 dark:text-white" : "text-slate-600 dark:text-grayTone"}`}
+        className={`p-2 rounded-lg transition-all duration-200 hover:bg-[var(--surface-hover)] ${current === "dark" ? "bg-[var(--accent)] text-white shadow-md" : "text-[var(--foreground)]/70"}`}
       >
         <FiMoon size={16} />
       </button>
@@ -36,7 +36,7 @@ export default function ThemeToggle() {
         type="button"
         onClick={() => setTheme("system")}
         aria-label="Use system theme"
-        className={`p-1.5 rounded-md transition-colors ${theme === "system" ? "bg-black/5 dark:bg-white/10 text-slate-900 dark:text-white" : "text-slate-600 dark:text-grayTone"}`}
+        className={`p-2 rounded-lg transition-all duration-200 hover:bg-[var(--surface-hover)] ${theme === "system" ? "bg-[var(--accent)] text-white shadow-md" : "text-[var(--foreground)]/70"}`}
       >
         <FiMonitor size={16} />
       </button>

@@ -14,11 +14,11 @@ export default function Projects() {
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      <div className="max-w-3xl w-full px-4">
-        <div className="flex items-center justify-between mb-8">
+      <div className="max-w-4xl w-full px-4">
+        <div className="flex items-center justify-between mb-12">
           <div>
             <SectionHeading eyebrow="Selected Work">Projects</SectionHeading>
-            <p className="text-slate-600 dark:text-grayTone mt-1">A few things I shipped recently.</p>
+            <p className="typography-body text-[var(--foreground)]/70 mt-2">A few things I shipped recently.</p>
           </div>
         </div>
         {projects.map((project) => (

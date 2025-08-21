@@ -5,13 +5,15 @@ import About from "../components/About";
 import Experience from "../components/Experience";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
+import PageTransition from "@/components/PageTransition";
 
 export default function HomePage() {
   return (
-    <div>
+    <PageTransition>
+      <div>
       <motion.section
         id="about"
-        className="scroll-mt-28"
+        className="scroll-mt-32 mb-24"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -21,7 +23,7 @@ export default function HomePage() {
       </motion.section>
       <motion.section
         id="experience"
-        className="scroll-mt-28 mt-12"
+        className="scroll-mt-32 mb-24"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -31,7 +33,7 @@ export default function HomePage() {
       </motion.section>
       <motion.section
         id="projects"
-        className="scroll-mt-28"
+        className="scroll-mt-32 mb-24"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -40,7 +42,8 @@ export default function HomePage() {
         <Projects />
       </motion.section>
       <motion.section
-        className="mt-12"
+        id="contact"
+        className="scroll-mt-32"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -49,5 +52,6 @@ export default function HomePage() {
         <Contact />
       </motion.section>
     </div>
+    </PageTransition>
   );
 }

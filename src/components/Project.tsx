@@ -51,17 +51,17 @@ export const Project: FC<ProjectData> = ({
         </div>
       </a>
       <div className="flex-1 md:ml-4 mt-4 md:mt-0 w-full">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-          <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-slate-900 dark:text-white/95">{title}</h3>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <h3 className="typography-heading-4 text-[var(--foreground)]">{title}</h3>
           <div className="flex items-center gap-4">
             {repoLink && (
               <a
                 href={repoLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[var(--accent)] hover:brightness-110 transition-colors duration-200 flex items-center gap-1"
+                className="text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors duration-200 flex items-center gap-2 font-medium text-sm"
               >
-                Repository <span className="text-sm">↗</span>
+                Repository <span>↗</span>
               </a>
             )}
             {link && (
@@ -69,14 +69,14 @@ export const Project: FC<ProjectData> = ({
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[var(--accent)] hover:brightness-110 transition-colors duration-200 flex items-center gap-1"
+                className="text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors duration-200 flex items-center gap-2 font-medium text-sm"
               >
-                Website <span className="text-sm">↗</span>
+                Website <span>↗</span>
               </a>
             )}
           </div>
         </div>
-        <p className="text-sm sm:text-lg mt-2 text-slate-700 dark:text-gray-200/90">{description}</p>
+        <p className="typography-body text-[var(--foreground)]/75 mt-3">{description}</p>
         <div className="flex flex-wrap gap-2 mt-3">
           {badges.map((badge) => (
             <Badge key={badge} text={badge} />

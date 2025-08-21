@@ -10,13 +10,13 @@ export default function Header() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <header className="md:hidden sticky top-0 z-50 bg-white/80 dark:bg-darkBlue/80 backdrop-blur border-b border-slate-200 dark:border-white/5">
-      <div className="p-4 px-4 flex justify-between items-center">
-        <p className="text-xl font-semibold text-[var(--accent)]">{siteConfig.name}</p>
-        <div className="flex items-center gap-2">
+    <header className="md:hidden sticky top-0 z-50 bg-[var(--surface)]/95 backdrop-blur-xl border-b border-[var(--border)] shadow-sm supports-backdrop-blur:bg-[var(--surface)]/80">
+      <div className="px-4 py-3 flex justify-between items-center">
+        <p className="typography-heading-4 text-[var(--accent)] font-bold">{siteConfig.name}</p>
+        <div className="flex items-center gap-3">
           <ThemeToggle />
           <button
-            className="text-2xl font-bold text-[var(--accent)] rounded-md p-1 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition hover:scale-105"
+            className="text-2xl font-bold text-[var(--accent)] rounded-xl p-2 hover:bg-[var(--surface-hover)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 transition-all duration-200 hover:scale-105 active:scale-95"
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
@@ -29,13 +29,13 @@ export default function Header() {
 
       {isOpen && (
         shouldReduceMotion ? (
-          <nav id="mobile-menu" className="px-2 pb-3 relative">
+          <nav id="mobile-menu" className="px-2 pb-3 relative bg-[var(--surface)]/95 backdrop-blur-xl border-t border-[var(--border)] shadow-lg">
             <div className="pointer-events-none absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-black/10 dark:via-white/30 to-transparent" />
-            <ul className="flex flex-col items-center gap-1">
+            <ul className="flex flex-col items-center gap-2">
               <li className="w-full">
                 <a
                   href="#about"
-                  className="block w-full p-3 text-center rounded-md text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:bg-black/5 dark:hover:bg-white/5 transition"
+                  className="block w-full py-4 px-3 text-center rounded-xl text-[var(--foreground)]/70 hover:text-[var(--accent)] hover:bg-[var(--surface-hover)] transition-all duration-200 font-medium"
                   onClick={() => setIsOpen(false)}
                 >
                   About
@@ -44,7 +44,7 @@ export default function Header() {
               <li className="w-full">
                 <a
                   href="#experience"
-                  className="block w-full p-3 text-center rounded-md text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:bg-black/5 dark:hover:bg-white/5 transition"
+                  className="block w-full py-4 px-3 text-center rounded-xl text-[var(--foreground)]/70 hover:text-[var(--accent)] hover:bg-[var(--surface-hover)] transition-all duration-200 font-medium"
                   onClick={() => setIsOpen(false)}
                 >
                   Experience
@@ -53,7 +53,7 @@ export default function Header() {
               <li className="w-full">
                 <a
                   href="#projects"
-                  className="block w-full p-3 text-center rounded-md text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:bg-black/5 dark:hover:bg-white/5 transition"
+                  className="block w-full py-4 px-3 text-center rounded-xl text-[var(--foreground)]/70 hover:text-[var(--accent)] hover:bg-[var(--surface-hover)] transition-all duration-200 font-medium"
                   onClick={() => setIsOpen(false)}
                 >
                   Projects
@@ -62,7 +62,7 @@ export default function Header() {
               <li className="w-full">
                 <a
                   href="#contact"
-                  className="block w/full p-3 text-center rounded-md text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:bg-black/5 dark:hover:bg-white/5 transition"
+                  className="block w-full py-4 px-3 text-center rounded-xl text-[var(--foreground)]/70 hover:text-[var(--accent)] hover:bg-[var(--surface-hover)] transition-all duration-200 font-medium"
                   onClick={() => setIsOpen(false)}
                 >
                   Contact
@@ -80,14 +80,14 @@ export default function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
-                className="px-2 pb-3 relative"
+                className="px-2 pb-3 relative bg-[var(--surface)]/95 backdrop-blur-xl border-t border-[var(--border)] shadow-lg"
               >
                 <div className="pointer-events-none absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-black/10 dark:via-white/30 to-transparent" />
-                <ul className="flex flex-col items-center gap-1">
+                <ul className="flex flex-col items-center gap-2">
                   <li className="w-full">
                     <a
                       href="#about"
-                      className="block w-full p-3 text-center rounded-md text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:bg-black/5 dark:hover:bg-white/5 transition"
+                      className="block w-full py-4 px-3 text-center rounded-xl text-[var(--foreground)]/70 hover:text-[var(--accent)] hover:bg-[var(--surface-hover)] transition-all duration-200 font-medium"
                       onClick={() => setIsOpen(false)}
                     >
                       About
@@ -96,7 +96,7 @@ export default function Header() {
                   <li className="w-full">
                     <a
                       href="#experience"
-                      className="block w-full p-3 text-center rounded-md text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:bg-black/5 dark:hover:bg-white/5 transition"
+                      className="block w-full py-4 px-3 text-center rounded-xl text-[var(--foreground)]/70 hover:text-[var(--accent)] hover:bg-[var(--surface-hover)] transition-all duration-200 font-medium"
                       onClick={() => setIsOpen(false)}
                     >
                       Experience
@@ -105,7 +105,7 @@ export default function Header() {
                   <li className="w-full">
                     <a
                       href="#projects"
-                      className="block w-full p-3 text-center rounded-md text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:bg-black/5 dark:hover:bg-white/5 transition"
+                      className="block w-full py-4 px-3 text-center rounded-xl text-[var(--foreground)]/70 hover:text-[var(--accent)] hover:bg-[var(--surface-hover)] transition-all duration-200 font-medium"
                       onClick={() => setIsOpen(false)}
                     >
                       Projects
@@ -114,7 +114,7 @@ export default function Header() {
                   <li className="w-full">
                     <a
                       href="#contact"
-                      className="block w-full p-3 text-center rounded-md text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:bg-black/5 dark:hover:bg-white/5 transition"
+                      className="block w-full py-4 px-3 text-center rounded-xl text-[var(--foreground)]/70 hover:text-[var(--accent)] hover:bg-[var(--surface-hover)] transition-all duration-200 font-medium"
                       onClick={() => setIsOpen(false)}
                     >
                       Contact

@@ -9,6 +9,17 @@
   --accent: #0ea5a5; /* teal-600 for strong contrast on white */
   --accent-weak: rgba(14, 165, 165, 0.5);
   --accent-bg-weak: rgba(14, 165, 165, 0.10);
+  /* Enhanced color palette */
+  --accent-hover: #0b8a8a;
+  --accent-light: #e0f7f7;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  /* Surface colors */
+  --surface: #fafbfc;
+  --surface-hover: #f1f3f5;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
 }
 
 .dark {
@@ -18,6 +29,16 @@
   --accent: #64ffda;
   --accent-weak: rgba(100, 255, 218, 0.5);
   --accent-bg-weak: rgba(100, 255, 218, 0.10);
+  --accent-hover: #4ade80;
+  --accent-light: rgba(100, 255, 218, 0.1);
+  /* Enhanced dark colors */
+  --surface: #0f172a;
+  --surface-hover: #1e293b;
+  --border: #334155;
+  --border-strong: #475569;
+  --success: #22c55e;
+  --warning: #fbbf24;
+  --error: #f87171;
 }
 
 html {
@@ -31,6 +52,69 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+}
+
+/* Typography Scale */
+.typography-display {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.typography-heading-1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.typography-heading-2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.typography-heading-3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.875rem);
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.typography-heading-4 {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.typography-body-large {
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.typography-body {
+  font-size: clamp(0.875rem, 1.25vw, 1rem);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.typography-body-small {
+  font-size: clamp(0.75rem, 1vw, 0.875rem);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.typography-caption {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: 0.025em;
 }
 
 ::selection {
@@ -68,4 +152,70 @@ body {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
+}
+
+/* Skeleton shimmer animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Modern animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-20px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(-10px) rotate(-1deg);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(100, 255, 218, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(100, 255, 218, 0.5);
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Modern hover effects */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Glass effect utility */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+}
+
+.dark .glass-effect {
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }

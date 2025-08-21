@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Spotlight from "../components/Spotlight";
 import Backdrop from "../components/Backdrop";
 import ThemeProvider from "../components/ThemeProvider";
+import ScrollProgress from "../components/ScrollProgress";
 import { siteConfig } from "@/config/site";
 
 const geistSans = localFont({
@@ -60,12 +61,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-slate-800 dark:bg-darkBlue dark:text-grayTone relative overflow-x-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[var(--background)] text-[var(--foreground)] relative overflow-x-hidden`}
       >
         <ThemeProvider>
+          <ScrollProgress />
           <a
             href="#main-content"
-            className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 bg-[var(--accent)] text-darkBlue px-3 py-2 rounded"
+            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 bg-[var(--accent)] text-white px-4 py-2 rounded-xl font-medium shadow-lg"
           >
             Skip to main content
           </a>
@@ -74,10 +76,10 @@ export default function RootLayout({
           <Spotlight />
           <Header />
           <div className="flex min-h-screen md:flex-row flex-col">
-            <aside className="md:w-72 bg-white/70 dark:bg-darkBlue/70 backdrop-blur border-r border-slate-200 dark:border-white/5 p-8 fixed h-full hidden md:block">
+            <aside className="md:w-80 lg:w-72 bg-[var(--surface)]/80 backdrop-blur-xl border-r border-[var(--border)] p-8 fixed h-full hidden md:block shadow-sm">
               <Menu />
             </aside>
-            <main id="main-content" className="flex-1 overflow-y-auto py-16 md:ml-72 px-4 sm:px-6 lg:px-8">
+            <main id="main-content" className="flex-1 overflow-y-auto py-20 md:py-24 md:ml-80 lg:ml-72 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto">
               {children}
             </main>
           </div>
