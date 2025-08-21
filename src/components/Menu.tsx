@@ -18,11 +18,10 @@ export default function Menu() {
   return (
     <div className="flex flex-col h-full justify-between">
       <div>
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center mb-8">
           <p className="text-2xl font-bold text-[var(--accent)] tracking-tight">
             {siteConfig.name}
           </p>
-          <ThemeToggle />
         </div>
         <nav aria-label="Primary">
           <ul className="space-y-3">
@@ -52,43 +51,46 @@ export default function Menu() {
           </ul>
         </nav>
       </div>
-      <div className="flex space-x-4 mt-8">
-        <a
-          href={siteConfig.links.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors"
-          aria-label="GitHub"
-        >
-          <FaGithub size={24} />
-        </a>
-        <a
-          href={siteConfig.links.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors"
-          aria-label="LinkedIn"
-        >
-          <FaLinkedin size={24} />
-        </a>
-        <a
-          href={siteConfig.links.twitter}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors"
-          aria-label="Twitter"
-        >
-          <FaTwitter size={24} />
-        </a>
-        <a
-          href={siteConfig.links.instagram}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors"
-          aria-label="Instagram"
-        >
-          <FaInstagram size={24} />
-        </a>
+      <div className="flex flex-col gap-4 mt-8">
+        <ThemeToggle />
+        <div className="flex space-x-4">
+          <a
+            href={siteConfig.links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors"
+            aria-label="GitHub"
+          >
+            <FaGithub size={24} />
+          </a>
+          <a
+            href={siteConfig.links.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors"
+            aria-label="LinkedIn"
+          >
+            <FaLinkedin size={24} />
+          </a>
+          <a
+            href={siteConfig.links.twitter}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors"
+            aria-label="Twitter"
+          >
+            <FaTwitter size={24} />
+          </a>
+          <a
+            href={siteConfig.links.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors"
+            aria-label="Instagram"
+          >
+            <FaInstagram size={24} />
+          </a>
+        </div>
       </div>
     </div>
   );
