@@ -6,7 +6,8 @@ import GlassCard from "./GlassCard";
 export default function Experience() {
   return (
     <motion.section
-      className="w-full flex flex-col items-center justify-start py-12 px-4 sm:px-6 lg:px-8"
+      id="experience"
+      className="w-full flex flex-col items-center justify-start py-12 px-4 sm:px-6 lg:px-8 scroll-mt-28"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}

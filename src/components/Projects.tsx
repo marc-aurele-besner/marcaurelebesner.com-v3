@@ -8,7 +8,8 @@ import SectionHeading from "./SectionHeading";
 export default function Projects() {
   return (
     <motion.section
-      className="min-h-[70vh] flex flex-col items-center justify-center py-12"
+      id="projects"
+      className="min-h-[70vh] flex flex-col items-center justify-center py-12 scroll-mt-28"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}

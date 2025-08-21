@@ -4,7 +4,8 @@ import GlassCard from "./GlassCard";
 export default function About() {
   return (
     <motion.section
-      className="flex items-start justify-center pt-6 pb-2"
+      id="about"
+      className="flex items-start justify-center pt-6 pb-2 scroll-mt-28"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -12,13 +13,13 @@ export default function About() {
     >
       <div className="max-w-3xl px-2">
         <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight bg-gradient-to-r from-[var(--accent)] via-black dark:via-white to-slate-900 dark:to-white bg-clip-text text-transparent tracking-tight">
-          Web3&deAI Full‑stack engineer, building at the intersection of
+          Web3 & AI Full‑stack engineer, building at the intersection of
           blockchain and decentralized AI.
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-slate-700 dark:text-gray-200/90">
           I design and build decentralized apps, smart contracts, SDKs, open
           source tools, block explorers, and AI agents. I&apos;m familiar with
-          decentralized system for encryption and data storage.
+          decentralized systems for encryption and data storage.
         </p>
 
         <div className="mt-6 flex flex-wrap gap-3">
