@@ -25,8 +25,9 @@ export default function About() {
           <a
             href="#projects"
             className="inline-flex items-center gap-2 rounded-xl bg-[var(--accent)] text-white font-semibold px-6 py-3 hover:bg-[var(--accent-hover)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[var(--background)] transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+            aria-label="View my projects section"
           >
-            aria-label="View my projects section">View Projects
+            View Projects
             <span aria-hidden>↗</span>
           </a>
           <a
