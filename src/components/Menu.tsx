@@ -51,45 +51,59 @@ export default function Menu() {
           </ul>
         </nav>
       </div>
-      <div className="flex flex-col gap-4 mt-8">
-        <ThemeToggle />
-        <div className="flex space-x-4">
-          <a
-            href={siteConfig.links.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors"
-            aria-label="GitHub"
-          >
-            <FaGithub size={24} />
-          </a>
-          <a
-            href={siteConfig.links.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors"
-            aria-label="LinkedIn"
-          >
-            <FaLinkedin size={24} />
-          </a>
-          <a
-            href={siteConfig.links.twitter}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors"
-            aria-label="Twitter"
-          >
-            <FaTwitter size={24} />
-          </a>
-          <a
-            href={siteConfig.links.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-slate-600 dark:text-grayTone hover:text-[var(--accent)] transition-colors"
-            aria-label="Instagram"
-          >
-            <FaInstagram size={24} />
-          </a>
+
+      <div className="mt-8 pt-6 border-t border-slate-200 dark:border-white/5">
+        <div className="flex flex-col gap-5">
+          <div>
+            <p className="text-xs uppercase tracking-widest text-slate-500 dark:text-grayTone/70 mb-2">Appearance</p>
+            <ThemeToggle />
+          </div>
+
+          <div>
+            <p className="text-xs uppercase tracking-widest text-slate-500 dark:text-grayTone/70 mb-2">On the web</p>
+            <div className="flex items-center gap-2">
+              <a
+                href={siteConfig.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="GitHub"
+                aria-label="GitHub"
+                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
+              >
+                <FaGithub size={18} />
+              </a>
+              <a
+                href={siteConfig.links.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="LinkedIn"
+                aria-label="LinkedIn"
+                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
+              >
+                <FaLinkedin size={18} />
+              </a>
+              <a
+                href={siteConfig.links.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Twitter/X"
+                aria-label="Twitter"
+                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
+              >
+                <FaTwitter size={18} />
+              </a>
+              <a
+                href={siteConfig.links.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Instagram"
+                aria-label="Instagram"
+                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
+              >
+                <FaInstagram size={18} />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
