@@ -7,6 +7,7 @@ import Spotlight from "../components/Spotlight";
 import Backdrop from "../components/Backdrop";
 import ThemeProvider from "../components/ThemeProvider";
 import { siteConfig } from "@/config/site";
+import ScrollProgress from "@/components/ScrollProgress";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -69,6 +70,7 @@ export default function RootLayout({
           >
             Skip to main content
           </a>
+          <ScrollProgress />
           {/* Background effects */}
           <Backdrop />
           <Spotlight />
