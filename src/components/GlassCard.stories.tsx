@@ -19,17 +19,21 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  render: (args) => <GlassCard {...args}>Simple content</GlassCard>,
+  args: {
+    children: 'Simple content',
+  },
 }
 
 export const WithCustomContent: Story = {
-  render: (args) => (
-    <GlassCard {...args}>
-      <h3 className="text-lg font-semibold mb-2">Glass Card</h3>
-      <p className="text-sm opacity-90">
-        This card uses a glassmorphism effect with Tailwind and subtle glow on
-        hover.
-      </p>
-    </GlassCard>
-  ),
+  args: {
+    children: (
+      <>
+        <h3 className="text-lg font-semibold mb-2">Glass Card</h3>
+        <p className="text-sm opacity-90">
+          This card uses a glassmorphism effect with Tailwind and subtle glow on
+          hover.
+        </p>
+      </>
+    ),
+  },
 }

@@ -1,16 +1,15 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "next/typescript",
-    "plugin:storybook/recommended"
-  ],
+  "extends": ["next/core-web-vitals", "next/typescript"],
   "rules": {
-    "react/jsx-key": [
-      "error",
-      {
-        "checkFragmentShorthand": true
-      }
-    ],
+    "react/jsx-key": ["error", { "checkFragmentShorthand": true }],
     "@next/next/no-img-element": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["src/stories/**/*", "**/*.stories.*", "**/*.mdx"],
+      "rules": {
+        "react/no-unescaped-entities": "off"
+      }
+    }
+  ]
 }
