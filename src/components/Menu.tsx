@@ -5,9 +5,12 @@ import { motion } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 import { siteConfig } from "@/config/site";
 import { useActiveSection } from "@/hooks/useActiveSection";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Menu() {
   const { activeId } = useActiveSection();
+  const pathname = usePathname();
   const items = [
     { href: "#about", label: "About", id: "about" },
     { href: "#experience", label: "Experience", id: "experience" },
@@ -29,8 +32,8 @@ export default function Menu() {
               const isActive = activeId === item.id;
               return (
                 <motion.li key={item.href} initial={{ opacity: 0.7 }} whileHover={{ opacity: 1, x: 4 }} transition={{ duration: 0.2 }}>
-                  <a
-                    href={item.href}
+                  <Link
+                    href={pathname === "/" ? item.href : `/${item.href}`}
                     aria-current={isActive ? "page" : undefined}
                     className={`group inline-flex items-center gap-2 transition-colors ${
                       isActive
@@ -44,7 +47,7 @@ export default function Menu() {
                       }`}
                     />
                     {item.label}
-                  </a>
+                  </Link>
                 </motion.li>
               );
             })}
