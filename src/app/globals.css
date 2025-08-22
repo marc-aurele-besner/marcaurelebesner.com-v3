@@ -80,3 +80,67 @@ body {
     transition: none !important;
   }
 }
+
+/* =========================
+   Party Mode Easter Egg CSS
+   ========================= */
+html.party-mode body {
+  /* Subtle global hue shimmy */
+  animation: partyHue 6s linear infinite;
+}
+
+@keyframes partyHue {
+  0% { filter: hue-rotate(0deg) saturate(1.05); }
+  50% { filter: hue-rotate(180deg) saturate(1.25); }
+  100% { filter: hue-rotate(360deg) saturate(1.05); }
+}
+
+.party-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  background: radial-gradient(1200px 600px at 20% -10%, rgba(100,255,218,0.12), transparent 60%),
+              radial-gradient(900px 500px at 120% 10%, rgba(14,165,165,0.12), transparent 60%);
+}
+
+.party-banner {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 14px;
+  border-radius: 9999px;
+  color: #0a0a0a;
+  font-weight: 700;
+  background: linear-gradient(90deg, #64ffda, #0ea5a5);
+  box-shadow: 0 10px 30px rgba(100, 255, 218, 0.35);
+}
+
+.confetti-container {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -10vh;
+  border-radius: 2px;
+  opacity: 0.95;
+  animation: confettiFall 3.6s linear infinite;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 0.9;
+  }
+  80% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0.8;
+  }
+}

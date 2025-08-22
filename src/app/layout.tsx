@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Spotlight from "../components/Spotlight";
 import Backdrop from "../components/Backdrop";
 import ThemeProvider from "../components/ThemeProvider";
+import EasterEggs from "../components/EasterEggs";
 import { siteConfig } from "@/config/site";
 import ScrollProgress from "@/components/ScrollProgress";
 
@@ -64,6 +65,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-slate-800 dark:bg-darkBlue dark:text-grayTone relative overflow-x-hidden`}
       >
         <ThemeProvider>
+          <EasterEggs />
           <a
             href="#main-content"
             className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 bg-[var(--accent)] text-darkBlue px-3 py-2 rounded"
