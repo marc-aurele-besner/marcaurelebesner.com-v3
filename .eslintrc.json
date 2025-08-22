@@ -3,5 +3,13 @@
   "rules": {
     "react/jsx-key": ["error", { "checkFragmentShorthand": true }],
     "@next/next/no-img-element": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["src/stories/**/*", "**/*.stories.*", "**/*.mdx"],
+      "rules": {
+        "react/no-unescaped-entities": "off"
+      }
+    }
+  ]
 }

@@ -85,3 +85,19 @@ Self‑hosting: `yarn build && yarn start` (ensure Node 18.18+).
 
 ## License
 MIT © 2024 Marc‑Aurele Besner
+
+## Storybook
+
+Run Storybook locally:
+
+```bash
+yarn storybook
+```
+
+Build static Storybook site:
+
+```bash
+yarn build-storybook
+```
+
+The Storybook output will be in `storybook-static/`. Global styles and theming are provided via `ThemeProvider` in `.storybook/preview.tsx`.
