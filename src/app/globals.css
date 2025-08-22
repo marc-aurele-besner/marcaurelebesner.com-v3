@@ -144,3 +144,46 @@ html.party-mode body {
     opacity: 0.8;
   }
 }
+
+/* =========================
+   Secret page visuals
+   ========================= */
+.secret-aurora {
+  background:
+    radial-gradient(600px 300px at 20% 0%, rgba(100,255,218,0.12), transparent 60%),
+    radial-gradient(800px 400px at 100% 40%, rgba(124,58,237,0.12), transparent 60%),
+    radial-gradient(500px 300px at 0% 80%, rgba(14,165,165,0.12), transparent 60%);
+  filter: saturate(1.1);
+  animation: gradientMove 14s ease-in-out infinite alternate;
+}
+
+.secret-grid {
+  background-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08) 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(600px 400px at 50% 40%, black, transparent 75%);
+  -webkit-mask-image: radial-gradient(600px 400px at 50% 40%, black, transparent 75%);
+  opacity: 0.35;
+}
+
+@keyframes gradientMove {
+  0% { transform: translateY(0px) }
+  100% { transform: translateY(-20px) }
+}
+
+/* Peek panel scanner line */
+.scanner-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  box-shadow: 0 0 20px var(--accent);
+  animation: scanY 2.4s linear infinite;
+  opacity: 0.9;
+}
+
+@keyframes scanY {
+  0% { transform: translateY(0%); }
+  100% { transform: translateY(100%); }
+}
