@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import GlassCard from "./GlassCard";
+import Link from "next/link";
 
 export default function About() {
   return (
@@ -23,31 +24,31 @@ export default function About() {
         </p>
 
         <div className="mt-6 flex flex-wrap gap-3">
-          <a
-            href="#projects"
+          <Link
+            href="/#projects"
             className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] text-darkBlue font-semibold px-4 py-2 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition"
           >
             View Projects
             <span aria-hidden>↘</span>
-          </a>
-          <a
-            href="#experience"
+          </Link>
+          <Link
+            href="/#experience"
             className="inline-flex items-center gap-2 rounded-lg border border-[var(--accent-weak)] text-[var(--accent)] px-4 py-2 hover:bg-[var(--accent-bg-weak)] backdrop-blur-sm transition"
           >
             Experience
-          </a>
+          </Link>
         </div>
 
         <GlassCard className="p-4 mt-8">
           <p className="text-sm text-slate-600 dark:text-grayTone">
             Currently exploring AI-assisted DeFi agents and mobile apps.
             Interested in collaborating or learning more?{" "}
-            <a
-              href="#contact"
+            <Link
+              href="/#contact"
               className="text-[var(--accent)] underline hover:brightness-110 transition"
             >
               Let&apos;s connect!
-            </a>
+            </Link>
           </p>
         </GlassCard>
       </div>

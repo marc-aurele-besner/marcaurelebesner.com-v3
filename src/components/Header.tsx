@@ -5,11 +5,14 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 import { siteConfig } from "@/config/site";
 import { useActiveSection } from "@/hooks/useActiveSection";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const shouldReduceMotion = useReducedMotion();
   const { activeId } = useActiveSection();
+  const pathname = usePathname();
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -53,8 +56,8 @@ export default function Header() {
                 const isActive = activeId === item.id;
                 return (
                   <li className="w-full" key={item.id}>
-                    <a
-                      href={item.href}
+                    <Link
+                      href={pathname === "/" ? item.href : `/${item.href}`}
                       aria-current={isActive ? "page" : undefined}
                       className={`block w-full p-3 text-center rounded-md transition ${
                         isActive
@@ -64,7 +67,7 @@ export default function Header() {
                       onClick={() => setIsOpen(false)}
                     >
                       {item.label}
-                    </a>
+                    </Link>
                   </li>
                 );
               })}
@@ -88,8 +91,8 @@ export default function Header() {
                     const isActive = activeId === item.id;
                     return (
                       <li className="w-full" key={item.id}>
-                        <a
-                          href={item.href}
+                        <Link
+                          href={pathname === "/" ? item.href : `/${item.href}`}
                           aria-current={isActive ? "page" : undefined}
                           className={`block w-full p-3 text-center rounded-md transition ${
                             isActive
@@ -99,7 +102,7 @@ export default function Header() {
                           onClick={() => setIsOpen(false)}
                         >
                           {item.label}
-                        </a>
+                        </Link>
                       </li>
                     );
                   })}
