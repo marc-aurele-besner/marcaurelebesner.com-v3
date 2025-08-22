@@ -169,3 +169,21 @@ html.party-mode body {
   0% { transform: translateY(0px) }
   100% { transform: translateY(-20px) }
 }
+
+/* Peek panel scanner line */
+.scanner-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  box-shadow: 0 0 20px var(--accent);
+  animation: scanY 2.4s linear infinite;
+  opacity: 0.9;
+}
+
+@keyframes scanY {
+  0% { transform: translateY(0%); }
+  100% { transform: translateY(100%); }
+}

@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
-import { motion, useMotionValue, useTransform, useSpring, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useTransform, useSpring, useReducedMotion } from "framer-motion";
 
 export default function SecretScene(): JSX.Element {
   const prefersReducedMotion = useReducedMotion();
@@ -34,6 +34,58 @@ export default function SecretScene(): JSX.Element {
     pointerX.set(0.5);
     pointerY.set(0.5);
   }, [pointerX, pointerY]);
+
+  // Peek panel state and actions
+  const [isPeekOpen, setIsPeekOpen] = useState<boolean>(false);
+  const [copied, setCopied] = useState<boolean>(false);
+  const [hintIndex, setHintIndex] = useState<number>(0);
+  const hints = useRef<string[]>([
+    "Try the Konami code on the home page.",
+    "Hit Esc to calm down Party Mode.",
+    "Dark mode changes the vibes.",
+  ]);
+
+  const triggerPartyModeViaKonami = useCallback(() => {
+    const sequence = [
+      "ArrowUp",
+      "ArrowUp",
+      "ArrowDown",
+      "ArrowDown",
+      "ArrowLeft",
+      "ArrowRight",
+      "ArrowLeft",
+      "ArrowRight",
+      "b",
+      "a",
+    ];
+    let delayMs = 0;
+    sequence.forEach((key) => {
+      window.setTimeout(() => {
+        window.dispatchEvent(new KeyboardEvent("keydown", { key }));
+      }, delayMs);
+      delayMs += 40;
+    });
+  }, []);
+
+  const copySecretLink = useCallback(async () => {
+    try {
+      const url = `${window.location.origin}${window.location.pathname}?peek=1`;
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1200);
+    } catch {
+      /* no-op */
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isPeekOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsPeekOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isPeekOpen]);
 
   return (
     <div className="relative overflow-hidden">
@@ -100,10 +152,88 @@ export default function SecretScene(): JSX.Element {
           <Link href="/" className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[var(--accent)] text-darkBlue font-semibold hover:opacity-90 transition-opacity">
             Take me back <span aria-hidden>↩</span>
           </Link>
-          <a href="#more" className="group inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
+          <button
+            type="button"
+            onClick={() => setIsPeekOpen(true)}
+            aria-expanded={isPeekOpen}
+            aria-controls="peek-panel"
+            className="group inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors"
+          >
             Peek around <span aria-hidden className="transition-transform group-hover:translate-x-0.5">👀</span>
-          </a>
+          </button>
         </motion.div>
+
+        <AnimatePresence>
+          {isPeekOpen && (
+            <>
+              <motion.button
+                type="button"
+                aria-label="Close peek panel"
+                onClick={() => setIsPeekOpen(false)}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-[70] bg-black/40 backdrop-blur-sm"
+              />
+              <motion.div
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="peek-title"
+                id="peek-panel"
+                initial={{ y: 24, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: 24, opacity: 0 }}
+                transition={{ type: prefersReducedMotion ? "tween" : "spring", stiffness: 160, damping: 18, mass: 0.6 }}
+                className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[80] w-[min(640px,90vw)]"
+              >
+                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/10 backdrop-blur-xl shadow-2xl">
+                  <div className="absolute inset-0 pointer-events-none">
+                    <div className="scanner-line" aria-hidden />
+                  </div>
+                  <div className="p-5">
+                    <div className="flex items-start justify-between gap-4">
+                      <h2 id="peek-title" className="text-lg font-semibold">Peek panel</h2>
+                      <button
+                        type="button"
+                        onClick={() => setIsPeekOpen(false)}
+                        className="rounded-md px-2 py-1 hover:bg-white/10"
+                      >
+                        <span aria-hidden>✕</span><span className="sr-only">Close</span>
+                      </button>
+                    </div>
+                    <p className="mt-1 text-sm opacity-80">Little tools and fun toggles for explorers.</p>
+                    <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      <button
+                        type="button"
+                        onClick={triggerPartyModeViaKonami}
+                        className="group rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 p-4 text-left"
+                      >
+                        <div className="font-medium">Trigger Party Mode</div>
+                        <div className="text-xs opacity-80">Simulates the Konami code</div>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setHintIndex((v) => (v + 1) % hints.current.length)}
+                        className="group rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 p-4 text-left"
+                      >
+                        <div className="font-medium">Reveal a hint</div>
+                        <div className="text-xs opacity-80" aria-live="polite">{hints.current[hintIndex]}</div>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={copySecretLink}
+                        className="group rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 p-4 text-left"
+                      >
+                        <div className="font-medium">Copy secret link</div>
+                        <div className="text-xs opacity-80">{copied ? "Copied!" : "Share this page with a friend"}</div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
