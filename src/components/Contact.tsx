@@ -1,5 +1,6 @@
 import SectionHeading from "./SectionHeading";
-import { FaLinkedin, FaTwitter, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaTwitter, FaGithub, FaInstagram } from "react-icons/fa";
+import { siteConfig } from "@/config/site";
 
 export default function Contact() {
   return (
@@ -9,11 +10,20 @@ export default function Contact() {
       </SectionHeading>
       <p className="text-slate-600 dark:text-grayTone max-w-2xl">
         I’m open to collaborating on interesting projects, discussing Web3, or exploring new opportunities. The fastest way to
-        reach me is via LinkedIn or Twitter.
+        reach me is via LinkedIn, Twitter, or Instagram.
       </p>
       <div className="mt-6 flex flex-wrap items-center gap-3">
         <a
-          href="https://www.linkedin.com/in/marc-aurele-besner/"
+          href={siteConfig.links.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-md border border-black/10 dark:border-white/10 px-4 py-2 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition"
+        >
+          <FaGithub />
+          GitHub
+        </a>
+        <a
+          href={siteConfig.links.linkedin}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-md border border-black/10 dark:border-white/10 px-4 py-2 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition"
@@ -22,7 +32,7 @@ export default function Contact() {
           LinkedIn
         </a>
         <a
-          href="https://x.com/marcaureleb"
+          href={siteConfig.links.twitter}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-md border border-black/10 dark:border-white/10 px-4 py-2 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition"
@@ -31,13 +41,13 @@ export default function Contact() {
           Twitter
         </a>
         <a
-          href="https://github.com/marc-aurele-besner"
+          href={siteConfig.links.instagram}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-md border border-black/10 dark:border-white/10 px-4 py-2 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition"
         >
-          <FaGithub />
-          GitHub
+          <FaInstagram />
+          Instagram
         </a>
       </div>
     </section>
