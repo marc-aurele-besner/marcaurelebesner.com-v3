@@ -1,7 +1,11 @@
 import React from "react";
+import type { Metadata } from "next";
 import SecretScene from "@/components/SecretScene";
 
 export const dynamic = "force-static";
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export default function SecretPage(): JSX.Element {
   return (
