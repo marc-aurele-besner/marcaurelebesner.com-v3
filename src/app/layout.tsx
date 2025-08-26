@@ -3,12 +3,11 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Menu from "../components/Menu";
 import Header from "../components/Header";
-import Spotlight from "../components/Spotlight";
-import Backdrop from "../components/Backdrop";
 import ThemeProvider from "../components/ThemeProvider";
 import EasterEggs from "../components/EasterEggs";
 import { siteConfig } from "@/config/site";
 import ScrollProgress from "@/components/ScrollProgress";
+import BackgroundEffects from "@/components/BackgroundEffects";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -74,8 +73,7 @@ export default function RootLayout({
           </a>
           <ScrollProgress />
           {/* Background effects */}
-          <Backdrop />
-          <Spotlight />
+          <BackgroundEffects />
           <Header />
           <div className="flex min-h-screen md:flex-row flex-col">
             <aside className="md:w-72 bg-white/70 dark:bg-darkBlue/70 backdrop-blur border-r border-slate-200 dark:border-white/5 p-8 fixed h-full hidden md:block">
