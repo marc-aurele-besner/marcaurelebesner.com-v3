@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import Badge from "./Badge";
 import SectionHeading from "./SectionHeading";

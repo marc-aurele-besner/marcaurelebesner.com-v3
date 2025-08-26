@@ -1,9 +1,9 @@
-"use client";
+import dynamic from "next/dynamic";
 
-import About from "../components/About";
-import Experience from "../components/Experience";
-import Projects from "@/components/Projects";
-import Contact from "@/components/Contact";
+const About = dynamic(() => import("../components/About"));
+const Experience = dynamic(() => import("../components/Experience"));
+const Projects = dynamic(() => import("@/components/Projects"));
+const Contact = dynamic(() => import("@/components/Contact"));
 
 export default function HomePage() {
   return (
