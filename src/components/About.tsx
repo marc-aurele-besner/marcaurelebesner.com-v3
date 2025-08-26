@@ -41,7 +41,9 @@ export default function About() {
 
         <GlassCard className="p-4 mt-8">
           <p className="text-sm text-slate-600 dark:text-grayTone">
-            Currently exploring AI-assisted DeFi agents and mobile apps.
+            Currently exploring AI-assisted DeFi agents and mobile apps. I&apos;m also open to selective
+            advisory and mentorship with early-stage teams (product/tech strategy, smart contracts,
+            developer experience).
             Interested in collaborating or learning more?{" "}
             <Link
               href="/#contact"

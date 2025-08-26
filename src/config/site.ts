@@ -4,7 +4,7 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://marcaurelebesner.com",
   twitterHandle: "@marcaureleb",
   description:
-    "Web3 full‑stack engineer building blockchain apps, smart contracts, and open‑source tools. Portfolio, experience, and selected projects.",
+    "Web3 full‑stack engineer building blockchain apps, smart contracts, and open‑source tools. Open to advisory and mentorship for early‑stage teams.",
   keywords: [
     "Web3",
     "Full‑Stack",
@@ -16,6 +16,9 @@ export const siteConfig = {
     "React",
     "Ethereum",
     "Crypto",
+    "Advisory",
+    "Advisor",
+    "Mentorship",
   ],
   links: {
     github: "https://github.com/marc-aurele-besner",
