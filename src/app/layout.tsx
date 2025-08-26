@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Menu from "../components/Menu";
@@ -21,6 +21,14 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
+  themeColor: "#0a192f",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -32,6 +40,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
+  applicationName: siteConfig.name,
+  referrer: "origin-when-cross-origin",
+  formatDetection: { telephone: false },
+  manifest: "/manifest.webmanifest",
   robots: { index: true, follow: true },
   icons: {
     icon: "/favicon.svg",
@@ -51,7 +63,6 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: ["/twitter-image"],
   },
-  themeColor: "#0a192f",
 };
 
 export default function RootLayout({
