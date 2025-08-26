@@ -5,9 +5,12 @@ export const dynamic = "force-static";
 
 export default function SecretPage(): JSX.Element {
   return (
-    <section className="relative">
+    <section className="relative overflow-hidden">
+      <div aria-hidden className="absolute inset-0 secret-aurora" />
+      <div aria-hidden className="absolute inset-0 secret-grid" />
+
       <SecretScene />
-      <div id="more" className="mx-auto max-w-2xl px-4 pb-24 text-center mt-6 space-y-4">
+      <div id="more" className="mx-auto max-w-2xl px-4 pb-24 text-center mt-6 space-y-4 relative">
         <p className="text-sm opacity-80">
           This page is off the main path. Thanks for finding it.
         </p>

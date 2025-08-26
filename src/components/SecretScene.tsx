@@ -89,9 +89,6 @@ export default function SecretScene(): JSX.Element {
 
   return (
     <div className="relative overflow-hidden">
-      <div aria-hidden className="absolute inset-0 secret-aurora" />
-      <div aria-hidden className="absolute inset-0 secret-grid" />
-
       <div className="relative mx-auto max-w-4xl px-4 pt-24 pb-20 text-center">
         <motion.h1
           initial={{ opacity: 0, y: 18, filter: "blur(4px)" }}
