@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Menu from "../components/Menu";
-import Header from "../components/Header";
-import Spotlight from "../components/Spotlight";
 import Backdrop from "../components/Backdrop";
 import ThemeProvider from "../components/ThemeProvider";
-import EasterEggs from "../components/EasterEggs";
 import { siteConfig } from "@/config/site";
-import ScrollProgress from "@/components/ScrollProgress";
+import dynamic from "next/dynamic";
+
+const ScrollProgress = dynamic(() => import("@/components/ScrollProgress"));
+const Spotlight = dynamic(() => import("../components/Spotlight"));
+const Header = dynamic(() => import("../components/Header"));
+const Menu = dynamic(() => import("../components/Menu"));
+const EasterEggs = dynamic(() => import("../components/EasterEggs"));
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

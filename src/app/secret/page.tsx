@@ -1,7 +1,9 @@
 import React from "react";
-import SecretScene from "@/components/SecretScene";
+import NextDynamic from "next/dynamic";
 
 export const dynamic = "force-static";
+
+const SecretScene = NextDynamic(() => import("@/components/SecretScene"));
 
 export default function SecretPage(): JSX.Element {
   return (
