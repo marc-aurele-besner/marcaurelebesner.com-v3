@@ -8,7 +8,7 @@
   /* Accent colors (light theme defaults) */
   --accent: #0ea5a5; /* teal-600 for strong contrast on white */
   --accent-weak: rgba(14, 165, 165, 0.5);
-  --accent-bg-weak: rgba(14, 165, 165, 0.10);
+  --accent-bg-weak: rgba(14, 165, 165, 0.1);
 }
 
 .dark {
@@ -17,7 +17,7 @@
   /* Accent colors (dark theme) */
   --accent: #64ffda;
   --accent-weak: rgba(100, 255, 218, 0.5);
-  --accent-bg-weak: rgba(100, 255, 218, 0.10);
+  --accent-bg-weak: rgba(100, 255, 218, 0.1);
 }
 
 html {
@@ -27,7 +27,8 @@ html {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+    Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -58,7 +59,11 @@ body {
   left: 0;
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, rgba(100, 255, 218, 0.25) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(100, 255, 218, 0.25) 0%,
+    transparent 70%
+  );
   pointer-events: none;
   transition: background 0.3s ease;
   z-index: 0; /* below header but above backdrop */
@@ -75,7 +80,9 @@ body {
   html {
     scroll-behavior: auto;
   }
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation: none !important;
     transition: none !important;
   }
@@ -90,9 +97,15 @@ html.party-mode body {
 }
 
 @keyframes partyHue {
-  0% { filter: hue-rotate(0deg) saturate(1.05); }
-  50% { filter: hue-rotate(180deg) saturate(1.25); }
-  100% { filter: hue-rotate(360deg) saturate(1.05); }
+  0% {
+    filter: hue-rotate(0deg) saturate(1.05);
+  }
+  50% {
+    filter: hue-rotate(180deg) saturate(1.25);
+  }
+  100% {
+    filter: hue-rotate(360deg) saturate(1.05);
+  }
 }
 
 .party-overlay {
@@ -100,8 +113,16 @@ html.party-mode body {
   inset: 0;
   pointer-events: none;
   z-index: 60;
-  background: radial-gradient(1200px 600px at 20% -10%, rgba(100,255,218,0.12), transparent 60%),
-              radial-gradient(900px 500px at 120% 10%, rgba(14,165,165,0.12), transparent 60%);
+  background: radial-gradient(
+      1200px 600px at 20% -10%,
+      rgba(100, 255, 218, 0.12),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 500px at 120% 10%,
+      rgba(14, 165, 165, 0.12),
+      transparent 60%
+    );
 }
 
 .party-banner {
@@ -149,25 +170,33 @@ html.party-mode body {
    Secret page visuals
    ========================= */
 .secret-aurora {
-  background:
-    radial-gradient(600px 300px at 20% 0%, rgba(100,255,218,0.12), transparent 60%),
-    radial-gradient(800px 400px at 100% 40%, rgba(124,58,237,0.12), transparent 60%),
-    radial-gradient(500px 300px at 0% 80%, rgba(14,165,165,0.12), transparent 60%);
   filter: saturate(1.1);
   animation: gradientMove 14s ease-in-out infinite alternate;
 }
 
 .secret-grid {
-  background-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08) 0.5px, transparent 0.5px);
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.08) 0.5px,
+    transparent 0.5px
+  );
   background-size: 24px 24px;
   mask-image: radial-gradient(600px 400px at 50% 40%, black, transparent 75%);
-  -webkit-mask-image: radial-gradient(600px 400px at 50% 40%, black, transparent 75%);
+  -webkit-mask-image: radial-gradient(
+    600px 400px at 50% 40%,
+    black,
+    transparent 75%
+  );
   opacity: 0.35;
 }
 
 @keyframes gradientMove {
-  0% { transform: translateY(0px) }
-  100% { transform: translateY(-20px) }
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-20px);
+  }
 }
 
 /* Peek panel scanner line */
@@ -184,6 +213,10 @@ html.party-mode body {
 }
 
 @keyframes scanY {
-  0% { transform: translateY(0%); }
-  100% { transform: translateY(100%); }
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
 }
