@@ -3,21 +3,27 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  /* Accent colors (light theme defaults) */
-  --accent: #0ea5a5; /* teal-600 for strong contrast on white */
-  --accent-weak: rgba(14, 165, 165, 0.5);
-  --accent-bg-weak: rgba(14, 165, 165, 0.1);
+  --background: #0a0a0f;
+  --foreground: #e6ecff;
+  /* Cyberpunk neon colors */
+  --accent: #00f3ff; /* Bright cyan */
+  --accent-secondary: #ff00ff; /* Magenta */
+  --accent-tertiary: #ffff00; /* Electric yellow */
+  --accent-weak: rgba(0, 243, 255, 0.5);
+  --accent-bg-weak: rgba(0, 243, 255, 0.1);
+  --neon-glow: 0 0 20px rgba(0, 243, 255, 0.6), 0 0 40px rgba(0, 243, 255, 0.4), 0 0 60px rgba(0, 243, 255, 0.2);
 }
 
 .dark {
-  --background: #0a0a0a;
-  --foreground: #e6ecff; /* slightly brighter for contrast on dark */
-  /* Accent colors (dark theme) */
-  --accent: #64ffda;
-  --accent-weak: rgba(100, 255, 218, 0.5);
-  --accent-bg-weak: rgba(100, 255, 218, 0.1);
+  --background: #0a0a0f;
+  --foreground: #e6ecff;
+  /* Cyberpunk neon colors */
+  --accent: #00f3ff; /* Bright cyan */
+  --accent-secondary: #ff00ff; /* Magenta */
+  --accent-tertiary: #ffff00; /* Electric yellow */
+  --accent-weak: rgba(0, 243, 255, 0.5);
+  --accent-bg-weak: rgba(0, 243, 255, 0.1);
+  --neon-glow: 0 0 20px rgba(0, 243, 255, 0.6), 0 0 40px rgba(0, 243, 255, 0.4), 0 0 60px rgba(0, 243, 255, 0.2);
 }
 
 html {
@@ -27,47 +33,84 @@ html {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
-    Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: var(--font-geist-mono), var(--font-geist-sans), ui-monospace, monospace;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Cyberpunk scanlines effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.3;
+  animation: scanlines 0.1s linear infinite;
+}
+
+@keyframes scanlines {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(4px); }
 }
 
 ::selection {
-  background-color: rgba(100, 255, 218, 0.25);
-  color: #eafffa;
+  background-color: rgba(0, 243, 255, 0.3);
+  color: #00f3ff;
+  text-shadow: 0 0 10px rgba(0, 243, 255, 0.8);
 }
 
-/* Subtle, unobtrusive scrollbar */
+/* Cyberpunk neon scrollbar */
 *::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
 }
 *::-webkit-scrollbar-track {
-  background: transparent;
+  background: rgba(10, 10, 15, 0.8);
+  border-left: 1px solid rgba(0, 243, 255, 0.2);
 }
 *::-webkit-scrollbar-thumb {
-  background-color: rgba(136, 146, 176, 0.4);
-  border-radius: 9999px;
+  background: linear-gradient(180deg, rgba(0, 243, 255, 0.8), rgba(255, 0, 255, 0.6));
+  border-radius: 6px;
+  border: 2px solid rgba(10, 10, 15, 0.8);
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.5), inset 0 0 10px rgba(0, 243, 255, 0.2);
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(0, 243, 255, 1), rgba(255, 0, 255, 0.8));
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.8), inset 0 0 15px rgba(0, 243, 255, 0.4);
 }
 
-/* Spotlight cursor-follow glow */
+/* Spotlight cursor-follow glow - Cyberpunk enhanced */
 .spotlight {
   position: fixed;
   top: 0;
   left: 0;
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
   background: radial-gradient(
     circle,
-    rgba(100, 255, 218, 0.25) 0%,
+    rgba(0, 243, 255, 0.35) 0%,
+    rgba(255, 0, 255, 0.15) 40%,
     transparent 70%
   );
   pointer-events: none;
   transition: background 0.3s ease;
-  z-index: 0; /* below header but above backdrop */
-  filter: blur(0.5px);
+  z-index: 0;
+  filter: blur(60px);
+  mix-blend-mode: screen;
 }
 
 :focus-visible {
@@ -218,5 +261,190 @@ html.party-mode body {
   }
   100% {
     transform: translateY(100%);
+  }
+}
+
+/* =========================
+   Cyberpunk UI Enhancements
+   ========================= */
+
+/* Neon text glow effect */
+.neon-text {
+  text-shadow: 
+    0 0 5px var(--accent),
+    0 0 10px var(--accent),
+    0 0 15px var(--accent),
+    0 0 20px var(--accent);
+}
+
+/* Cyberpunk border glow */
+.neon-border {
+  position: relative;
+  border: 1px solid var(--accent);
+  box-shadow: 
+    0 0 10px rgba(0, 243, 255, 0.5),
+    inset 0 0 10px rgba(0, 243, 255, 0.1);
+}
+
+.neon-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border: 1px solid var(--accent-secondary);
+  opacity: 0.5;
+  filter: blur(4px);
+  z-index: -1;
+}
+
+/* Glitch effect */
+@keyframes glitch {
+  0%, 100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+}
+
+.glitch-effect {
+  animation: glitch 0.3s infinite;
+}
+
+.glitch-effect:hover {
+  animation: glitch 0.1s infinite;
+  text-shadow: 
+    2px 0 var(--accent-secondary),
+    -2px 0 var(--accent);
+}
+
+/* Data stream animation */
+@keyframes dataStream {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+.data-stream {
+  position: absolute;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+  opacity: 0.6;
+  animation: dataStream 3s linear infinite;
+  filter: blur(1px);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* Pulsing neon glow */
+@keyframes neonPulse {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.8;
+    filter: brightness(1.2);
+  }
+}
+
+.neon-pulse {
+  animation: neonPulse 2s ease-in-out infinite;
+}
+
+/* Matrix rain effect for background */
+@keyframes matrixRain {
+  0% {
+    transform: translateY(-100vh);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+/* Cyberpunk grid overlay */
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Neon button glow on hover */
+.cyber-button {
+  position: relative;
+  transition: all 0.3s ease;
+  border: 2px solid var(--accent);
+  background: rgba(0, 243, 255, 0.1);
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent);
+  box-shadow: 
+    0 0 20px rgba(0, 243, 255, 0.3),
+    inset 0 0 20px rgba(0, 243, 255, 0.1);
+}
+
+.cyber-button:hover {
+  background: rgba(0, 243, 255, 0.2);
+  box-shadow: 
+    0 0 30px rgba(0, 243, 255, 0.6),
+    0 0 60px rgba(0, 243, 255, 0.4),
+    inset 0 0 30px rgba(0, 243, 255, 0.2);
+  transform: scale(1.05);
+  text-shadow: 
+    0 0 10px var(--accent),
+    0 0 20px var(--accent),
+    0 0 30px var(--accent);
+}
+
+.cyber-button::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--accent-secondary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  filter: blur(8px);
+  z-index: -1;
+}
+
+.cyber-button:hover::before {
+  opacity: 0.6;
+}
+
+/* Terminal-style typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--accent);
   }
 }

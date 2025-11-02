@@ -26,7 +26,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   viewportFit: "cover",
-  themeColor: "#0a192f",
+  themeColor: "#0a0a0f",
 };
 
 export const metadata: Metadata = {
@@ -73,7 +73,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-slate-800 dark:bg-darkBlue dark:text-grayTone relative overflow-x-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased dark bg-darkBlue text-grayTone relative overflow-x-hidden`}
       >
         <ThemeProvider>
           <EasterEggs />
@@ -89,7 +89,7 @@ export default function RootLayout({
           <Spotlight />
           <Header />
           <div className="flex min-h-screen md:flex-row flex-col">
-            <aside className="md:w-72 bg-white/70 dark:bg-darkBlue/70 backdrop-blur border-r border-slate-200 dark:border-white/5 p-8 fixed h-full hidden md:block">
+            <aside className="md:w-72 bg-darkBlue/90 backdrop-blur-md border-r border-[var(--accent)]/20 p-8 fixed h-full hidden md:block neon-border">
               <Menu />
             </aside>
             <main id="main-content" className="flex-1 overflow-y-auto py-16 md:ml-72 px-4 sm:px-6 lg:px-8">

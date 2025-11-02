@@ -30,13 +30,13 @@ export default function Header() {
   ];
 
   return (
-    <header className="md:hidden sticky top-0 z-50 bg-white/80 dark:bg-darkBlue/80 backdrop-blur border-b border-slate-200 dark:border-white/5">
+    <header className="md:hidden sticky top-0 z-50 bg-darkBlue/90 backdrop-blur-md border-b border-[var(--accent)]/20 neon-border">
       <div className="p-4 px-4 flex justify-between items-center">
-        <p className="text-xl font-semibold text-[var(--accent)]">{siteConfig.name}</p>
+        <p className="text-xl font-semibold text-[var(--accent)] neon-text">{siteConfig.name}</p>
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <button
-            className="text-2xl font-bold text-[var(--accent)] rounded-md p-1 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition hover:scale-105"
+            className="cyber-button text-2xl font-bold rounded-md p-1 focus:outline-none"
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
@@ -59,10 +59,10 @@ export default function Header() {
                     <Link
                       href={pathname === "/" ? item.href : `/${item.href}`}
                       aria-current={isActive ? "page" : undefined}
-                      className={`block w-full p-3 text-center rounded-md transition ${
+                      className={`block w-full p-3 text-center rounded-md transition cyber-button ${
                         isActive
-                          ? "text-[var(--accent)] bg-black/5 dark:bg-white/5"
-                          : "text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:bg-black/5 dark:hover:bg-white/5"
+                          ? "text-[var(--accent)] bg-[var(--accent-bg-weak)]"
+                          : "text-grayTone hover:text-[var(--accent)] hover:bg-[var(--accent-bg-weak)]"
                       }`}
                       onClick={() => setIsOpen(false)}
                     >

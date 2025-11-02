@@ -19,7 +19,7 @@ export default function Projects() {
         <div className="flex items-center justify-between mb-8">
           <div>
             <SectionHeading eyebrow="Selected Work">Projects</SectionHeading>
-            <p className="text-slate-600 dark:text-grayTone mt-1">A few things I shipped recently.</p>
+            <p className="text-grayTone mt-1">A few things I shipped recently.</p>
           </div>
         </div>
         {projects.map((project) => (
