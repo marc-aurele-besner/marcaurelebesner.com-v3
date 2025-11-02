@@ -14,7 +14,7 @@ export default function ScrollProgress() {
   return (
     <motion.div
       aria-hidden
-      className="fixed top-0 left-0 right-0 h-1 z-50 origin-left bg-[var(--accent)]/90 pointer-events-none"
+      className="fixed top-0 left-0 right-0 h-1 z-50 origin-left bg-gradient-to-r from-[var(--cyber-cyan)] via-[var(--cyber-purple)] to-[var(--cyber-magenta)] pointer-events-none shadow-[0_0_20px_rgba(0,255,255,0.6)]"
       style={{ scaleX: prefersReducedMotion ? undefined : scaleX }}
     />
   );

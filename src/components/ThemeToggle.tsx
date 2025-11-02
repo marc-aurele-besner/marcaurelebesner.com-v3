@@ -15,12 +15,12 @@ export default function ThemeToggle() {
   const current = theme === "system" ? systemTheme : theme;
 
   return (
-    <div className="inline-flex items-center gap-1 rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur px-1 py-1">
+    <div className="inline-flex items-center gap-1 rounded-md border border-black/10 dark:border-white/10 dark:border-[var(--cyber-cyan)]/30 bg-white/60 dark:bg-white/5 backdrop-blur px-1 py-1 shadow-[0_0_10px_rgba(0,255,255,0.1)]">
       <button
         type="button"
         onClick={() => setTheme("light")}
         aria-label="Switch to light theme"
-        className={`p-1.5 rounded-md transition-colors ${current === "light" ? "bg-black/5 dark:bg-white/10 text-slate-900 dark:text-white" : "text-slate-600 dark:text-grayTone"}`}
+        className={`p-1.5 rounded-md transition-all duration-300 ${current === "light" ? "bg-black/5 dark:bg-[var(--cyber-cyan)]/20 text-slate-900 dark:text-[var(--cyber-cyan)] shadow-[0_0_10px_rgba(0,255,255,0.4)]" : "text-slate-600 dark:text-grayTone hover:text-[var(--accent)] dark:hover:text-[var(--cyber-cyan)]"}`}
       >
         <FiSun size={16} />
       </button>
@@ -28,7 +28,7 @@ export default function ThemeToggle() {
         type="button"
         onClick={() => setTheme("dark")}
         aria-label="Switch to dark theme"
-        className={`p-1.5 rounded-md transition-colors ${current === "dark" ? "bg-black/5 dark:bg-white/10 text-slate-900 dark:text-white" : "text-slate-600 dark:text-grayTone"}`}
+        className={`p-1.5 rounded-md transition-all duration-300 ${current === "dark" ? "bg-black/5 dark:bg-[var(--cyber-cyan)]/20 text-slate-900 dark:text-[var(--cyber-cyan)] shadow-[0_0_10px_rgba(0,255,255,0.4)]" : "text-slate-600 dark:text-grayTone hover:text-[var(--accent)] dark:hover:text-[var(--cyber-cyan)]"}`}
       >
         <FiMoon size={16} />
       </button>
@@ -36,7 +36,7 @@ export default function ThemeToggle() {
         type="button"
         onClick={() => setTheme("system")}
         aria-label="Use system theme"
-        className={`p-1.5 rounded-md transition-colors ${theme === "system" ? "bg-black/5 dark:bg-white/10 text-slate-900 dark:text-white" : "text-slate-600 dark:text-grayTone"}`}
+        className={`p-1.5 rounded-md transition-all duration-300 ${theme === "system" ? "bg-black/5 dark:bg-[var(--cyber-cyan)]/20 text-slate-900 dark:text-[var(--cyber-cyan)] shadow-[0_0_10px_rgba(0,255,255,0.4)]" : "text-slate-600 dark:text-grayTone hover:text-[var(--accent)] dark:hover:text-[var(--cyber-cyan)]"}`}
       >
         <FiMonitor size={16} />
       </button>
