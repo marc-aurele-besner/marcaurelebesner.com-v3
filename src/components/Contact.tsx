@@ -17,7 +17,7 @@ export default function Contact() {
           href={siteConfig.links.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-md border border-black/10 dark:border-white/10 px-4 py-2 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition"
+          className="inline-flex items-center gap-2 rounded-md border border-black/10 dark:border-white/10 dark:border-[var(--cyber-cyan)]/30 px-4 py-2 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] dark:hover:text-[var(--cyber-cyan)] hover:border-[var(--accent)] dark:hover:border-[var(--cyber-cyan)] transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,255,255,0.4)] hover:scale-105"
         >
           <FaGithub />
           GitHub
@@ -26,7 +26,7 @@ export default function Contact() {
           href={siteConfig.links.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-md border border-black/10 dark:border-white/10 px-4 py-2 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition"
+          className="inline-flex items-center gap-2 rounded-md border border-black/10 dark:border-white/10 dark:border-[var(--cyber-cyan)]/30 px-4 py-2 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] dark:hover:text-[var(--cyber-cyan)] hover:border-[var(--accent)] dark:hover:border-[var(--cyber-cyan)] transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,255,255,0.4)] hover:scale-105"
         >
           <FaLinkedin />
           LinkedIn
@@ -35,7 +35,7 @@ export default function Contact() {
           href={siteConfig.links.twitter}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-md border border-black/10 dark:border-white/10 px-4 py-2 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition"
+          className="inline-flex items-center gap-2 rounded-md border border-black/10 dark:border-white/10 dark:border-[var(--cyber-cyan)]/30 px-4 py-2 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] dark:hover:text-[var(--cyber-cyan)] hover:border-[var(--accent)] dark:hover:border-[var(--cyber-cyan)] transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,255,255,0.4)] hover:scale-105"
         >
           <FaTwitter />
           Twitter
@@ -44,7 +44,7 @@ export default function Contact() {
           href={siteConfig.links.instagram}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-md border border-black/10 dark:border-white/10 px-4 py-2 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition"
+          className="inline-flex items-center gap-2 rounded-md border border-black/10 dark:border-white/10 dark:border-[var(--cyber-cyan)]/30 px-4 py-2 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] dark:hover:text-[var(--cyber-cyan)] hover:border-[var(--accent)] dark:hover:border-[var(--cyber-cyan)] transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,255,255,0.4)] hover:scale-105"
         >
           <FaInstagram />
           Instagram

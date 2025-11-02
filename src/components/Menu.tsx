@@ -22,7 +22,7 @@ export default function Menu() {
     <div className="flex flex-col h-full justify-between">
       <div>
         <div className="flex items-center mb-8">
-          <p className="text-2xl font-bold text-[var(--accent)] tracking-tight">
+          <p className="text-2xl font-bold text-[var(--accent)] dark:text-[var(--cyber-cyan)] tracking-tight neon-pulse" style={{ textShadow: '0 0 15px rgba(0, 255, 255, 0.6)' }}>
             {siteConfig.name}
           </p>
         </div>
@@ -35,15 +35,17 @@ export default function Menu() {
                   <Link
                     href={pathname === "/" ? item.href : `/${item.href}`}
                     aria-current={isActive ? "page" : undefined}
-                    className={`group inline-flex items-center gap-2 transition-colors ${
+                    className={`group inline-flex items-center gap-2 transition-all duration-300 ${
                       isActive
-                        ? "text-[var(--accent)]"
-                        : "text-slate-600 dark:text-grayTone hover:text-[var(--accent)]"
+                        ? "text-[var(--accent)] dark:text-[var(--cyber-cyan)] font-semibold"
+                        : "text-slate-600 dark:text-grayTone hover:text-[var(--accent)] dark:hover:text-[var(--cyber-cyan)]"
                     }`}
                   >
                     <span
-                      className={`h-px w-5 transition-all opacity-60 ${
-                        isActive ? "bg-[var(--accent)]" : "bg-[var(--accent)]/0 group-hover:bg-[var(--accent)]"
+                      className={`h-px w-5 transition-all duration-300 ${
+                        isActive 
+                          ? "bg-[var(--accent)] dark:bg-[var(--cyber-cyan)] opacity-100 shadow-[0_0_8px_rgba(0,255,255,0.8)]" 
+                          : "bg-[var(--accent)]/0 group-hover:bg-[var(--accent)] dark:group-hover:bg-[var(--cyber-cyan)] opacity-60"
                       }`}
                     />
                     {item.label}
@@ -71,7 +73,7 @@ export default function Menu() {
                 rel="noopener noreferrer"
                 title="GitHub"
                 aria-label="GitHub"
-                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
+                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] dark:hover:text-[var(--cyber-cyan)] hover:border-[var(--accent)] dark:hover:border-[var(--cyber-cyan)] transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,255,255,0.4)] hover:scale-110"
               >
                 <FaGithub size={18} />
               </a>
@@ -81,7 +83,7 @@ export default function Menu() {
                 rel="noopener noreferrer"
                 title="LinkedIn"
                 aria-label="LinkedIn"
-                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
+                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] dark:hover:text-[var(--cyber-cyan)] hover:border-[var(--accent)] dark:hover:border-[var(--cyber-cyan)] transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,255,255,0.4)] hover:scale-110"
               >
                 <FaLinkedin size={18} />
               </a>
@@ -91,7 +93,7 @@ export default function Menu() {
                 rel="noopener noreferrer"
                 title="Twitter/X"
                 aria-label="Twitter"
-                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
+                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] dark:hover:text-[var(--cyber-cyan)] hover:border-[var(--accent)] dark:hover:border-[var(--cyber-cyan)] transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,255,255,0.4)] hover:scale-110"
               >
                 <FaTwitter size={18} />
               </a>
@@ -101,7 +103,7 @@ export default function Menu() {
                 rel="noopener noreferrer"
                 title="Instagram"
                 aria-label="Instagram"
-                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
+                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] dark:hover:text-[var(--cyber-cyan)] hover:border-[var(--accent)] dark:hover:border-[var(--cyber-cyan)] transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,255,255,0.4)] hover:scale-110"
               >
                 <FaInstagram size={18} />
               </a>

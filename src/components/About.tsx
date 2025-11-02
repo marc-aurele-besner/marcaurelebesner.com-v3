@@ -13,7 +13,7 @@ export default function About() {
       transition={{ duration: 0.5 }}
     >
       <div className="max-w-3xl px-2">
-        <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight bg-gradient-to-r from-[var(--accent)] via-black dark:via-white to-slate-900 dark:to-white bg-clip-text text-transparent tracking-tight">
+        <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight bg-gradient-to-r from-[var(--accent)] via-[var(--cyber-purple)] via-[var(--cyber-magenta)] to-[var(--accent)] dark:from-[var(--cyber-cyan)] dark:via-[var(--cyber-purple)] dark:via-[var(--cyber-magenta)] dark:to-[var(--cyber-cyan)] bg-clip-text text-transparent tracking-tight" style={{ textShadow: '0 0 30px rgba(0, 255, 255, 0.3)' }}>
           Web3 & AI Full‑stack engineer, building at the intersection of
           blockchain and decentralized AI.
         </h1>
@@ -26,14 +26,14 @@ export default function About() {
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
             href="/#projects"
-            className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] text-darkBlue font-semibold px-4 py-2 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition"
+            className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] dark:bg-[var(--cyber-cyan)] text-darkBlue dark:text-darkBlue font-bold px-4 py-2 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition-all duration-300 shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:shadow-[0_0_30px_rgba(0,255,255,0.6)] hover:scale-105"
           >
             View Projects
             <span aria-hidden>↘</span>
           </Link>
           <Link
             href="/#experience"
-            className="inline-flex items-center gap-2 rounded-lg border border-[var(--accent-weak)] text-[var(--accent)] px-4 py-2 hover:bg-[var(--accent-bg-weak)] backdrop-blur-sm transition"
+            className="inline-flex items-center gap-2 rounded-lg border-2 border-[var(--accent-weak)] dark:border-[var(--cyber-cyan)]/50 text-[var(--accent)] dark:text-[var(--cyber-cyan)] px-4 py-2 hover:bg-[var(--accent-bg-weak)] dark:hover:bg-[var(--cyber-cyan)]/10 backdrop-blur-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,255,255,0.3)] hover:scale-105"
           >
             Experience
           </Link>

@@ -89,7 +89,7 @@ export default function RootLayout({
           <Spotlight />
           <Header />
           <div className="flex min-h-screen md:flex-row flex-col">
-            <aside className="md:w-72 bg-white/70 dark:bg-darkBlue/70 backdrop-blur border-r border-slate-200 dark:border-white/5 p-8 fixed h-full hidden md:block">
+            <aside className="md:w-72 bg-white/70 dark:bg-darkBlue/70 backdrop-blur-md border-r border-slate-200 dark:border-white/5 dark:border-[var(--cyber-cyan)]/20 p-8 fixed h-full hidden md:block shadow-[0_0_20px_rgba(0,255,255,0.1)]">
               <Menu />
             </aside>
             <main id="main-content" className="flex-1 overflow-y-auto py-16 md:ml-72 px-4 sm:px-6 lg:px-8">
