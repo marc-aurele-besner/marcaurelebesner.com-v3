@@ -25,8 +25,15 @@ export default function About() {
 
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
+            href="/#contact"
+            className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] text-darkBlue font-semibold px-6 py-3 text-lg hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition shadow-lg shadow-[var(--accent)]/20"
+          >
+            Let&apos;s build something together
+            <span aria-hidden>→</span>
+          </Link>
+          <Link
             href="/#projects"
-            className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] text-darkBlue font-semibold px-4 py-2 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition"
+            className="inline-flex items-center gap-2 rounded-lg border border-[var(--accent-weak)] text-[var(--accent)] px-4 py-2 hover:bg-[var(--accent-bg-weak)] backdrop-blur-sm transition"
           >
             View Projects
             <span aria-hidden>↘</span>
