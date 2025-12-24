@@ -45,6 +45,13 @@ export default function About() {
           className="mt-8 flex flex-wrap gap-4"
         >
           <Link
+            href="/#contact"
+            className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] text-darkBlue font-semibold px-6 py-3 text-lg hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition shadow-lg shadow-[var(--accent)]/20"
+          >
+            Let&apos;s build something together
+            <span aria-hidden>→</span>
+          </Link>
+          <Link
             href="/#projects"
             className="group inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] text-darkBlue font-semibold px-6 py-3 hover:brightness-110 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 transition-all duration-200 shadow-lg shadow-[var(--accent)]/20"
           >
