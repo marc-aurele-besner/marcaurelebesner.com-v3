@@ -2,6 +2,7 @@ export const siteConfig = {
   name: "Marc‑Aurele Besner",
   role: "Web3 Full‑Stack Engineer",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://marcaurelebesner.com",
+  googleAnalyticsId: process.env.NEXT_PUBLIC_GA_ID,
   twitterHandle: "@marcaureleb",
   description:
     "Web3 full‑stack engineer building blockchain apps, smart contracts, and open‑source tools. Advises early‑stage teams on product, engineering, and smart contracts.",

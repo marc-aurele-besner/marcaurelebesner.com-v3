@@ -37,6 +37,7 @@ Open http://localhost:3000 to view the site.
 ## Configuration
 - Environment variables
   - `NEXT_PUBLIC_SITE_URL` (optional): Public site URL used for metadata. Defaults to `https://marcaurelebesner.com`.
+  - `NEXT_PUBLIC_GA_ID` (optional): Google Analytics 4 measurement ID (e.g., `G-XXXXXXXXXX`). If not provided, Google Analytics will not be loaded.
 - Content & SEO
   - Edit `src/config/site.ts` to update name, role, description, links, and SEO keywords.
   - Edit `src/constants/projects.ts` to change the projects list.

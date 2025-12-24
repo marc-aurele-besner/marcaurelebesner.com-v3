@@ -9,6 +9,7 @@ import ThemeProvider from "../components/ThemeProvider";
 import EasterEggs from "../components/EasterEggs";
 import { siteConfig } from "@/config/site";
 import ScrollProgress from "@/components/ScrollProgress";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -97,6 +98,9 @@ export default function RootLayout({
             </main>
           </div>
         </ThemeProvider>
+        {siteConfig.googleAnalyticsId && (
+          <GoogleAnalytics gaId={siteConfig.googleAnalyticsId} />
+        )}
       </body>
     </html>
   );
