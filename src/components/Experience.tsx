@@ -19,8 +19,8 @@ export default function Experience() {
           {/* Senior Software Engineer at Autonomys */}
           <GlassCard className="p-6">
             <div className="text-base sm:text-lg">
-              <h3 className="font-semibold text-xl sm:text-2xl">Senior Software Engineer at Autonomys</h3>
-              <p className="text-sm sm:text-base text-gray-400">Apr 2024 - Jun 2025 · Palo Alto, California, United States · Remote</p>
+              <h3 className="font-semibold text-xl sm:text-2xl neon-text">Senior Software Engineer at Autonomys</h3>
+              <p className="text-sm sm:text-base text-grayTone opacity-70">Apr 2024 - Jun 2025 · Palo Alto, California, United States · Remote</p>
               <p className="mt-2">
                 As a Senior Software Engineer in the product team at Autonomys, I
                 focus on hands-on development to build and enhance blockchain and
@@ -89,8 +89,8 @@ export default function Experience() {
           {/* Full-Stack Web3 & Solidity Engineer at Oamo */}
           <GlassCard className="p-6">
             <div className="text-base sm:text-lg">
-              <h3 className="font-semibold text-xl sm:text-2xl">Full-Stack Web3 & Solidity Engineer at Oamo</h3>
-              <p className="text-sm sm:text-base text-gray-400">Mar 2023 - Apr 2024 · Montreal, Quebec, Canada · Remote</p>
+              <h3 className="font-semibold text-xl sm:text-2xl neon-text">Full-Stack Web3 & Solidity Engineer at Oamo</h3>
+              <p className="text-sm sm:text-base text-grayTone opacity-70">Mar 2023 - Apr 2024 · Montreal, Quebec, Canada · Remote</p>
               <p className="mt-2">
                 As a key member of an early-stage team at Oamo, I played a pivotal
                 role in building two web applications—one customer-facing and
@@ -141,8 +141,8 @@ export default function Experience() {
           {/* Smart Contract Engineer at Gluwa */}
           <GlassCard className="p-6">
             <div className="text-base sm:text-lg">
-              <h3 className="font-semibold text-xl sm:text-2xl">Smart Contract Engineer at Gluwa</h3>
-              <p className="text-sm sm:text-base text-gray-400">Feb 2022 - 2023 · San Francisco, California, United States · Remote</p>
+              <h3 className="font-semibold text-xl sm:text-2xl neon-text">Smart Contract Engineer at Gluwa</h3>
+              <p className="text-sm sm:text-base text-grayTone opacity-70">Feb 2022 - 2023 · San Francisco, California, United States · Remote</p>
               <p className="mt-2">
                 <strong>Core Responsibilities:</strong> Developed and tested smart
                 contracts for financial applications including staking, DAOs, and
@@ -181,8 +181,8 @@ export default function Experience() {
           {/* Blockchain Programming & Smart Contracts Instructor at Indigo Blockchain School */}
           <GlassCard className="p-6">
             <div className="text-base sm:text-lg">
-              <h3 className="font-semibold text-xl sm:text-2xl">Blockchain Programming & Smart Contracts Instructor at Indigo Blockchain School</h3>
-              <p className="text-sm sm:text-base text-gray-400">Jan 2023 - Apr 2023 · France · Remote</p>
+              <h3 className="font-semibold text-xl sm:text-2xl neon-text">Blockchain Programming & Smart Contracts Instructor at Indigo Blockchain School</h3>
+              <p className="text-sm sm:text-base text-grayTone opacity-70">Jan 2023 - Apr 2023 · France · Remote</p>
               <p className="mt-2">
                 Led a hands-on course on Blockchain Programming & Smart Contracts,
                 teaching students how to write, test, and deploy smart contracts
@@ -224,8 +224,8 @@ export default function Experience() {
           {/* Self-Directed Projects */}
           <GlassCard className="p-6">
             <div className="text-base sm:text-lg">
-              <h3 className="font-semibold text-xl sm:text-2xl">Self-Directed Projects</h3>
-              <p className="text-sm sm:text-base text-gray-400">May 2021 - 2022 · Remote</p>
+              <h3 className="font-semibold text-xl sm:text-2xl neon-text">Self-Directed Projects</h3>
+              <p className="text-sm sm:text-base text-grayTone opacity-70">May 2021 - 2022 · Remote</p>
               <p className="mt-2">
                 Engaged in multiple self-directed projects focused on blockchain
                 technology and web development. Key projects include:
@@ -333,8 +333,8 @@ export default function Experience() {
           {/* Technical Support Specialist at PayFacto */}
           <GlassCard className="p-6">
             <div className="text-base sm:text-lg">
-              <h3 className="font-semibold text-xl sm:text-2xl">Technical Support Specialist at PayFacto</h3>
-              <p className="text-sm sm:text-base text-gray-400">Jun 2020 - Apr 2021 · 11 mos · Montreal, Quebec, Canada · Remote</p>
+              <h3 className="font-semibold text-xl sm:text-2xl neon-text">Technical Support Specialist at PayFacto</h3>
+              <p className="text-sm sm:text-base text-grayTone opacity-70">Jun 2020 - Apr 2021 · 11 mos · Montreal, Quebec, Canada · Remote</p>
               <p className="mt-2">
                 Provided technical support for the company&apos;s point of sale
                 (POS) software, assisting both colleagues and customers in
@@ -368,8 +368,8 @@ export default function Experience() {
           {/* Content Creator at YouTube */}
           <GlassCard className="p-6">
             <div className="text-base sm:text-lg">
-              <h3 className="font-semibold text-xl sm:text-2xl">Content Creator at YouTube</h3>
-              <p className="text-sm sm:text-base text-gray-400">Aug 2019 - Nov 2019 · 4 mos · Canada</p>
+              <h3 className="font-semibold text-xl sm:text-2xl neon-text">Content Creator at YouTube</h3>
+              <p className="text-sm sm:text-base text-grayTone opacity-70">Aug 2019 - Nov 2019 · 4 mos · Canada</p>
               <p className="mt-2">Cryptocurrency News Presenter</p>
               <ul className="list-disc list-inside mt-2 space-y-1">
                 <li>

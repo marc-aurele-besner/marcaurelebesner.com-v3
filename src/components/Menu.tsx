@@ -22,7 +22,7 @@ export default function Menu() {
     <div className="flex flex-col h-full justify-between">
       <div>
         <div className="flex items-center mb-8">
-          <p className="text-2xl font-bold text-[var(--accent)] tracking-tight">
+          <p className="text-2xl font-bold text-[var(--accent)] tracking-tight neon-text">
             {siteConfig.name}
           </p>
         </div>
@@ -35,10 +35,10 @@ export default function Menu() {
                   <Link
                     href={pathname === "/" ? item.href : `/${item.href}`}
                     aria-current={isActive ? "page" : undefined}
-                    className={`group inline-flex items-center gap-2 transition-colors ${
+                    className={`group inline-flex items-center gap-2 transition-colors neon-text ${
                       isActive
                         ? "text-[var(--accent)]"
-                        : "text-slate-600 dark:text-grayTone hover:text-[var(--accent)]"
+                        : "text-grayTone hover:text-[var(--accent)]"
                     }`}
                   >
                     <span
@@ -55,15 +55,15 @@ export default function Menu() {
         </nav>
       </div>
 
-      <div className="mt-8 pt-6 border-t border-slate-200 dark:border-white/5">
+      <div className="mt-8 pt-6 border-t border-[var(--accent)]/20">
         <div className="flex flex-col gap-5">
           <div>
-            <p className="text-xs uppercase tracking-widest text-slate-500 dark:text-grayTone/70 mb-2">Appearance</p>
+            <p className="text-xs uppercase tracking-widest text-grayTone/70 mb-2 neon-text">Appearance</p>
             <ThemeToggle />
           </div>
 
           <div>
-            <p className="text-xs uppercase tracking-widest text-slate-500 dark:text-grayTone/70 mb-2">On the web</p>
+            <p className="text-xs uppercase tracking-widest text-grayTone/70 mb-2 neon-text">On the web</p>
             <div className="flex items-center gap-2">
               <a
                 href={siteConfig.links.github}
@@ -71,7 +71,7 @@ export default function Menu() {
                 rel="noopener noreferrer"
                 title="GitHub"
                 aria-label="GitHub"
-                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
+                className="cyber-button h-9 w-9 inline-flex items-center justify-center rounded-md transition-colors"
               >
                 <FaGithub size={18} />
               </a>
@@ -81,7 +81,8 @@ export default function Menu() {
                 rel="noopener noreferrer"
                 title="LinkedIn"
                 aria-label="LinkedIn"
-                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
+                className="cyber-button h-9 w-9 inline-flex items-center justify-center rounded-md transition-colors"
+                style={{ borderColor: 'var(--accent-secondary)' }}
               >
                 <FaLinkedin size={18} />
               </a>
@@ -91,7 +92,8 @@ export default function Menu() {
                 rel="noopener noreferrer"
                 title="Twitter/X"
                 aria-label="Twitter"
-                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
+                className="cyber-button h-9 w-9 inline-flex items-center justify-center rounded-md transition-colors"
+                style={{ borderColor: 'var(--accent-tertiary)' }}
               >
                 <FaTwitter size={18} />
               </a>
@@ -101,7 +103,8 @@ export default function Menu() {
                 rel="noopener noreferrer"
                 title="Instagram"
                 aria-label="Instagram"
-                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
+                className="cyber-button h-9 w-9 inline-flex items-center justify-center rounded-md transition-colors"
+                style={{ borderColor: 'var(--accent-secondary)' }}
               >
                 <FaInstagram size={18} />
               </a>

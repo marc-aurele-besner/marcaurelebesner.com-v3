@@ -8,7 +8,7 @@ export default function Contact() {
       <SectionHeading eyebrow="Contact">
         <span id="contact-title">Get in touch</span>
       </SectionHeading>
-      <p className="text-slate-600 dark:text-grayTone max-w-2xl">
+      <p className="text-grayTone max-w-2xl">
         I’m open to collaborating on interesting projects, discussing Web3, or exploring new opportunities. The fastest way to
         reach me is via LinkedIn, Twitter, or Instagram.
       </p>
@@ -17,7 +17,7 @@ export default function Contact() {
           href={siteConfig.links.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-md border border-black/10 dark:border-white/10 px-4 py-2 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition"
+          className="cyber-button inline-flex items-center gap-2 rounded-md px-4 py-2 transition"
         >
           <FaGithub />
           GitHub
@@ -26,7 +26,8 @@ export default function Contact() {
           href={siteConfig.links.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-md border border-black/10 dark:border-white/10 px-4 py-2 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition"
+          className="cyber-button inline-flex items-center gap-2 rounded-md px-4 py-2 transition"
+          style={{ borderColor: 'var(--accent-secondary)' }}
         >
           <FaLinkedin />
           LinkedIn
@@ -35,7 +36,8 @@ export default function Contact() {
           href={siteConfig.links.twitter}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-md border border-black/10 dark:border-white/10 px-4 py-2 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition"
+          className="cyber-button inline-flex items-center gap-2 rounded-md px-4 py-2 transition"
+          style={{ borderColor: 'var(--accent-tertiary)' }}
         >
           <FaTwitter />
           Twitter
@@ -44,7 +46,8 @@ export default function Contact() {
           href={siteConfig.links.instagram}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-md border border-black/10 dark:border-white/10 px-4 py-2 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition"
+          className="cyber-button inline-flex items-center gap-2 rounded-md px-4 py-2 transition"
+          style={{ borderColor: 'var(--accent-secondary)' }}
         >
           <FaInstagram />
           Instagram
