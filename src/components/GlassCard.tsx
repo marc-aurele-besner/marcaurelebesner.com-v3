@@ -4,12 +4,12 @@ export default function GlassCard({ children, className = "" }: { children: Reac
   return (
     <div
       className={
-        "relative rounded-xl border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-md shadow-[0_0_0_0_rgba(100,255,218,0.0)] hover:shadow-[0_0_40px_-10px_rgba(100,255,218,0.35)] transition-all duration-300 " +
+        "relative rounded-xl border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-md shadow-[0_0_0_0_rgba(100,255,218,0.0)] hover:shadow-[0_0_40px_-10px_rgba(100,255,218,0.35)] transition-all duration-300 hover:border-[var(--accent-weak)] " +
         className
       }
     >
       {/* subtle top highlight */}
-      <div className="pointer-events-none absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-black/10 dark:via-white/30 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-[var(--accent)]/20 dark:via-white/30 to-transparent" />
       {children}
     </div>
   );

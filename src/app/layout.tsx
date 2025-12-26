@@ -95,7 +95,7 @@ export default function RootLayout({
             </aside>
             <main
               id="main-content"
-              className="flex-1 overflow-y-auto py-16 md:ml-72 px-4 sm:px-6 lg:px-8"
+              className="flex-1 overflow-y-auto py-12 md:py-16 md:ml-72 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto"
             >
               {children}
             </main>

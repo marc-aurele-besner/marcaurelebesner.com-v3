@@ -73,6 +73,33 @@ body {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Enhanced link styles */
+a:not([class]) {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: all 0.2s ease;
+}
+
+a:not([class]):hover {
+  text-decoration-thickness: 2px;
+  opacity: 0.9;
+}
+
+/* Smooth transitions for interactive elements */
+button,
+a[role="button"],
+[role="button"] {
+  transition: all 0.2s ease;
+}
+
+/* Better image rendering */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 /* Respect reduced motion preferences */
