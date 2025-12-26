@@ -1,15 +1,15 @@
+import ScrollProgress from "@/components/ScrollProgress";
+import { siteConfig } from "@/config/site";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
-import Menu from "../components/Menu";
-import Header from "../components/Header";
-import Spotlight from "../components/Spotlight";
 import Backdrop from "../components/Backdrop";
-import ThemeProvider from "../components/ThemeProvider";
 import EasterEggs from "../components/EasterEggs";
-import { siteConfig } from "@/config/site";
-import ScrollProgress from "@/components/ScrollProgress";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import Header from "../components/Header";
+import Menu from "../components/Menu";
+import Spotlight from "../components/Spotlight";
+import ThemeProvider from "../components/ThemeProvider";
+import "./globals.css";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -93,15 +93,18 @@ export default function RootLayout({
             <aside className="md:w-72 bg-white/70 dark:bg-darkBlue/70 backdrop-blur border-r border-slate-200 dark:border-white/5 p-8 fixed h-full hidden md:block">
               <Menu />
             </aside>
-            <main id="main-content" className="flex-1 overflow-y-auto py-16 md:ml-72 px-4 sm:px-6 lg:px-8">
+            <main
+              id="main-content"
+              className="flex-1 overflow-y-auto py-16 md:ml-72 px-4 sm:px-6 lg:px-8"
+            >
               {children}
             </main>
           </div>
         </ThemeProvider>
-        {siteConfig.googleAnalyticsId && (
-          <GoogleAnalytics gaId={siteConfig.googleAnalyticsId} />
-        )}
       </body>
+      {siteConfig.googleAnalyticsId && (
+        <GoogleAnalytics gaId={siteConfig.googleAnalyticsId} />
+      )}
     </html>
   );
 }

@@ -1,8 +1,9 @@
 import { ProjectData } from "@/constants/projects";
+import { trackProjectLink } from "@/utils/analytics";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { FC } from "react";
 import Badge from "./Badge";
-import { motion } from "framer-motion";
 import GlassCard from "./GlassCard";
 
 export const Project: FC<ProjectData> = ({
@@ -28,7 +29,15 @@ export const Project: FC<ProjectData> = ({
         <div className="absolute inset-0 rounded-xl bg-[linear-gradient(120deg,transparent_0%,rgba(0,0,0,0.04)_30%,transparent_60%)] dark:bg-[linear-gradient(120deg,transparent_0%,rgba(255,255,255,0.06)_30%,transparent_60%)]" />
       </div>
 
-      <a href={link} target="_blank" rel="noopener noreferrer" className="w-full md:w-1/3">
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={() =>
+          link ? trackProjectLink(title, "website", link) : undefined
+        }
+        className="w-full md:w-1/3"
+      >
         <div className="flex flex-col items-center">
           <Image
             src={imageSrc}
@@ -44,7 +53,9 @@ export const Project: FC<ProjectData> = ({
                 ? "border-[var(--accent-weak)] text-[var(--accent)] bg-transparent hover:bg-[var(--accent-bg-weak)]"
                 : "border-[var(--accent-weak)] text-[var(--accent)] bg-transparent hover:bg-[var(--accent-bg-weak)]"
             }`}
-            aria-label={`Project type: ${projectType === "personal" ? "Personal Project" : "Work Project"}`}
+            aria-label={`Project type: ${
+              projectType === "personal" ? "Personal Project" : "Work Project"
+            }`}
           >
             {projectType === "personal" ? "Personal Project" : "Work Project"}
           </span>
@@ -52,13 +63,16 @@ export const Project: FC<ProjectData> = ({
       </a>
       <div className="flex-1 md:ml-4 mt-4 md:mt-0 w-full">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-          <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-slate-900 dark:text-white/95">{title}</h3>
+          <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-slate-900 dark:text-white/95">
+            {title}
+          </h3>
           <div className="flex items-center gap-4">
             {repoLink && (
               <a
                 href={repoLink}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackProjectLink(title, "repository", repoLink)}
                 className="text-[var(--accent)] hover:brightness-110 transition-colors duration-200 flex items-center gap-1"
               >
                 Repository <span className="text-sm">↗</span>
@@ -69,6 +83,7 @@ export const Project: FC<ProjectData> = ({
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackProjectLink(title, "website", link)}
                 className="text-[var(--accent)] hover:brightness-110 transition-colors duration-200 flex items-center gap-1"
               >
                 Website <span className="text-sm">↗</span>
@@ -76,7 +91,9 @@ export const Project: FC<ProjectData> = ({
             )}
           </div>
         </div>
-        <p className="text-sm sm:text-lg mt-2 text-slate-700 dark:text-gray-200/90">{description}</p>
+        <p className="text-sm sm:text-lg mt-2 text-slate-700 dark:text-gray-200/90">
+          {description}
+        </p>
         <div className="flex flex-wrap gap-2 mt-3">
           {badges.map((badge) => (
             <Badge key={badge} text={badge} />
