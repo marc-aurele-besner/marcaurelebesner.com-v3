@@ -29,14 +29,46 @@ export async function generateMetadata({
     };
   }
 
+  const title = project.title;
+  const description = project.summary;
+  const url = `/projects/${slug}`;
+  const imageUrl = project.imageSrc;
+
   return {
-    title: project.title,
-    description: project.summary,
+    title,
+    description,
+    keywords: [
+      project.title,
+      ...project.badges.slice(0, 5),
+      "Web3",
+      "Blockchain",
+      "Project",
+      project.projectType === "personal" ? "Personal Project" : "Work Project",
+    ],
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
-      title: `${project.title} | ${siteConfig.name}`,
-      description: project.summary,
+      title: `${title} | ${siteConfig.name}`,
+      description,
       type: "article",
-      images: [project.imageSrc],
+      url,
+      siteName: siteConfig.name,
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: project.imageAlt,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | ${siteConfig.name}`,
+      description,
+      creator: siteConfig.twitterHandle,
+      images: [imageUrl],
     },
   };
 }
@@ -54,8 +86,38 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const nextProject =
     currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
 
+  // JSON-LD structured data for software application / creative work
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: project.title,
+    description: project.description,
+    image: `${siteConfig.url}${project.imageSrc}`,
+    url: project.link || `${siteConfig.url}/projects/${slug}`,
+    author: {
+      "@type": "Person",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    applicationCategory: "WebApplication",
+    operatingSystem: "Web",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    ...(project.repoLink && {
+      codeRepository: project.repoLink,
+    }),
+    keywords: project.badges.join(", "),
+  };
+
   return (
     <div className="max-w-4xl mx-auto py-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Link
         href="/#projects"
         className="inline-flex items-center gap-2 text-[var(--accent)] hover:brightness-110 transition-all duration-200 font-medium text-sm mb-8 hover:gap-3"
@@ -152,7 +214,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
       </GlassCard>
 
-      <nav className="flex justify-between mt-8 gap-4">
+      <nav className="flex justify-between mt-8 gap-4" aria-label="Project navigation">
         {prevProject ? (
           <Link
             href={`/projects/${prevProject.slug}`}

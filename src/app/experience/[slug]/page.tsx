@@ -28,13 +28,36 @@ export async function generateMetadata({
     };
   }
 
+  const title = `${experience.title} at ${experience.company}`;
+  const description = experience.summary;
+  const url = `/experience/${slug}`;
+
   return {
-    title: `${experience.title} at ${experience.company}`,
-    description: experience.summary,
+    title,
+    description,
+    keywords: [
+      experience.title,
+      experience.company,
+      ...experience.skills.slice(0, 5),
+      "Web3",
+      "Blockchain",
+      "Software Engineer",
+    ],
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
-      title: `${experience.title} at ${experience.company} | ${siteConfig.name}`,
-      description: experience.summary,
+      title: `${title} | ${siteConfig.name}`,
+      description,
       type: "article",
+      url,
+      siteName: siteConfig.name,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | ${siteConfig.name}`,
+      description,
+      creator: siteConfig.twitterHandle,
     },
   };
 }
@@ -52,8 +75,40 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
   const nextExperience =
     currentIndex < experiences.length - 1 ? experiences[currentIndex + 1] : null;
 
+  // JSON-LD structured data for job posting / work experience
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: `${experience.title} at ${experience.company}`,
+    description: experience.summary,
+    author: {
+      "@type": "Person",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    publisher: {
+      "@type": "Person",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${siteConfig.url}/experience/${slug}`,
+    },
+    about: {
+      "@type": "Organization",
+      name: experience.company,
+      url: experience.companyUrl,
+    },
+    keywords: experience.skills.join(", "),
+  };
+
   return (
     <div className="max-w-4xl mx-auto py-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Link
         href="/#experience"
         className="inline-flex items-center gap-2 text-[var(--accent)] hover:brightness-110 transition-all duration-200 font-medium text-sm mb-8 hover:gap-3"
@@ -127,7 +182,7 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
         </div>
       </GlassCard>
 
-      <nav className="flex justify-between mt-8 gap-4">
+      <nav className="flex justify-between mt-8 gap-4" aria-label="Experience navigation">
         {prevExperience ? (
           <Link
             href={`/experience/${prevExperience.slug}`}
