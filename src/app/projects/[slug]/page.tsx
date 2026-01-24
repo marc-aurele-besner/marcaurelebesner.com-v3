@@ -32,7 +32,6 @@ export async function generateMetadata({
   const title = project.title;
   const description = project.summary;
   const url = `/projects/${slug}`;
-  const imageUrl = project.imageSrc;
 
   return {
     title,
@@ -54,21 +53,12 @@ export async function generateMetadata({
       type: "article",
       url,
       siteName: siteConfig.name,
-      images: [
-        {
-          url: imageUrl,
-          width: 1200,
-          height: 630,
-          alt: project.imageAlt,
-        },
-      ],
     },
     twitter: {
       card: "summary_large_image",
       title: `${title} | ${siteConfig.name}`,
       description,
       creator: siteConfig.twitterHandle,
-      images: [imageUrl],
     },
   };
 }
@@ -86,30 +76,57 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const nextProject =
     currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
 
-  // JSON-LD structured data for software application / creative work
+  // JSON-LD structured data for software application
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: project.title,
-    description: project.description,
-    image: `${siteConfig.url}${project.imageSrc}`,
-    url: project.link || `${siteConfig.url}/projects/${slug}`,
-    author: {
-      "@type": "Person",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
-    applicationCategory: "WebApplication",
-    operatingSystem: "Web",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
-    ...(project.repoLink && {
-      codeRepository: project.repoLink,
-    }),
-    keywords: project.badges.join(", "),
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        name: project.title,
+        description: project.description,
+        image: `${siteConfig.url}${project.imageSrc}`,
+        url: project.link || `${siteConfig.url}/projects/${slug}`,
+        author: {
+          "@type": "Person",
+          name: siteConfig.name,
+          url: siteConfig.url,
+        },
+        applicationCategory: "WebApplication",
+        operatingSystem: "Web",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "USD",
+        },
+        ...(project.repoLink && {
+          codeRepository: project.repoLink,
+        }),
+        keywords: project.badges.join(", "),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: siteConfig.url,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Projects",
+            item: `${siteConfig.url}/#projects`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: project.title,
+            item: `${siteConfig.url}/projects/${slug}`,
+          },
+        ],
+      },
+    ],
   };
 
   return (
