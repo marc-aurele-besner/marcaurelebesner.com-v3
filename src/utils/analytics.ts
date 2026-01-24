@@ -4,6 +4,8 @@ export type GAEventName =
   | "click_social_link"
   | "click_project_link"
   | "click_project_repo"
+  | "click_project_details"
+  | "click_experience_details"
   | "click_navigation"
   | "toggle_theme"
   | "view_section";
@@ -72,6 +74,31 @@ export function trackThemeChange(theme: string): void {
 export function trackSectionView(section: string): void {
   trackEvent("view_section", {
     section,
+  });
+}
+
+/**
+ * Track experience details page clicks
+ */
+export function trackExperienceDetails(
+  title: string,
+  company: string,
+  slug: string
+): void {
+  trackEvent("click_experience_details", {
+    experience_title: title,
+    company,
+    slug,
+  });
+}
+
+/**
+ * Track project details page clicks
+ */
+export function trackProjectDetails(title: string, slug: string): void {
+  trackEvent("click_project_details", {
+    project_title: title,
+    slug,
   });
 }
 

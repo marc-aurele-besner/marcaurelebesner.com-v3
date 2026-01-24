@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Project } from "./Project";
 import { projects } from "@/constants/projects";
+import { trackProjectDetails } from "@/utils/analytics";
 import SectionHeading from "./SectionHeading";
 import Link from "next/link";
 
@@ -63,6 +64,7 @@ export default function Projects() {
                 <Link
                   key={project.slug}
                   href={`/projects/${project.slug}`}
+                  onClick={() => trackProjectDetails(project.title, project.slug)}
                   className="px-4 py-2 rounded-lg border border-slate-200 dark:border-white/10 bg-white/50 dark:bg-white/5 text-slate-700 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent-weak)] transition-colors text-sm"
                 >
                   {project.title}

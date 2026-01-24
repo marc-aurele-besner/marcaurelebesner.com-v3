@@ -1,6 +1,7 @@
 "use client";
 
 import { ExperienceData } from "@/constants/experience";
+import { trackExperienceDetails } from "@/utils/analytics";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { FC } from "react";
@@ -46,6 +47,7 @@ export const ExperienceCard: FC<ExperienceCardProps> = ({
             </div>
             <Link
               href={`/experience/${slug}`}
+              onClick={() => trackExperienceDetails(title, company, slug)}
               className="text-[var(--accent)] hover:brightness-110 transition-all duration-200 flex items-center gap-1.5 font-medium text-sm hover:gap-2"
             >
               Read more{" "}
@@ -113,6 +115,7 @@ export const ExperienceCard: FC<ExperienceCardProps> = ({
 
             <Link
               href={`/experience/${slug}`}
+              onClick={() => trackExperienceDetails(title, company, slug)}
               className="inline-flex items-center gap-1.5 text-[var(--accent)] hover:brightness-110 transition-all duration-200 font-medium text-sm hover:gap-2"
             >
               Read more{" "}

@@ -1,5 +1,5 @@
 import { ProjectData } from "@/constants/projects";
-import { trackProjectLink } from "@/utils/analytics";
+import { trackProjectDetails, trackProjectLink } from "@/utils/analytics";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,6 +33,7 @@ export const Project: FC<ProjectData> = ({
 
       <Link
         href={`/projects/${slug}`}
+        onClick={() => trackProjectDetails(title, slug)}
         className="w-full lg:w-2/5 flex-shrink-0 mb-6 lg:mb-0 lg:mr-8"
       >
         <div className="flex flex-col items-center lg:items-start">
@@ -63,7 +64,10 @@ export const Project: FC<ProjectData> = ({
       </Link>
       <div className="flex-1 w-full">
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
-          <Link href={`/projects/${slug}`}>
+          <Link
+            href={`/projects/${slug}`}
+            onClick={() => trackProjectDetails(title, slug)}
+          >
             <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white/95 group-hover:text-[var(--accent)] transition-colors duration-300">
               {title}
             </h3>
@@ -114,6 +118,7 @@ export const Project: FC<ProjectData> = ({
         </div>
         <Link
           href={`/projects/${slug}`}
+          onClick={() => trackProjectDetails(title, slug)}
           className="inline-flex items-center gap-1.5 mt-4 text-[var(--accent)] hover:brightness-110 transition-all duration-200 font-medium text-sm hover:gap-2"
         >
           View details{" "}
