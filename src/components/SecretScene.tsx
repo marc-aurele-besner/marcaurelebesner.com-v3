@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring, useReducedMotion } from "framer-motion";
 
-export default function SecretScene(): JSX.Element {
+export default function SecretScene() {
   const prefersReducedMotion = useReducedMotion();
   const cardRef = useRef<HTMLDivElement | null>(null);
 

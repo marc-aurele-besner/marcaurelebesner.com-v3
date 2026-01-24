@@ -1,4 +1,3 @@
-import React from "react";
 import type { Metadata } from "next";
 import SecretScene from "@/components/SecretScene";
 
@@ -7,7 +6,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function SecretPage(): JSX.Element {
+export default function SecretPage() {
   return (
     <section className="relative">
       <SecretScene />

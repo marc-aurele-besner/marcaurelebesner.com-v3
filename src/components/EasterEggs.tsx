@@ -7,7 +7,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
  * - Konami code to trigger Party Mode (confetti + flashy overlay)
  * - Console banner with a subtle hint for explorers
  */
-export default function EasterEggs(): JSX.Element {
+export default function EasterEggs() {
   const [isPartyModeActive, setIsPartyModeActive] = useState<boolean>(false);
   const konamiProgressIndexRef = useRef<number>(0);
   const partyTimeoutRef = useRef<number | null>(null);

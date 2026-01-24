@@ -2,13 +2,15 @@ import { ProjectData } from "@/constants/projects";
 import { trackProjectLink } from "@/utils/analytics";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { FC } from "react";
 import Badge from "./Badge";
 import GlassCard from "./GlassCard";
 
 export const Project: FC<ProjectData> = ({
+  slug,
   title,
-  description,
+  summary,
   imageSrc,
   imageAlt,
   link,
@@ -29,13 +31,8 @@ export const Project: FC<ProjectData> = ({
         <div className="absolute inset-0 rounded-xl bg-[linear-gradient(120deg,transparent_0%,rgba(0,0,0,0.04)_30%,transparent_60%)] dark:bg-[linear-gradient(120deg,transparent_0%,rgba(255,255,255,0.06)_30%,transparent_60%)]" />
       </div>
 
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={() =>
-          link ? trackProjectLink(title, "website", link) : undefined
-        }
+      <Link
+        href={`/projects/${slug}`}
         className="w-full lg:w-2/5 flex-shrink-0 mb-6 lg:mb-0 lg:mr-8"
       >
         <div className="flex flex-col items-center lg:items-start">
@@ -63,12 +60,14 @@ export const Project: FC<ProjectData> = ({
             {projectType === "personal" ? "Personal Project" : "Work Project"}
           </span>
         </div>
-      </a>
+      </Link>
       <div className="flex-1 w-full">
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
-          <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white/95 group-hover:text-[var(--accent)] transition-colors duration-300">
-            {title}
-          </h3>
+          <Link href={`/projects/${slug}`}>
+            <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white/95 group-hover:text-[var(--accent)] transition-colors duration-300">
+              {title}
+            </h3>
+          </Link>
           <div className="flex items-center gap-4 flex-shrink-0">
             {repoLink && (
               <a
@@ -101,13 +100,27 @@ export const Project: FC<ProjectData> = ({
           </div>
         </div>
         <p className="text-base sm:text-lg mt-3 text-slate-700 dark:text-gray-200/90 leading-relaxed">
-          {description}
+          {summary}
         </p>
         <div className="flex flex-wrap gap-2 mt-4">
-          {badges.map((badge) => (
+          {badges.slice(0, 5).map((badge) => (
             <Badge key={badge} text={badge} />
           ))}
+          {badges.length > 5 && (
+            <span className="text-sm text-slate-500 dark:text-grayTone self-center">
+              +{badges.length - 5} more
+            </span>
+          )}
         </div>
+        <Link
+          href={`/projects/${slug}`}
+          className="inline-flex items-center gap-1.5 mt-4 text-[var(--accent)] hover:brightness-110 transition-all duration-200 font-medium text-sm hover:gap-2"
+        >
+          View details{" "}
+          <span className="text-sm transition-transform group-hover:translate-x-0.5">
+            &rarr;
+          </span>
+        </Link>
       </div>
     </GlassCard>
   </motion.article>
