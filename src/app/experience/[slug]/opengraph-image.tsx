@@ -1,11 +1,8 @@
 import { ImageResponse } from "next/og";
-import { experiences } from "@/constants/experience";
-import { siteConfig } from "@/config/site";
+import { experiences } from "@/config/experience";
+import { ogImageSize, siteConfig } from "@/config/site";
 
-export const size = {
-  width: 1200,
-  height: 630,
-};
+export const size = ogImageSize;
 
 export const contentType = "image/png";
 

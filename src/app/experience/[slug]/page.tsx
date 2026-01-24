@@ -1,4 +1,4 @@
-import { experiences } from "@/constants/experience";
+import { experiences } from "@/config/experience";
 import { siteConfig } from "@/config/site";
 import Badge from "@/components/Badge";
 import GlassCard from "@/components/GlassCard";

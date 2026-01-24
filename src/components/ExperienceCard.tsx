@@ -1,6 +1,6 @@
 "use client";
 
-import { ExperienceData } from "@/constants/experience";
+import { ExperienceData } from "@/config/experience";
 import { trackExperienceDetails } from "@/utils/analytics";
 import { motion } from "framer-motion";
 import Link from "next/link";

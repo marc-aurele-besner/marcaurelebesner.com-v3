@@ -1,4 +1,4 @@
-import { ProjectData } from "@/constants/projects";
+import { ProjectData } from "@/config/projects";
 import { trackProjectDetails, trackProjectLink } from "@/utils/analytics";
 import { motion } from "framer-motion";
 import Image from "next/image";

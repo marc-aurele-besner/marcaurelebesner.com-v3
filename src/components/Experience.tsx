@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { experiences } from "@/constants/experience";
+import { experiences } from "@/config/experience";
 import { ExperienceCard } from "./ExperienceCard";
 import SectionHeading from "./SectionHeading";
 

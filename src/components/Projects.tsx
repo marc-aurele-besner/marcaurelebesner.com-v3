@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Project } from "./Project";
-import { projects } from "@/constants/projects";
+import { projects } from "@/config/projects";
 import { trackProjectDetails } from "@/utils/analytics";
 import SectionHeading from "./SectionHeading";
 import Link from "next/link";

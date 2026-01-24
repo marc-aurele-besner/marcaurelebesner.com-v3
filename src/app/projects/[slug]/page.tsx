@@ -1,4 +1,4 @@
-import { projects } from "@/constants/projects";
+import { projects } from "@/config/projects";
 import { siteConfig } from "@/config/site";
 import Badge from "@/components/Badge";
 import GlassCard from "@/components/GlassCard";
