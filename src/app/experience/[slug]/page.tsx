@@ -68,6 +68,7 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
 
   if (!experience) {
     notFound();
+    return null; // Explicitly return null after notFound()
   }
 
   const currentIndex = experiences.findIndex((exp) => exp.slug === slug);
@@ -75,67 +76,68 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
   const nextExperience =
     currentIndex < experiences.length - 1 ? experiences[currentIndex + 1] : null;
 
-  // JSON-LD structured data for work experience
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Article",
-        headline: `${experience.title} at ${experience.company}`,
-        description: experience.summary,
-        author: {
-          "@type": "Person",
-          name: siteConfig.name,
-          url: siteConfig.url,
-        },
-        publisher: {
-          "@type": "Person",
-          name: siteConfig.name,
-          url: siteConfig.url,
-        },
-        mainEntityOfPage: {
-          "@type": "WebPage",
-          "@id": `${siteConfig.url}/experience/${slug}`,
-        },
-        about: {
-          "@type": "Organization",
-          name: experience.company,
-          url: experience.companyUrl,
-        },
-        keywords: experience.skills.join(", "),
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "Home",
-            item: siteConfig.url,
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "Experience",
-            item: `${siteConfig.url}/#experience`,
-          },
-          {
-            "@type": "ListItem",
-            position: 3,
-            name: `${experience.title} at ${experience.company}`,
-            item: `${siteConfig.url}/experience/${slug}`,
-          },
-        ],
-      },
-    ],
-  };
-
   return (
     <div className="max-w-4xl mx-auto py-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {experience && ( // Conditionally render the script tag
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Article",
+                  headline: `${experience.title} at ${experience.company}`,
+                  description: experience.summary,
+                  author: {
+                    "@type": "Person",
+                    name: siteConfig.name,
+                    url: siteConfig.url,
+                  },
+                  publisher: {
+                    "@type": "Person",
+                    name: siteConfig.name,
+                    url: siteConfig.url,
+                  },
+                  mainEntityOfPage: {
+                    "@type": "WebPage",
+                    "@id": `${siteConfig.url}/experience/${slug}`,
+                  },
+                  about: {
+                    "@type": "Organization",
+                    name: experience.company,
+                    url: experience.companyUrl,
+                  },
+                  keywords: experience.skills.join(", "),
+                },
+                {
+                  "@type": "BreadcrumbList",
+                  itemListElement: [
+                    {
+                      "@type": "ListItem",
+                      position: 1,
+                      name: "Home",
+                      item: siteConfig.url,
+                    },
+                    {
+                      "@type": "ListItem",
+                      position: 2,
+                      name: "Experience",
+                      item: `${siteConfig.url}/#experience`,
+                    },
+                    {
+                      "@type": "ListItem",
+                      position: 3,
+                      name: `${experience.title} at ${experience.company}`,
+                      item: `${siteConfig.url}/experience/${slug}`,
+                    },
+                  ],
+                },
+              ],
+            }),
+          }}
+        />
+      )}
       <Link
         href="/#experience"
         className="inline-flex items-center gap-2 text-[var(--accent)] hover:brightness-110 transition-all duration-200 font-medium text-sm mb-8 hover:gap-3"
