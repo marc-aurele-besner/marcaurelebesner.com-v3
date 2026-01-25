@@ -124,6 +124,12 @@ describe("Project Page", () => {
       const metadata = await generateMetadata({ params: Promise.resolve({ slug: "proj-1" }) });
       expect(metadata.title).toBe("Project 1");
       expect(metadata.description).toBe("Summary of Proj 1");
+      expect(metadata.keywords).toContain("Personal Project");
+    });
+
+    it("should include work project keyword for non-personal projects", async () => {
+      const metadata = await generateMetadata({ params: Promise.resolve({ slug: "proj-2" }) });
+      expect(metadata.keywords).toContain("Work Project");
     });
 
     it("should return 'Project Not Found' metadata for an unknown project", async () => {
