@@ -3,6 +3,7 @@
 import About from "../components/About";
 import Experience from "../components/Experience";
 import Projects from "@/components/Projects";
+import Advisory from "@/components/Advisory";
 import Contact from "@/components/Contact";
 import { siteConfig } from "@/config/site";
 
@@ -31,6 +32,7 @@ export default function HomePage() {
       <About />
       <Experience />
       <Projects />
+      <Advisory />
       <Contact />
     </div>
   );
