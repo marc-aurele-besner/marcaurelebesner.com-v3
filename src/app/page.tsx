@@ -28,6 +28,7 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        data-testid="json-ld"
       />
       <About />
       <Experience />

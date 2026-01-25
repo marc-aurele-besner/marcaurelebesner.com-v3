@@ -1,7 +1,7 @@
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, screen } from "@testing-library/react";
 import Spotlight from "./Spotlight";
 import { useReducedMotion } from "framer-motion";
-import React, { useRef } from "react";
+import React, { useState } from "react";
 
 vi.mock("framer-motion", async () => {
   const actual = await vi.importActual("framer-motion");
@@ -11,7 +11,21 @@ vi.mock("framer-motion", async () => {
   };
 });
 
+const SpotlightWrapper = () => {
+  const [show, setShow] = useState(true);
+  return (
+    <div>
+      <button onClick={() => setShow(false)}>Hide</button>
+      {show && <Spotlight />}
+    </div>
+  );
+};
+
 describe("Spotlight", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it("should not render when prefers reduced motion", () => {
     (useReducedMotion as vi.Mock).mockReturnValue(true);
     const { container } = render(<Spotlight />);
@@ -34,26 +48,14 @@ describe("Spotlight", () => {
     expect(spotlightDiv.style.transform).toBe("translate3d(50px, 150px, 0)");
   });
 
-  it("should not throw if ref is not set", () => {
+  it("should remove event listener on unmount", () => {
     (useReducedMotion as vi.Mock).mockReturnValue(false);
+    const removeEventListener = vi.spyOn(window, "removeEventListener");
+    render(<SpotlightWrapper />);
 
-    const TestComponent = () => {
-      const ref = useRef<HTMLDivElement>(null);
-      // Directly call the effect's logic with a null ref
-      const handleMove = (e: MouseEvent) => {
-        if (!ref.current) return;
-        const x = e.clientX - 150;
-        const y = e.clientY - 150;
-        ref.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-      };
-      window.addEventListener("mousemove", handleMove);
-      return <div ref={ref} />;
-    };
+    const hideButton = screen.getByText("Hide");
+    fireEvent.click(hideButton);
 
-    render(<TestComponent />);
-
-    expect(() => {
-      fireEvent.mouseMove(window, { clientX: 200, clientY: 300 });
-    }).not.toThrow();
+    expect(removeEventListener).toHaveBeenCalledWith("mousemove", expect.any(Function));
   });
 });
