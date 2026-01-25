@@ -100,4 +100,18 @@ describe("ExperienceCard", () => {
     expect(screen.getByText("Summary text")).toBeInTheDocument();
     expect(screen.getByText("+1 more")).toBeInTheDocument();
   });
+
+  it("renders company name without external link and no extra badge count", () => {
+    render(
+      <ExperienceCard
+        {...baseExperience}
+        companyUrl={undefined}
+        skills={["Solidity", "TypeScript"]}
+      />
+    );
+
+    expect(screen.queryByRole("link", { name: baseExperience.company })).not.toBeInTheDocument();
+    expect(screen.getByText("Autonomys Network")).toBeInTheDocument();
+    expect(screen.queryByText(/\+1 more/i)).not.toBeInTheDocument();
+  });
 });

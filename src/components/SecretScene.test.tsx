@@ -1,10 +1,17 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import SecretScene from "./SecretScene";
 
-const createMotionValue = () => ({
-  set: vi.fn(),
-  get: vi.fn(() => 0.5),
-});
+const motionValueMocks: Array<{ set: ReturnType<typeof vi.fn> }> = [];
+const createMotionValue = () => {
+  const mock = {
+    set: vi.fn(),
+    get: vi.fn(() => 0.5),
+  };
+  motionValueMocks.push(mock);
+  return mock;
+};
+
+let reduceMotion = true;
 
 vi.mock("framer-motion", async () => {
   const actual = await vi.importActual("framer-motion");
@@ -14,7 +21,7 @@ vi.mock("framer-motion", async () => {
     useMotionValue: () => createMotionValue(),
     useTransform: () => createMotionValue(),
     useSpring: () => createMotionValue(),
-    useReducedMotion: () => true,
+    useReducedMotion: () => reduceMotion,
     motion: {
       div: ({ children, ...rest }: any) => {
         const { initial, animate, whileInView, exit, transition, viewport, ...domProps } =
@@ -52,6 +59,8 @@ vi.mock("next/link", () => ({
 describe("SecretScene", () => {
   beforeEach(() => {
     vi.useFakeTimers();
+    motionValueMocks.length = 0;
+    reduceMotion = true;
   });
 
   afterEach(() => {
@@ -97,5 +106,55 @@ describe("SecretScene", () => {
       vi.runAllTimers();
     });
     expect(writeText).toHaveBeenCalledWith(expect.stringContaining("?peek=1"));
+  });
+
+  it("updates motion values on pointer movement when motion is enabled", () => {
+    reduceMotion = false;
+    const { container } = render(<SecretScene />);
+
+    const hint = screen.getByText(/Try a famous code on the home page/i);
+    let card = hint.closest("div");
+    while (card && !card.className.includes("max-w-xl")) {
+      card = card.parentElement;
+    }
+    if (!card) throw new Error("Card container not found");
+
+    vi.spyOn(card, "getBoundingClientRect").mockReturnValue({
+      left: 0,
+      top: 0,
+      width: 200,
+      height: 100,
+      right: 200,
+      bottom: 100,
+      x: 0,
+      y: 0,
+      toJSON: () => {},
+    } as DOMRect);
+
+    fireEvent.mouseMove(card, { clientX: 100, clientY: 50 });
+    expect(motionValueMocks[0].set).toHaveBeenCalledWith(0.5);
+    expect(motionValueMocks[1].set).toHaveBeenCalledWith(0.5);
+
+    fireEvent.mouseLeave(card);
+    expect(motionValueMocks[0].set).toHaveBeenCalledWith(0.5);
+    expect(motionValueMocks[1].set).toHaveBeenCalledWith(0.5);
+  });
+
+  it("handles clipboard errors without showing copied state", async () => {
+    const writeText = vi.fn().mockRejectedValue(new Error("no clipboard"));
+    Object.defineProperty(navigator, "clipboard", {
+      value: { writeText },
+      configurable: true,
+    });
+
+    render(<SecretScene />);
+    fireEvent.click(screen.getByRole("button", { name: /Peek around/i }));
+
+    await act(async () => {
+      fireEvent.click(screen.getByRole("button", { name: /Copy secret link/i }));
+      await Promise.resolve();
+    });
+
+    expect(screen.queryByText("Copied!")).not.toBeInTheDocument();
   });
 });

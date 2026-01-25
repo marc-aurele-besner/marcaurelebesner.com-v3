@@ -96,7 +96,7 @@ describe("Project", () => {
     render(<Project {...projectData} />);
 
     const detailLinks = screen.getAllByRole("link", { name: /Neon Deck/i });
-    fireEvent.click(detailLinks[0]);
+    detailLinks.forEach((link) => fireEvent.click(link));
     expect(trackProjectDetails).toHaveBeenCalledWith(
       projectData.title,
       projectData.slug
@@ -119,5 +119,22 @@ describe("Project", () => {
       "website",
       projectData.link
     );
+  });
+
+  it("renders work project without optional links", () => {
+    render(
+      <Project
+        {...projectData}
+        projectType="work"
+        repoLink={undefined}
+        link={undefined}
+        badges={["React", "Next.js"]}
+      />
+    );
+
+    expect(screen.getByText("Work Project")).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /Repository/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /Website/i })).not.toBeInTheDocument();
+    expect(screen.queryByText(/\+1 more/i)).not.toBeInTheDocument();
   });
 });

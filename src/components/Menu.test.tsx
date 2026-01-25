@@ -33,8 +33,10 @@ vi.mock("next/link", () => ({
   ),
 }));
 
+let pathname = "/";
+
 vi.mock("next/navigation", () => ({
-  usePathname: () => "/",
+  usePathname: () => pathname,
 }));
 
 vi.mock("@/hooks/useActiveSection", () => ({
@@ -75,16 +77,30 @@ describe("Menu", () => {
   it("renders social links and tracks social clicks", () => {
     render(<Menu />);
 
-    const githubLink = screen.getByRole("link", { name: "GitHub" });
-    expect(githubLink).toHaveAttribute("href", siteConfig.links.github);
-    expect(githubLink).toHaveAttribute("target", "_blank");
-    expect(githubLink).toHaveAttribute("rel");
+    const socialLinks = [
+      { name: "GitHub", platform: "github", href: siteConfig.links.github },
+      { name: "LinkedIn", platform: "linkedin", href: siteConfig.links.linkedin },
+      { name: "Twitter", platform: "twitter", href: siteConfig.links.twitter },
+      { name: "Instagram", platform: "instagram", href: siteConfig.links.instagram },
+    ];
 
-    githubLink.addEventListener("click", (event) => event.preventDefault());
-    fireEvent.click(githubLink);
-    expect(trackSocialLink).toHaveBeenCalledWith(
-      "github",
-      siteConfig.links.github
-    );
+    for (const social of socialLinks) {
+      const link = screen.getByRole("link", { name: social.name });
+      expect(link).toHaveAttribute("href", social.href);
+      expect(link).toHaveAttribute("target", "_blank");
+      expect(link).toHaveAttribute("rel");
+
+      link.addEventListener("click", (event) => event.preventDefault());
+      fireEvent.click(link);
+      expect(trackSocialLink).toHaveBeenCalledWith(social.platform, social.href);
+    }
+  });
+
+  it("uses prefixed anchors when not on the home route", () => {
+    pathname = "/projects";
+    render(<Menu />);
+
+    const aboutLink = screen.getByRole("link", { name: "About" });
+    expect(aboutLink).toHaveAttribute("href", "/#about");
   });
 });
