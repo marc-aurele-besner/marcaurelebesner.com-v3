@@ -17,8 +17,7 @@ export default function SecretScene() {
   const smoothRotateY = useSpring(rotateY, { stiffness: 150, damping: 20, mass: 0.5 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
+    const rect = cardRef.current!.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
     pointerX.set(x);
