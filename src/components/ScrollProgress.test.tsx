@@ -1,0 +1,38 @@
+import { render } from "@testing-library/react";
+import ScrollProgress from "./ScrollProgress";
+import { useScroll, useSpring, useReducedMotion } from "framer-motion";
+
+vi.mock("framer-motion", async () => {
+  const actual = await vi.importActual("framer-motion");
+  return {
+    ...actual,
+    useScroll: vi.fn(),
+    useSpring: (v: any) => v, // Return the value directly
+    useReducedMotion: vi.fn(),
+    motion: {
+      div: ({ style, ...props }: any) => <div style={style} {...props} />,
+    },
+  };
+});
+
+describe("ScrollProgress", () => {
+  it("renders correctly and applies scaleX", () => {
+    (useScroll as vi.Mock).mockReturnValue({ scrollYProgress: 0.5 });
+    (useReducedMotion as vi.Mock).mockReturnValue(false);
+
+    const { container } = render(<ScrollProgress />);
+    const progressDiv = container.firstChild as HTMLElement;
+    expect(progressDiv).toBeInTheDocument();
+    expect(parseFloat(progressDiv.style.scaleX)).toBe(0.5);
+  });
+
+  it("does not apply scaleX when prefersReducedMotion is true", () => {
+    (useScroll as vi.Mock).mockReturnValue({ scrollYProgress: 0.5 });
+    (useReducedMotion as vi.Mock).mockReturnValue(true);
+
+    const { container } = render(<ScrollProgress />);
+    const progressDiv = container.firstChild as HTMLElement;
+    expect(progressDiv).toBeInTheDocument();
+    expect(progressDiv.style.scaleX).toBe("");
+  });
+});
