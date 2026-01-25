@@ -22,7 +22,7 @@ export interface GAEventParams {
  */
 export function trackEvent(
   eventName: GAEventName,
-  params?: GAEventParams
+  params?: GAEventParams,
 ): void {
   if (typeof window === "undefined") return;
 
@@ -42,8 +42,13 @@ export function trackSocialLink(platform: string, url: string): void {
 /**
  * Track project link clicks
  */
-export function trackProjectLink(projectTitle: string, linkType: "website" | "repository", url: string): void {
-  const eventName = linkType === "website" ? "click_project_link" : "click_project_repo";
+export function trackProjectLink(
+  projectTitle: string,
+  linkType: "website" | "repository",
+  url: string,
+): void {
+  const eventName =
+    linkType === "website" ? "click_project_link" : "click_project_repo";
   trackEvent(eventName, {
     project_title: projectTitle,
     link_type: linkType,
@@ -84,7 +89,7 @@ export function trackSectionView(section: string): void {
 export function trackExperienceDetails(
   title: string,
   company: string,
-  slug: string
+  slug: string,
 ): void {
   trackEvent("click_experience_details", {
     experience_title: title,
@@ -111,4 +116,3 @@ export function trackAdvisoryCta(action: string): void {
     action,
   });
 }
-
