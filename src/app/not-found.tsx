@@ -1,4 +1,3 @@
-import { siteConfig } from "@/config/site";
 import GlassCard from "@/components/GlassCard";
 import Link from "next/link";
 import type { Metadata } from "next";

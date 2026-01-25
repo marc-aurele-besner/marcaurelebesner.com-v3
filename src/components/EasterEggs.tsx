@@ -25,13 +25,14 @@ export default function EasterEggs() {
       "b",
       "a",
     ],
-    []
+    [],
   );
 
   useEffect(() => {
     // Fancy console banner for curious devs
     try {
-      const bannerText = "%cPsst! There are hidden treats around here. Try the Konami code 😉";
+      const bannerText =
+        "%cPsst! There are hidden treats around here. Try the Konami code 😉";
       const bannerStyle = [
         "color: #0a0a0a",
         "background: linear-gradient(90deg,#64ffda,#0ea5a5)",
@@ -39,7 +40,6 @@ export default function EasterEggs() {
         "border-radius: 8px",
         "font-weight: 700",
       ].join(";");
-      // eslint-disable-next-line no-console
       console.log(bannerText, bannerStyle);
     } catch {
       /* no-op */
@@ -71,12 +71,11 @@ export default function EasterEggs() {
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-    // Intentionally not depending on isPartyModeActive to avoid re-attachment
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [konamiSequence]);
+  }, [konamiSequence, isPartyModeActive]);
 
   const triggerPartyMode = () => {
-    if (partyTimeoutRef.current !== null) window.clearTimeout(partyTimeoutRef.current);
+    if (partyTimeoutRef.current !== null)
+      window.clearTimeout(partyTimeoutRef.current);
     setIsPartyModeActive(true);
     document.documentElement.classList.add("party-mode");
     partyTimeoutRef.current = window.setTimeout(() => {
@@ -85,7 +84,8 @@ export default function EasterEggs() {
   };
 
   const disablePartyMode = () => {
-    if (partyTimeoutRef.current !== null) window.clearTimeout(partyTimeoutRef.current);
+    if (partyTimeoutRef.current !== null)
+      window.clearTimeout(partyTimeoutRef.current);
     partyTimeoutRef.current = null;
     setIsPartyModeActive(false);
     document.documentElement.classList.remove("party-mode");
@@ -93,7 +93,14 @@ export default function EasterEggs() {
 
   // Pre-generate a set of confetti pieces for performance
   const confettiPieces = useMemo(() => {
-    const pieces: Array<{ id: number; left: number; size: number; delay: number; color: string; rotate: number }> = [];
+    const pieces: Array<{
+      id: number;
+      left: number;
+      size: number;
+      delay: number;
+      color: string;
+      rotate: number;
+    }> = [];
     const colors = ["#64ffda", "#0ea5a5", "#e6ecff", "#ff8a00", "#7c3aed"];
     const total = 120;
     for (let i = 0; i < total; i++) {
@@ -135,4 +142,3 @@ export default function EasterEggs() {
     </>
   );
 }
-
