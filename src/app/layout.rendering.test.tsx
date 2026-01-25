@@ -1,6 +1,5 @@
-import { render, screen } from "@testing-library/react";
 import RootLayout from "./layout";
-import React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 import * as siteConfigModule from "@/config/site";
 
 // Mock next/font/local
@@ -29,6 +28,9 @@ vi.mock("@next/third-parties/google", () => ({
 describe("RootLayout Rendering", () => {
   let originalGoogleAnalyticsId: string | undefined;
 
+  const renderLayout = (children: React.ReactNode) =>
+    renderToStaticMarkup(<RootLayout>{children}</RootLayout>);
+
   beforeEach(() => {
     // Store the original value and set a default mock value
     originalGoogleAnalyticsId = siteConfigModule.siteConfig.googleAnalyticsId;
@@ -42,24 +44,25 @@ describe("RootLayout Rendering", () => {
   });
 
   it("should render children and mocked components", () => {
-    render(<RootLayout><div>Test Children</div></RootLayout>);
-    expect(screen.getByText("Test Children")).toBeInTheDocument();
-    expect(screen.getByText("MockEasterEggs")).toBeInTheDocument();
-    expect(screen.getByText("MockScrollProgress")).toBeInTheDocument();
-    expect(screen.getByText("MockBackdrop")).toBeInTheDocument();
-    expect(screen.getByText("MockSpotlight")).toBeInTheDocument();
-    expect(screen.getByText("MockHeader")).toBeInTheDocument();
-    expect(screen.getByText("MockMenu")).toBeInTheDocument();
+    const html = renderLayout(<div>Test Children</div>);
+    expect(html).toContain("Test Children");
+    expect(html).toContain("MockEasterEggs");
+    expect(html).toContain("MockScrollProgress");
+    expect(html).toContain("MockBackdrop");
+    expect(html).toContain("MockSpotlight");
+    expect(html).toContain("MockHeader");
+    expect(html).toContain("MockMenu");
   });
 
   it("should render GoogleAnalytics if gaId is present", () => {
     siteConfigModule.siteConfig.googleAnalyticsId = "UA-TEST-GA-ID";
-    render(<RootLayout><div>Test Children</div></RootLayout>);
-    expect(screen.getByTestId("ga-mock")).toHaveTextContent("UA-TEST-GA-ID");
+    const html = renderLayout(<div>Test Children</div>);
+    expect(html).toContain("data-testid=\"ga-mock\"");
+    expect(html).toContain("UA-TEST-GA-ID");
   });
 
   it("should not render GoogleAnalytics if gaId is not present", () => {
-    render(<RootLayout><div>Test Children</div></RootLayout>);
-    expect(screen.queryByTestId("ga-mock")).not.toBeInTheDocument();
+    const html = renderLayout(<div>Test Children</div>);
+    expect(html).not.toContain("data-testid=\"ga-mock\"");
   });
 });

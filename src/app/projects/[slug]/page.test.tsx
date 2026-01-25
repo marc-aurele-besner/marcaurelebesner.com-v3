@@ -20,7 +20,10 @@ vi.mock("next/link", () => ({
 }));
 vi.mock("next/image", () => ({
   __esModule: true,
-  default: vi.fn((props) => <img {...props} />),
+  default: vi.fn((props) => {
+    const { priority, ...rest } = props;
+    return <img {...rest} priority={priority ? "true" : undefined} />;
+  }),
 }));
 vi.mock("@/components/Badge", () => ({
   __esModule: true,

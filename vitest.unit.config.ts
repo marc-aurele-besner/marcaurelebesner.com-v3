@@ -15,9 +15,21 @@ export default defineConfig({
     },
   },
   test: {
-    include: ["src/**/*.test.{ts,tsx}"],
+    include: ["src/**/*.test.{ts,tsx}"], // Run all tests
     environment: "happy-dom",
     globals: true,
     setupFiles: ["./src/test/setup.ts"],
+    coverage: {
+      include: ["src/**/*.{ts,tsx}"],
+      exclude: [
+        "*.config.ts",
+        "*.config.mjs",
+        "**/*.stories.{ts,tsx}",
+        "src/stories/**",
+        ".storybook/**",
+        "**/*.d.ts",
+        "**/.next/**",
+      ],
+    },
   },
 });
