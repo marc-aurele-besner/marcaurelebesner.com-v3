@@ -110,4 +110,15 @@ describe("Header", () => {
     expect(aboutLink).toHaveAttribute("href", "/#about");
     pathname = "/";
   });
+
+  it("uses prefixed anchors in animated mode when not on the home route", () => {
+    reduceMotion = false;
+    pathname = "/projects";
+    render(<Header />);
+
+    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
+    const aboutLink = screen.getByRole("link", { name: "About" });
+    expect(aboutLink).toHaveAttribute("href", "/#about");
+    pathname = "/";
+  });
 });

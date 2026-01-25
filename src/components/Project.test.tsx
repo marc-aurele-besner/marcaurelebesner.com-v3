@@ -102,6 +102,13 @@ describe("Project", () => {
       projectData.slug
     );
 
+    const imageLink = screen.getByRole("link", { name: /Neon preview/i });
+    fireEvent.click(imageLink);
+    expect(trackProjectDetails).toHaveBeenCalledWith(
+      projectData.title,
+      projectData.slug
+    );
+
     const repoLink = screen.getByRole("link", { name: /Repository/i });
     repoLink.addEventListener("click", (event) => event.preventDefault());
     fireEvent.click(repoLink);
