@@ -6,6 +6,7 @@ export type GAEventName =
   | "click_project_repo"
   | "click_project_details"
   | "click_experience_details"
+  | "click_advisory_cta"
   | "click_navigation"
   | "toggle_theme"
   | "view_section";
@@ -99,6 +100,15 @@ export function trackProjectDetails(title: string, slug: string): void {
   trackEvent("click_project_details", {
     project_title: title,
     slug,
+  });
+}
+
+/**
+ * Track advisory section CTA clicks
+ */
+export function trackAdvisoryCta(action: string): void {
+  trackEvent("click_advisory_cta", {
+    action,
   });
 }
 

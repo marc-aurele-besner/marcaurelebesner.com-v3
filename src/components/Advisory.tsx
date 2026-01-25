@@ -5,6 +5,7 @@ import GlassCard from "./GlassCard";
 import SectionHeading from "./SectionHeading";
 import Link from "next/link";
 import { FaCode, FaLightbulb, FaRocket, FaUsers } from "react-icons/fa";
+import { trackAdvisoryCta } from "@/utils/analytics";
 
 const services = [
   {
@@ -127,6 +128,7 @@ export default function Advisory() {
             </p>
             <Link
               href="/#contact"
+              onClick={() => trackAdvisoryCta("get_in_touch")}
               className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] text-darkBlue font-semibold px-5 py-2.5 hover:brightness-110 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 transition-all duration-200 shadow-lg shadow-[var(--accent)]/20"
             >
               Get in touch
