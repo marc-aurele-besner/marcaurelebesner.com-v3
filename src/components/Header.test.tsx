@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import Header from "./Header";
 
 let reduceMotion = false;
+let pathname = "/";
 
 vi.mock("framer-motion", async () => {
   const actual = await vi.importActual("framer-motion");
@@ -39,7 +40,7 @@ vi.mock("next/link", () => ({
 }));
 
 vi.mock("next/navigation", () => ({
-  usePathname: () => "/",
+  usePathname: () => pathname,
 }));
 
 vi.mock("@/hooks/useActiveSection", () => ({
@@ -74,5 +75,39 @@ describe("Header", () => {
 
     fireEvent.keyDown(document, { key: "Escape" });
     expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
+  });
+
+  it("toggles the menu button label when opened and closed", () => {
+    reduceMotion = true;
+    render(<Header />);
+
+    const toggle = screen.getByRole("button", { name: "Open menu" });
+    fireEvent.click(toggle);
+    expect(
+      screen.getByRole("button", { name: "Close menu" })
+    ).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "Close menu" }));
+    expect(screen.getByRole("button", { name: "Open menu" })).toBeInTheDocument();
+  });
+
+  it("closes the menu when a link is clicked in animated mode", () => {
+    reduceMotion = false;
+    render(<Header />);
+
+    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
+    fireEvent.click(screen.getByRole("link", { name: "Projects" }));
+    expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
+  });
+
+  it("uses prefixed anchors when not on the home route", () => {
+    reduceMotion = true;
+    pathname = "/projects";
+    render(<Header />);
+
+    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
+    const aboutLink = screen.getByRole("link", { name: "About" });
+    expect(aboutLink).toHaveAttribute("href", "/#about");
+    pathname = "/";
   });
 });

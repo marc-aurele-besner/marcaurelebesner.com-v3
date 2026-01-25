@@ -1,4 +1,5 @@
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import { render, screen, fireEvent, act, within } from "@testing-library/react";
+import React from "react";
 import SecretScene from "./SecretScene";
 
 const motionValueMocks: Array<{ set: ReturnType<typeof vi.fn> }> = [];
@@ -110,7 +111,7 @@ describe("SecretScene", () => {
 
   it("updates motion values on pointer movement when motion is enabled", () => {
     reduceMotion = false;
-    const { container } = render(<SecretScene />);
+    render(<SecretScene />);
 
     const hint = screen.getByText(/Try a famous code on the home page/i);
     let card = hint.closest("div");
@@ -156,5 +157,79 @@ describe("SecretScene", () => {
     });
 
     expect(screen.queryByText("Copied!")).not.toBeInTheDocument();
+  });
+
+  it("closes the peek panel on Escape and shows copied state on success", async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, "clipboard", {
+      value: { writeText },
+      configurable: true,
+    });
+
+    render(<SecretScene />);
+    fireEvent.click(screen.getByRole("button", { name: /Peek around/i }));
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+
+    fireEvent.keyDown(window, { key: "Escape" });
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: /Peek around/i }));
+    await act(async () => {
+      fireEvent.click(screen.getByRole("button", { name: /Copy secret link/i }));
+      await Promise.resolve();
+    });
+
+    expect(screen.getByText("Copied!")).toBeInTheDocument();
+    act(() => {
+      vi.advanceTimersByTime(1200);
+    });
+    expect(screen.queryByText("Copied!")).not.toBeInTheDocument();
+  });
+
+  it("renders peek panel with reduced motion transition", () => {
+    reduceMotion = true;
+    render(<SecretScene />);
+    fireEvent.click(screen.getByRole("button", { name: /Peek around/i }));
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+  });
+
+  it("renders peek panel with spring transition when motion is enabled", () => {
+    reduceMotion = false;
+    render(<SecretScene />);
+    fireEvent.click(screen.getByRole("button", { name: /Peek around/i }));
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+  });
+
+  it("closes the peek panel via overlay and close button", () => {
+    render(<SecretScene />);
+    fireEvent.click(screen.getByRole("button", { name: /Peek around/i }));
+
+    fireEvent.click(screen.getByRole("button", { name: /Close peek panel/i }));
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: /Peek around/i }));
+    const dialog = screen.getByRole("dialog");
+    fireEvent.click(within(dialog).getByRole("button", { name: "Close" }));
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
+
+  it("ignores pointer updates if the card ref is not set", () => {
+    reduceMotion = false;
+    const realUseRef = React.useRef;
+    const useRefSpy = vi
+      .spyOn(React, "useRef")
+      .mockImplementationOnce(() => ({ current: null }))
+      .mockImplementation(realUseRef as any);
+
+    render(<SecretScene />);
+    const hint = screen.getByText(/Try a famous code on the home page/i);
+    let card = hint.closest("div");
+    while (card && !card.className.includes("max-w-xl")) {
+      card = card.parentElement;
+    }
+    if (!card) throw new Error("Card container not found");
+
+    fireEvent.mouseMove(card, { clientX: 10, clientY: 10 });
+    useRefSpy.mockRestore();
   });
 });

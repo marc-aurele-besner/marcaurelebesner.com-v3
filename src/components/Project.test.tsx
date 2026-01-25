@@ -119,6 +119,13 @@ describe("Project", () => {
       "website",
       projectData.link
     );
+
+    const viewDetails = screen.getByRole("link", { name: /View details/i });
+    fireEvent.click(viewDetails);
+    expect(trackProjectDetails).toHaveBeenCalledWith(
+      projectData.title,
+      projectData.slug
+    );
   });
 
   it("renders work project without optional links", () => {

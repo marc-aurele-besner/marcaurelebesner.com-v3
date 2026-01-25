@@ -99,6 +99,14 @@ describe("ExperienceCard", () => {
 
     expect(screen.getByText("Summary text")).toBeInTheDocument();
     expect(screen.getByText("+1 more")).toBeInTheDocument();
+
+    const readMoreLink = screen.getByRole("link", { name: /Read more/i });
+    fireEvent.click(readMoreLink);
+    expect(trackExperienceDetails).toHaveBeenCalledWith(
+      baseExperience.title,
+      baseExperience.company,
+      baseExperience.slug
+    );
   });
 
   it("renders company name without external link and no extra badge count", () => {
