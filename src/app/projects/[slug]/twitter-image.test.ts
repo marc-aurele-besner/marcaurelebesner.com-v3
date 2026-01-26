@@ -3,10 +3,21 @@ import TwitterImage from "./twitter-image";
 import { ImageResponse } from "next/og";
 import * as projectModule from "@/config/projects";
 import * as siteConfigModule from "@/config/site";
+import type React from "react";
+
+type MockImageResponse = {
+  element: React.ReactElement<{ children: unknown }>;
+  options: { width: number; height: number };
+};
 
 // Mock ImageResponse
 vi.mock("next/og", () => ({
-  ImageResponse: vi.fn((element, options) => ({ element, options })), // Mock with a simple return
+  ImageResponse: vi.fn(
+    (element: unknown, options: { width: number; height: number }) => ({
+      element,
+      options,
+    })
+  ), // Mock with a simple return
 }));
 
 // Mock project data
@@ -67,41 +78,50 @@ describe("Project Twitter Image", () => {
 
   it("should return an ImageResponse with correct content for a personal project", async () => {
     const paramsPromise = Promise.resolve({ slug: "mock-project-1" });
-    const result = await TwitterImage({ params: paramsPromise });
+    const result = (await TwitterImage({ params: paramsPromise })) as unknown as MockImageResponse;
 
     expect(ImageResponse).toHaveBeenCalledWith(
       expect.any(Object), // The JSX element
       { width: 1200, height: 630 }
     );
 
-    const element = result.element;
-    expect(element.props.children[0].props.children).toBe("Personal Project");
+    const element = result.element as unknown as { props: { children: unknown } };
+    const children = element.props.children as Array<{
+      props: { children: unknown };
+    }>;
+    expect(children[0].props.children).toBe("Personal Project");
   });
 
   it("should return an ImageResponse with correct content for a work project", async () => {
     const paramsPromise = Promise.resolve({ slug: "mock-project-2" });
-    const result = await TwitterImage({ params: paramsPromise });
+    const result = (await TwitterImage({ params: paramsPromise })) as unknown as MockImageResponse;
 
     expect(ImageResponse).toHaveBeenCalledWith(
       expect.any(Object), // The JSX element
       { width: 1200, height: 630 }
     );
 
-    const element = result.element;
-    expect(element.props.children[0].props.children).toBe("Work Project");
-    expect(element.props.children[2].props.children[1].props.children[1].props.children).toBe("@mockhandle");
+    const element = result.element as unknown as { props: { children: unknown } };
+    const children = element.props.children as Array<{
+      props: { children: unknown };
+    }>;
+    expect(children[0].props.children).toBe("Work Project");
+    expect(
+      ((children[2].props.children as Array<{ props: { children: unknown } }>)[1]
+        .props.children as Array<{ props: { children: unknown } }>)[1].props.children
+    ).toBe("@mockhandle");
   });
 
   it("should return an ImageResponse with 'Project Not Found' for an unknown project", async () => {
     const paramsPromise = Promise.resolve({ slug: "unknown-project" });
-    const result = await TwitterImage({ params: paramsPromise });
+    const result = (await TwitterImage({ params: paramsPromise })) as unknown as MockImageResponse;
 
     expect(ImageResponse).toHaveBeenCalledWith(
       expect.any(Object), // The JSX element
       { width: 1200, height: 630 }
     );
 
-    const element = result.element;
+    const element = result.element as unknown as { props: { children: unknown } };
     expect(element.props.children).toBe("Project Not Found");
   });
 });

@@ -1,4 +1,5 @@
 import { render, fireEvent, screen } from "@testing-library/react";
+import type { Mock } from "vitest";
 import Spotlight from "./Spotlight";
 import { useReducedMotion } from "framer-motion";
 import React, { useState } from "react";
@@ -27,19 +28,19 @@ describe("Spotlight", () => {
   });
 
   it("should not render when prefers reduced motion", () => {
-    (useReducedMotion as vi.Mock).mockReturnValue(true);
+    (useReducedMotion as Mock).mockReturnValue(true);
     const { container } = render(<Spotlight />);
     expect(container.firstChild).toBeNull();
   });
 
   it("should render when not prefers reduced motion", () => {
-    (useReducedMotion as vi.Mock).mockReturnValue(false);
+    (useReducedMotion as Mock).mockReturnValue(false);
     const { container } = render(<Spotlight />);
     expect(container.firstChild).not.toBeNull();
   });
 
   it("should update transform on mousemove", () => {
-    (useReducedMotion as vi.Mock).mockReturnValue(false);
+    (useReducedMotion as Mock).mockReturnValue(false);
     const { container } = render(<Spotlight />);
     const spotlightDiv = container.firstChild as HTMLElement;
 
@@ -49,7 +50,7 @@ describe("Spotlight", () => {
   });
 
   it("should remove event listener on unmount", () => {
-    (useReducedMotion as vi.Mock).mockReturnValue(false);
+    (useReducedMotion as Mock).mockReturnValue(false);
     const removeEventListener = vi.spyOn(window, "removeEventListener");
     render(<SpotlightWrapper />);
 

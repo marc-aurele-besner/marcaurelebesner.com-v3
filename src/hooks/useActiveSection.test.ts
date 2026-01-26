@@ -1,7 +1,7 @@
 import { renderHook, act } from "@testing-library/react";
 import { useActiveSection } from "./useActiveSection";
 
-const mockIntersectionObserver = vi.fn(() => ({
+const mockIntersectionObserver = vi.fn((_callback: IntersectionObserverCallback) => ({
   observe: vi.fn(),
   unobserve: vi.fn(),
   disconnect: vi.fn(),
@@ -55,13 +55,20 @@ describe("useActiveSection", () => {
 
   it("should set active id when a section is intersecting", () => {
     const { result } = renderHook(() => useActiveSection());
-    const observerCallback = mockIntersectionObserver.mock.calls[0][0];
+    const observerCallback =
+      mockIntersectionObserver.mock.calls[0]?.[0] as
+        | IntersectionObserverCallback
+        | undefined;
+    if (!observerCallback) throw new Error("Missing observer callback");
+    const projectsEl = document.getElementById("projects") as Element;
+    const experienceEl = document.getElementById("experience") as Element;
 
     act(() => {
-      observerCallback([
-        { isIntersecting: true, intersectionRatio: 0.8, target: { id: "projects" } },
-        { isIntersecting: true, intersectionRatio: 0.5, target: { id: "experience" } },
-      ]);
+      const entries = [
+        { isIntersecting: true, intersectionRatio: 0.8, target: projectsEl },
+        { isIntersecting: true, intersectionRatio: 0.5, target: experienceEl },
+      ] as unknown as IntersectionObserverEntry[];
+      observerCallback(entries, {} as IntersectionObserver);
     });
 
     expect(result.current.activeId).toBe("projects");
@@ -69,13 +76,28 @@ describe("useActiveSection", () => {
 
   it("should fallback to the closest section if none are intersecting", () => {
     const { result } = renderHook(() => useActiveSection());
-    const observerCallback = mockIntersectionObserver.mock.calls[0][0];
+    const observerCallback =
+      mockIntersectionObserver.mock.calls[0]?.[0] as
+        | IntersectionObserverCallback
+        | undefined;
+    if (!observerCallback) throw new Error("Missing observer callback");
+    const projectsEl = document.getElementById("projects") as Element;
+    const experienceEl = document.getElementById("experience") as Element;
 
     act(() => {
-      observerCallback([
-        { isIntersecting: false, boundingClientRect: { top: 100 }, target: { id: "projects" } },
-        { isIntersecting: false, boundingClientRect: { top: 50 }, target: { id: "experience" } },
-      ]);
+      const entries = [
+        {
+          isIntersecting: false,
+          boundingClientRect: { top: 100 } as DOMRectReadOnly,
+          target: projectsEl,
+        },
+        {
+          isIntersecting: false,
+          boundingClientRect: { top: 50 } as DOMRectReadOnly,
+          target: experienceEl,
+        },
+      ] as unknown as IntersectionObserverEntry[];
+      observerCallback(entries, {} as IntersectionObserver);
     });
 
     expect(result.current.activeId).toBe("experience");

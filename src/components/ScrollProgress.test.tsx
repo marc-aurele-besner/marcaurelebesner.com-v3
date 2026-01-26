@@ -1,4 +1,5 @@
 import { render } from "@testing-library/react";
+import type { Mock } from "vitest";
 import type React from "react";
 import ScrollProgress from "./ScrollProgress";
 import { useScroll, useReducedMotion } from "framer-motion";
@@ -23,22 +24,22 @@ vi.mock("framer-motion", async () => {
 
 describe("ScrollProgress", () => {
   it("renders correctly and applies scaleX", () => {
-    (useScroll as vi.Mock).mockReturnValue({ scrollYProgress: 0.5 });
-    (useReducedMotion as vi.Mock).mockReturnValue(false);
+    (useScroll as Mock).mockReturnValue({ scrollYProgress: 0.5 });
+    (useReducedMotion as Mock).mockReturnValue(false);
 
     const { container } = render(<ScrollProgress />);
     const progressDiv = container.firstChild as HTMLElement;
     expect(progressDiv).toBeInTheDocument();
-    expect(parseFloat(progressDiv.style.scaleX)).toBe(0.5);
+    expect(parseFloat((progressDiv.style as unknown as { scaleX: string }).scaleX)).toBe(0.5);
   });
 
   it("does not apply scaleX when prefersReducedMotion is true", () => {
-    (useScroll as vi.Mock).mockReturnValue({ scrollYProgress: 0.5 });
-    (useReducedMotion as vi.Mock).mockReturnValue(true);
+    (useScroll as Mock).mockReturnValue({ scrollYProgress: 0.5 });
+    (useReducedMotion as Mock).mockReturnValue(true);
 
     const { container } = render(<ScrollProgress />);
     const progressDiv = container.firstChild as HTMLElement;
     expect(progressDiv).toBeInTheDocument();
-    expect(progressDiv.style.scaleX).toBe("");
+    expect((progressDiv.style as unknown as { scaleX: string }).scaleX).toBe("");
   });
 });

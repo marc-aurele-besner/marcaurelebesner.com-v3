@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import type { Mock } from "vitest";
 import ThemeToggle from "./ThemeToggle";
 import { useTheme } from "next-themes";
 import { trackThemeChange } from "@/utils/analytics";
@@ -21,7 +22,7 @@ describe("ThemeToggle", () => {
   });
 
   it("should highlight the correct theme", () => {
-    (useTheme as vi.Mock).mockReturnValue({ theme: "dark", setTheme: () => {}, systemTheme: "dark" });
+    (useTheme as Mock).mockReturnValue({ theme: "dark", setTheme: () => {}, systemTheme: "dark" });
     render(<ThemeToggle />);
 
     const darkButton = screen.getByLabelText("Switch to dark theme");
@@ -30,7 +31,7 @@ describe("ThemeToggle", () => {
 
   it("should call setTheme and trackThemeChange on light theme click", () => {
     const setTheme = vi.fn();
-    (useTheme as vi.Mock).mockReturnValue({ theme: "dark", setTheme, systemTheme: "dark" });
+    (useTheme as Mock).mockReturnValue({ theme: "dark", setTheme, systemTheme: "dark" });
     render(<ThemeToggle />);
 
     const lightButton = screen.getByLabelText("Switch to light theme");
@@ -42,7 +43,7 @@ describe("ThemeToggle", () => {
 
   it("should call setTheme and trackThemeChange on dark theme click", () => {
     const setTheme = vi.fn();
-    (useTheme as vi.Mock).mockReturnValue({ theme: "light", setTheme, systemTheme: "light" });
+    (useTheme as Mock).mockReturnValue({ theme: "light", setTheme, systemTheme: "light" });
     render(<ThemeToggle />);
 
     const darkButton = screen.getByLabelText("Switch to dark theme");
@@ -54,7 +55,7 @@ describe("ThemeToggle", () => {
 
   it("should call setTheme and trackThemeChange on system theme click", () => {
     const setTheme = vi.fn();
-    (useTheme as vi.Mock).mockReturnValue({ theme: "light", setTheme, systemTheme: "light" });
+    (useTheme as Mock).mockReturnValue({ theme: "light", setTheme, systemTheme: "light" });
     render(<ThemeToggle />);
 
     const systemButton = screen.getByLabelText("Use system theme");
@@ -65,11 +66,10 @@ describe("ThemeToggle", () => {
   });
 
   it("should handle system theme correctly", () => {
-    (useTheme as vi.Mock).mockReturnValue({ theme: "system", setTheme: () => {}, systemTheme: "dark" });
+    (useTheme as Mock).mockReturnValue({ theme: "system", setTheme: () => {}, systemTheme: "dark" });
     render(<ThemeToggle />);
 
     const darkButton = screen.getByLabelText("Switch to dark theme");
     expect(darkButton.className).toContain("bg-black/5");
   });
 });
-

@@ -149,7 +149,7 @@ describe("SecretScene", () => {
     render(<SecretScene />);
 
     const hint = screen.getByText(/Try a famous code on the home page/i);
-    let card = hint.closest("div");
+    let card: HTMLElement | null = hint.closest("div");
     while (card && !card.className.includes("max-w-xl")) {
       card = card.parentElement;
     }
@@ -258,7 +258,7 @@ describe("SecretScene", () => {
 
     render(<SecretScene />);
     const hint = screen.getByText(/Try a famous code on the home page/i);
-    let card = hint.closest("div");
+    let card: HTMLElement | null = hint.closest("div");
     while (card && !card.className.includes("max-w-xl")) {
       card = card.parentElement;
     }

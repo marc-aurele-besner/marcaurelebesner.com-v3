@@ -3,7 +3,7 @@ import type React from "react";
 import Experience from "./Experience";
 import { experiences } from "@/config/experience";
 
-const experienceCardMock = vi.fn(({ title }: { title: string }) => (
+const experienceCardMock = vi.fn(({ title }: { title: string; minimal?: boolean }) => (
   <div data-testid="experience-card">{title}</div>
 ));
 

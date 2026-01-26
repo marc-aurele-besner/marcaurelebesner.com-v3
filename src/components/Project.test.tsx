@@ -76,6 +76,7 @@ const projectData = {
   slug: "neon",
   title: "Neon Deck",
   summary: "Project summary",
+  description: "Project description",
   imageSrc: "/images/neon.png",
   imageAlt: "Neon preview",
   link: "https://neon.example.com",

@@ -1,4 +1,5 @@
 import { render, screen, act, fireEvent } from "@testing-library/react";
+import type { Mock } from "vitest";
 import EasterEggs from "./EasterEggs";
 
 describe("EasterEggs", () => {
@@ -61,7 +62,7 @@ describe("EasterEggs", () => {
   });
 
   it("handles console logging failures gracefully", () => {
-    (console.log as unknown as vi.Mock).mockImplementationOnce(() => {
+    (console.log as unknown as Mock).mockImplementationOnce(() => {
       throw new Error("log failed");
     });
 
