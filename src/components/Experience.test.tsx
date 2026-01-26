@@ -1,8 +1,9 @@
 import { render, screen } from "@testing-library/react";
+import type React from "react";
 import Experience from "./Experience";
 import { experiences } from "@/config/experience";
 
-const experienceCardMock = vi.fn(({ title }: any) => (
+const experienceCardMock = vi.fn(({ title }: { title: string }) => (
   <div data-testid="experience-card">{title}</div>
 ));
 
@@ -11,14 +12,31 @@ vi.mock("framer-motion", async () => {
   return {
     ...actual,
     motion: {
-      section: ({ children, ...rest }: any) => {
-        const { initial, animate, whileInView, exit, transition, viewport, ...domProps } =
-          rest;
+      section: ({
+        children,
+        ...rest
+      }: React.PropsWithChildren<Record<string, unknown>>) => {
+        const {
+          initial: _initial,
+          animate: _animate,
+          whileInView: _whileInView,
+          exit: _exit,
+          transition: _transition,
+          viewport: _viewport,
+          ...domProps
+        } = rest;
         return <section {...domProps}>{children}</section>;
       },
-      div: ({ children, ...rest }: any) => {
-        const { initial, animate, whileInView, exit, transition, viewport, ...domProps } =
-          rest;
+      div: ({ children, ...rest }: React.PropsWithChildren<Record<string, unknown>>) => {
+        const {
+          initial: _initial,
+          animate: _animate,
+          whileInView: _whileInView,
+          exit: _exit,
+          transition: _transition,
+          viewport: _viewport,
+          ...domProps
+        } = rest;
         return <div {...domProps}>{children}</div>;
       },
     },
@@ -26,12 +44,13 @@ vi.mock("framer-motion", async () => {
 });
 
 vi.mock("./ExperienceCard", () => ({
-  ExperienceCard: (props: any) => experienceCardMock(props),
+  ExperienceCard: (props: { title: string; minimal?: boolean }) =>
+    experienceCardMock(props),
 }));
 
 vi.mock("./SectionHeading", () => ({
   __esModule: true,
-  default: ({ children, eyebrow }: any) => (
+  default: ({ children, eyebrow }: { children: React.ReactNode; eyebrow: string }) => (
     <div>
       <span>{eyebrow}</span>
       <h2>{children}</h2>

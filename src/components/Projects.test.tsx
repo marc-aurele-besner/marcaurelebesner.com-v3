@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import type React from "react";
 import Projects from "./Projects";
 import { projects } from "@/config/projects";
 import { trackProjectDetails } from "@/utils/analytics";
@@ -8,14 +9,28 @@ vi.mock("framer-motion", async () => {
   return {
     ...actual,
     motion: {
-      section: ({ children, ...rest }: any) => {
-        const { initial, animate, whileInView, exit, transition, viewport, ...domProps } =
-          rest;
+      section: ({ children, ...rest }: React.PropsWithChildren<Record<string, unknown>>) => {
+        const {
+          initial: _initial,
+          animate: _animate,
+          whileInView: _whileInView,
+          exit: _exit,
+          transition: _transition,
+          viewport: _viewport,
+          ...domProps
+        } = rest;
         return <section {...domProps}>{children}</section>;
       },
-      div: ({ children, ...rest }: any) => {
-        const { initial, animate, whileInView, exit, transition, viewport, ...domProps } =
-          rest;
+      div: ({ children, ...rest }: React.PropsWithChildren<Record<string, unknown>>) => {
+        const {
+          initial: _initial,
+          animate: _animate,
+          whileInView: _whileInView,
+          exit: _exit,
+          transition: _transition,
+          viewport: _viewport,
+          ...domProps
+        } = rest;
         return <div {...domProps}>{children}</div>;
       },
     },
@@ -24,10 +39,16 @@ vi.mock("framer-motion", async () => {
 
 vi.mock("next/link", () => ({
   __esModule: true,
-  default: ({ href, children, onClick, ...rest }: any) => (
+  default: ({
+    href,
+    children,
+    onClick,
+    ...rest
+  }: React.PropsWithChildren<{ href?: string; onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void }> &
+    Record<string, unknown>) => (
     <a
       href={href}
-      {...rest}
+      {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
       onClick={(event) => {
         event.preventDefault();
         onClick?.(event);
@@ -39,7 +60,9 @@ vi.mock("next/link", () => ({
 }));
 
 vi.mock("./Project", () => ({
-  Project: ({ title }: any) => <div data-testid="project-card">{title}</div>,
+  Project: ({ title }: { title: string }) => (
+    <div data-testid="project-card">{title}</div>
+  ),
 }));
 
 vi.mock("@/utils/analytics", () => ({

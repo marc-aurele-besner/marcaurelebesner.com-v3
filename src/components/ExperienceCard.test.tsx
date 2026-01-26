@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import type React from "react";
 import { ExperienceCard } from "./ExperienceCard";
 import { trackExperienceDetails } from "@/utils/analytics";
 
@@ -7,16 +8,19 @@ vi.mock("framer-motion", async () => {
   return {
     ...actual,
     motion: {
-      article: ({ children, ...rest }: any) => {
+      article: ({
+        children,
+        ...rest
+      }: React.PropsWithChildren<Record<string, unknown>>) => {
         const {
-          initial,
-          animate,
-          whileInView,
-          whileHover,
-          whileTap,
-          exit,
-          transition,
-          viewport,
+          initial: _initial,
+          animate: _animate,
+          whileInView: _whileInView,
+          whileHover: _whileHover,
+          whileTap: _whileTap,
+          exit: _exit,
+          transition: _transition,
+          viewport: _viewport,
           ...domProps
         } = rest;
         return <article {...domProps}>{children}</article>;
@@ -27,10 +31,16 @@ vi.mock("framer-motion", async () => {
 
 vi.mock("next/link", () => ({
   __esModule: true,
-  default: ({ href, children, onClick, ...rest }: any) => (
+  default: ({
+    href,
+    children,
+    onClick,
+    ...rest
+  }: React.PropsWithChildren<{ href?: string; onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void }> &
+    Record<string, unknown>) => (
     <a
       href={href}
-      {...rest}
+      {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
       onClick={(event) => {
         event.preventDefault();
         onClick?.(event);
@@ -43,12 +53,14 @@ vi.mock("next/link", () => ({
 
 vi.mock("./GlassCard", () => ({
   __esModule: true,
-  default: ({ children, className }: any) => <div className={className}>{children}</div>,
+  default: ({ children, className }: React.PropsWithChildren<{ className?: string }>) => (
+    <div className={className}>{children}</div>
+  ),
 }));
 
 vi.mock("./Badge", () => ({
   __esModule: true,
-  default: ({ text }: any) => <span>{text}</span>,
+  default: ({ text }: { text: string }) => <span>{text}</span>,
 }));
 
 vi.mock("@/utils/analytics", () => ({

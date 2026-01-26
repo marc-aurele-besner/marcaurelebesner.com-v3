@@ -1,5 +1,6 @@
 import { siteConfig } from "@/config/site";
-import { metadata, viewport } from "./layout";
+
+type LayoutModule = typeof import("./layout");
 
 // Mock next/font/local
 vi.mock("next/font/local", () => ({
@@ -11,8 +12,8 @@ vi.mock("next/font/local", () => ({
 }));
 
 describe("Layout Metadata", () => {
-  let metadata: any;
-  let viewport: any;
+  let metadata: LayoutModule["metadata"];
+  let viewport: LayoutModule["viewport"];
 
   beforeAll(async () => {
     const layoutModule = await vi.importActual<typeof import("./layout")>("./layout");

@@ -1,7 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import NotFound, { metadata } from "./not-found";
-import Link from "next/link"; // Import Link for mocking
-import GlassCard from "@/components/GlassCard"; // Import GlassCard for mocking
 
 // Mock Next.js Link component
 vi.mock("next/link", () => ({

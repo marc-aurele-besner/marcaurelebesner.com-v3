@@ -35,7 +35,7 @@ describe("analytics utils", () => {
 
     it("should not call sendGAEvent if window is undefined", () => {
       const originalWindow = global.window;
-      // @ts-ignore
+      // @ts-expect-error test-only override for missing window
       global.window = undefined;
       trackEvent("click_social_link");
       expect(sendGAEvent).not.toHaveBeenCalled();

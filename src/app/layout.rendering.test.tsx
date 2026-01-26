@@ -1,6 +1,7 @@
 import RootLayout from "./layout";
 import { renderToStaticMarkup } from "react-dom/server";
 import * as siteConfigModule from "@/config/site";
+import type React from "react";
 
 // Mock next/font/local
 vi.mock("next/font/local", () => ({
@@ -12,7 +13,9 @@ vi.mock("next/font/local", () => ({
 }));
 
 // Mock client components
-vi.mock("@/components/ThemeProvider", () => ({ default: ({ children }: any) => <div>{children}</div> }));
+vi.mock("@/components/ThemeProvider", () => ({
+  default: ({ children }: React.PropsWithChildren) => <div>{children}</div>,
+}));
 vi.mock("@/components/EasterEggs", () => ({ default: () => <div>MockEasterEggs</div> }));
 vi.mock("@/components/ScrollProgress", () => ({ default: () => <div>MockScrollProgress</div> }));
 vi.mock("@/components/Backdrop", () => ({ default: () => <div>MockBackdrop</div> }));

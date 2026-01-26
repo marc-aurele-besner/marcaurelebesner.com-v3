@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, within } from "@testing-library/react";
+import type React from "react";
 import Contact from "./Contact";
 import { siteConfig } from "@/config/site";
 import { trackSocialLink } from "@/utils/analytics";
@@ -9,23 +10,29 @@ vi.mock("framer-motion", async () => {
   return {
     ...actual,
     motion: {
-      div: ({ children }: any) => <div>{children}</div>,
-      section: ({ children }: any) => <section>{children}</section>,
-      a: ({ children, href, onClick, ...rest }: any) => {
+      div: ({ children }: React.PropsWithChildren) => <div>{children}</div>,
+      section: ({ children }: React.PropsWithChildren) => <section>{children}</section>,
+      a: ({
+        children,
+        href,
+        onClick,
+        ...rest
+      }: React.PropsWithChildren<{ href?: string; onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void }> &
+        Record<string, unknown>) => {
         const {
-          initial,
-          whileInView,
-          whileHover,
-          whileTap,
-          viewport,
-          transition,
+          initial: _initial,
+          whileInView: _whileInView,
+          whileHover: _whileHover,
+          whileTap: _whileTap,
+          viewport: _viewport,
+          transition: _transition,
           ...domProps
         } = rest;
 
         return (
           <a
             href={href}
-            {...domProps}
+            {...(domProps as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
             onClick={(event) => {
               event.preventDefault();
               onClick?.(event);

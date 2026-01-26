@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import type React from "react";
 import Advisory from "./Advisory";
 import { trackAdvisoryCta } from "@/utils/analytics";
 
@@ -8,8 +9,8 @@ vi.mock("framer-motion", async () => {
   return {
     ...actual,
     motion: {
-      div: ({ children }: any) => <div>{children}</div>,
-      section: ({ children }: any) => <section>{children}</section>,
+      div: ({ children }: React.PropsWithChildren) => <div>{children}</div>,
+      section: ({ children }: React.PropsWithChildren) => <section>{children}</section>,
     },
   };
 });

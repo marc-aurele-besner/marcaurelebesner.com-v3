@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import type React from "react";
 import Menu from "./Menu";
 import { siteConfig } from "@/config/site";
 import { trackNavigation, trackSocialLink } from "@/utils/analytics";
@@ -8,9 +9,18 @@ vi.mock("framer-motion", async () => {
   return {
     ...actual,
     motion: {
-      li: ({ children, ...rest }: any) => {
-        const { initial, animate, whileInView, whileHover, whileTap, exit, transition, viewport, ...domProps } =
-          rest;
+      li: ({ children, ...rest }: React.PropsWithChildren<Record<string, unknown>>) => {
+        const {
+          initial: _initial,
+          animate: _animate,
+          whileInView: _whileInView,
+          whileHover: _whileHover,
+          whileTap: _whileTap,
+          exit: _exit,
+          transition: _transition,
+          viewport: _viewport,
+          ...domProps
+        } = rest;
         return <li {...domProps}>{children}</li>;
       },
     },
@@ -19,10 +29,16 @@ vi.mock("framer-motion", async () => {
 
 vi.mock("next/link", () => ({
   __esModule: true,
-  default: ({ href, children, onClick, ...rest }: any) => (
+  default: ({
+    href,
+    children,
+    onClick,
+    ...rest
+  }: React.PropsWithChildren<{ href?: string; onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void }> &
+    Record<string, unknown>) => (
     <a
       href={href}
-      {...rest}
+      {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
       onClick={(event) => {
         event.preventDefault();
         onClick?.(event);
@@ -57,7 +73,7 @@ describe("Menu", () => {
   beforeEach(() => {
     const fetchMock = vi.fn().mockResolvedValue({ ok: true });
     vi.stubGlobal("fetch", fetchMock);
-    window.fetch = fetchMock as any;
+    window.fetch = fetchMock as unknown as typeof fetch;
   });
 
   afterEach(() => {

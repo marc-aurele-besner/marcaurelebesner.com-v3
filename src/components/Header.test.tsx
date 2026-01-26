@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import type React from "react";
 import Header from "./Header";
 
 let reduceMotion = false;
@@ -8,15 +9,15 @@ vi.mock("framer-motion", async () => {
   const actual = await vi.importActual("framer-motion");
   return {
     ...actual,
-    AnimatePresence: ({ children }: any) => <>{children}</>,
+    AnimatePresence: ({ children }: React.PropsWithChildren) => <>{children}</>,
     useReducedMotion: () => reduceMotion,
     motion: {
-      nav: ({ children, ...rest }: any) => {
-        const { initial, animate, exit, transition, ...domProps } = rest;
+      nav: ({ children, ...rest }: React.PropsWithChildren<Record<string, unknown>>) => {
+        const { initial: _initial, animate: _animate, exit: _exit, transition: _transition, ...domProps } = rest;
         return <nav {...domProps}>{children}</nav>;
       },
-      li: ({ children, ...rest }: any) => {
-        const { initial, animate, exit, transition, ...domProps } = rest;
+      li: ({ children, ...rest }: React.PropsWithChildren<Record<string, unknown>>) => {
+        const { initial: _initial, animate: _animate, exit: _exit, transition: _transition, ...domProps } = rest;
         return <li {...domProps}>{children}</li>;
       },
     },
@@ -25,10 +26,16 @@ vi.mock("framer-motion", async () => {
 
 vi.mock("next/link", () => ({
   __esModule: true,
-  default: ({ href, children, onClick, ...rest }: any) => (
+  default: ({
+    href,
+    children,
+    onClick,
+    ...rest
+  }: React.PropsWithChildren<{ href?: string; onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void }> &
+    Record<string, unknown>) => (
     <a
       href={href}
-      {...rest}
+      {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
       onClick={(event) => {
         event.preventDefault();
         onClick?.(event);

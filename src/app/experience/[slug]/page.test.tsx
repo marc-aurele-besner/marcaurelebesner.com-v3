@@ -3,9 +3,6 @@ import ExperiencePage, { generateStaticParams, generateMetadata } from "./page";
 import * as experienceModule from "@/config/experience";
 import * as siteConfigModule from "@/config/site";
 import { notFound } from "next/navigation";
-import Link from "next/link";
-import Badge from "@/components/Badge";
-import GlassCard from "@/components/GlassCard";
 
 // Mock next/navigation
 vi.mock("next/navigation", () => ({

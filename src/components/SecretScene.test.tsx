@@ -18,30 +18,61 @@ vi.mock("framer-motion", async () => {
   const actual = await vi.importActual("framer-motion");
   return {
     ...actual,
-    AnimatePresence: ({ children }: any) => <>{children}</>,
+    AnimatePresence: ({ children }: React.PropsWithChildren) => <>{children}</>,
     useMotionValue: () => createMotionValue(),
     useTransform: () => createMotionValue(),
     useSpring: () => createMotionValue(),
     useReducedMotion: () => reduceMotion,
     motion: {
-      div: ({ children, ...rest }: any) => {
-        const { initial, animate, whileInView, exit, transition, viewport, ...domProps } =
-          rest;
+      div: ({ children, ...rest }: React.PropsWithChildren<Record<string, unknown>>) => {
+        const {
+          initial: _initial,
+          animate: _animate,
+          whileInView: _whileInView,
+          exit: _exit,
+          transition: _transition,
+          viewport: _viewport,
+          ...domProps
+        } = rest;
         return <div {...domProps}>{children}</div>;
       },
-      h1: ({ children, ...rest }: any) => {
-        const { initial, animate, whileInView, exit, transition, viewport, ...domProps } =
-          rest;
+      h1: ({ children, ...rest }: React.PropsWithChildren<Record<string, unknown>>) => {
+        const {
+          initial: _initial,
+          animate: _animate,
+          whileInView: _whileInView,
+          exit: _exit,
+          transition: _transition,
+          viewport: _viewport,
+          ...domProps
+        } = rest;
         return <h1 {...domProps}>{children}</h1>;
       },
-      p: ({ children, ...rest }: any) => {
-        const { initial, animate, whileInView, exit, transition, viewport, ...domProps } =
-          rest;
+      p: ({ children, ...rest }: React.PropsWithChildren<Record<string, unknown>>) => {
+        const {
+          initial: _initial,
+          animate: _animate,
+          whileInView: _whileInView,
+          exit: _exit,
+          transition: _transition,
+          viewport: _viewport,
+          ...domProps
+        } = rest;
         return <p {...domProps}>{children}</p>;
       },
-      button: ({ children, ...rest }: any) => {
-        const { initial, animate, whileInView, exit, transition, viewport, ...domProps } =
-          rest;
+      button: ({
+        children,
+        ...rest
+      }: React.PropsWithChildren<Record<string, unknown>>) => {
+        const {
+          initial: _initial,
+          animate: _animate,
+          whileInView: _whileInView,
+          exit: _exit,
+          transition: _transition,
+          viewport: _viewport,
+          ...domProps
+        } = rest;
         return <button {...domProps}>{children}</button>;
       },
     },
@@ -50,8 +81,12 @@ vi.mock("framer-motion", async () => {
 
 vi.mock("next/link", () => ({
   __esModule: true,
-  default: ({ href, children, ...rest }: any) => (
-    <a href={href} {...rest}>
+  default: ({
+    href,
+    children,
+    ...rest
+  }: React.PropsWithChildren<{ href?: string }> & Record<string, unknown>) => (
+    <a href={href} {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}>
       {children}
     </a>
   ),
@@ -219,7 +254,7 @@ describe("SecretScene", () => {
     const useRefSpy = vi
       .spyOn(React, "useRef")
       .mockImplementationOnce(() => ({ current: null }))
-      .mockImplementation(realUseRef as any);
+      .mockImplementation(realUseRef as typeof React.useRef);
 
     render(<SecretScene />);
     const hint = screen.getByText(/Try a famous code on the home page/i);

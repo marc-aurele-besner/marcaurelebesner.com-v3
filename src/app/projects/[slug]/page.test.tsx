@@ -3,10 +3,6 @@ import ProjectPage, { generateStaticParams, generateMetadata } from "./page";
 import * as projectModule from "@/config/projects";
 import * as siteConfigModule from "@/config/site";
 import { notFound } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
-import Badge from "@/components/Badge";
-import GlassCard from "@/components/GlassCard";
 
 // Mock next/navigation
 vi.mock("next/navigation", () => ({

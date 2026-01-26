@@ -1,16 +1,22 @@
 import { render } from "@testing-library/react";
+import type React from "react";
 import ScrollProgress from "./ScrollProgress";
-import { useScroll, useSpring, useReducedMotion } from "framer-motion";
+import { useScroll, useReducedMotion } from "framer-motion";
 
 vi.mock("framer-motion", async () => {
   const actual = await vi.importActual("framer-motion");
   return {
     ...actual,
     useScroll: vi.fn(),
-    useSpring: (v: any) => v, // Return the value directly
+    useSpring: (value: unknown) => value, // Return the value directly
     useReducedMotion: vi.fn(),
     motion: {
-      div: ({ style, ...props }: any) => <div style={style} {...props} />,
+      div: ({
+        style,
+        ...props
+      }: React.HTMLAttributes<HTMLDivElement> & { style?: React.CSSProperties }) => (
+        <div style={style} {...props} />
+      ),
     },
   };
 });
