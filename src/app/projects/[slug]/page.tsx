@@ -69,6 +69,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   if (!project) {
     notFound();
+    return null;
   }
 
   const currentIndex = projects.findIndex((p) => p.slug === slug);

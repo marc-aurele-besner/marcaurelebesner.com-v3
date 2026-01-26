@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-const DEFAULT_SECTIONS = ["about", "experience", "projects", "contact"] as const;
+const DEFAULT_SECTIONS = ["about", "experience", "projects", "advisory", "contact"] as const;
 export type SectionId = typeof DEFAULT_SECTIONS[number];
 
 export function useActiveSection(sectionIds: readonly string[] = DEFAULT_SECTIONS) {

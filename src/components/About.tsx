@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import GlassCard from "./GlassCard";
 import Link from "next/link";
+import GlassCard from "./GlassCard";
 
 export default function About() {
   return (
@@ -20,11 +20,11 @@ export default function About() {
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.1] bg-gradient-to-r from-[var(--accent)] via-black dark:via-white to-slate-900 dark:to-white bg-clip-text text-transparent tracking-tight">
-            Web3 & AI Full‑stack engineer, building at the intersection of
-            blockchain and decentralized AI.
+            Senior Web3/AI Engineer | Smart Contracts, Agents, Infra &
+            DevTooling | Scaling Decentralized Systems | Product‑First Engineer
           </h1>
         </motion.div>
-        
+
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -49,7 +49,12 @@ export default function About() {
             className="group inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] text-darkBlue font-semibold px-6 py-3 hover:brightness-110 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 transition-all duration-200 shadow-lg shadow-[var(--accent)]/20"
           >
             View Projects
-            <span aria-hidden className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↘</span>
+            <span
+              aria-hidden
+              className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            >
+              ↘
+            </span>
           </Link>
           <Link
             href="/#experience"
@@ -67,7 +72,11 @@ export default function About() {
         >
           <GlassCard className="p-6 mt-10">
             <p className="text-base sm:text-lg text-slate-600 dark:text-grayTone leading-relaxed">
-              Currently exploring AI-assisted DeFi agents and mobile apps. I advise early‑stage teams on product and engineering strategy, smart contracts, and developer experience. Interested in collaborating or learning more?{" "}
+              With 5+ years shipping Web3 products—from smart contracts and SDKs
+              to block explorers and AI agents—I bring both technical depth and
+              the ability to translate complex systems into developer‑friendly
+              tools. Currently exploring AI‑assisted DeFi agents and
+              decentralized infrastructure.{" "}
               <Link
                 href="/#contact"
                 className="text-[var(--accent)] font-medium underline underline-offset-2 hover:brightness-110 transition-colors decoration-[var(--accent-weak)] hover:decoration-[var(--accent)]"

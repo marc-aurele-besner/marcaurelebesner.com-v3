@@ -1,0 +1,131 @@
+import { render, screen, fireEvent } from "@testing-library/react";
+import type React from "react";
+import Header from "./Header";
+
+let reduceMotion = false;
+let pathname = "/";
+
+vi.mock("framer-motion", async () => {
+  const actual = await vi.importActual("framer-motion");
+  return {
+    ...actual,
+    AnimatePresence: ({ children }: React.PropsWithChildren) => <>{children}</>,
+    useReducedMotion: () => reduceMotion,
+    motion: {
+      nav: ({ children, ...rest }: React.PropsWithChildren<Record<string, unknown>>) => {
+        const { initial: _initial, animate: _animate, exit: _exit, transition: _transition, ...domProps } = rest;
+        return <nav {...domProps}>{children}</nav>;
+      },
+      li: ({ children, ...rest }: React.PropsWithChildren<Record<string, unknown>>) => {
+        const { initial: _initial, animate: _animate, exit: _exit, transition: _transition, ...domProps } = rest;
+        return <li {...domProps}>{children}</li>;
+      },
+    },
+  };
+});
+
+vi.mock("next/link", () => ({
+  __esModule: true,
+  default: ({
+    href,
+    children,
+    onClick,
+    ...rest
+  }: React.PropsWithChildren<{ href?: string; onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void }> &
+    Record<string, unknown>) => (
+    <a
+      href={href}
+      {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+      onClick={(event) => {
+        event.preventDefault();
+        onClick?.(event);
+      }}
+    >
+      {children}
+    </a>
+  ),
+}));
+
+vi.mock("next/navigation", () => ({
+  usePathname: () => pathname,
+}));
+
+vi.mock("@/hooks/useActiveSection", () => ({
+  useActiveSection: () => ({ activeId: "about" }),
+}));
+
+vi.mock("./ThemeToggle", () => ({
+  __esModule: true,
+  default: () => <button type="button">Theme</button>,
+}));
+
+describe("Header", () => {
+  it("opens and closes the menu in reduced motion mode", () => {
+    reduceMotion = true;
+    render(<Header />);
+
+    const toggle = screen.getByRole("button", { name: "Open menu" });
+    fireEvent.click(toggle);
+    expect(screen.getByRole("navigation")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("link", { name: "About" }));
+    expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
+  });
+
+  it("closes the menu on Escape in animated mode", () => {
+    reduceMotion = false;
+    render(<Header />);
+
+    const toggle = screen.getByRole("button", { name: "Open menu" });
+    fireEvent.click(toggle);
+    expect(screen.getByRole("navigation")).toBeInTheDocument();
+
+    fireEvent.keyDown(document, { key: "Escape" });
+    expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
+  });
+
+  it("toggles the menu button label when opened and closed", () => {
+    reduceMotion = true;
+    render(<Header />);
+
+    const toggle = screen.getByRole("button", { name: "Open menu" });
+    fireEvent.click(toggle);
+    expect(
+      screen.getByRole("button", { name: "Close menu" })
+    ).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "Close menu" }));
+    expect(screen.getByRole("button", { name: "Open menu" })).toBeInTheDocument();
+  });
+
+  it("closes the menu when a link is clicked in animated mode", () => {
+    reduceMotion = false;
+    render(<Header />);
+
+    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
+    fireEvent.click(screen.getByRole("link", { name: "Projects" }));
+    expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
+  });
+
+  it("uses prefixed anchors when not on the home route", () => {
+    reduceMotion = true;
+    pathname = "/projects";
+    render(<Header />);
+
+    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
+    const aboutLink = screen.getByRole("link", { name: "About" });
+    expect(aboutLink).toHaveAttribute("href", "/#about");
+    pathname = "/";
+  });
+
+  it("uses prefixed anchors in animated mode when not on the home route", () => {
+    reduceMotion = false;
+    pathname = "/projects";
+    render(<Header />);
+
+    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
+    const aboutLink = screen.getByRole("link", { name: "About" });
+    expect(aboutLink).toHaveAttribute("href", "/#about");
+    pathname = "/";
+  });
+});

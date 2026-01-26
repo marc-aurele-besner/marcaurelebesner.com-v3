@@ -16,6 +16,7 @@ export default function Menu() {
     { href: "#about", label: "About", id: "about" },
     { href: "#experience", label: "Experience", id: "experience" },
     { href: "#projects", label: "Projects", id: "projects" },
+    { href: "#advisory", label: "Advisory", id: "advisory" },
     { href: "#contact", label: "Contact", id: "contact" },
   ];
 
