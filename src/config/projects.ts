@@ -17,7 +17,8 @@ export const projects: ProjectData[] = [
   {
     slug: "eternal-mint",
     title: "EternalMint",
-    summary: "Mint NFTs with permanent on-chain storage—no IPFS dependency, no disappearing art.",
+    summary:
+      "Mint NFTs with permanent on-chain storage—no IPFS dependency, no disappearing art.",
     description:
       "A simple web app to build and mint NFTs on the Autonomys Network. Using the Autonomys Auto-SDK to simplify the process of interacting with the blockchain. (Upload both the image and metadata to the Consensus Chain and mint the NFT on the Autonomys EVM Chain)",
     highlights: [
@@ -44,7 +45,8 @@ export const projects: ProjectData[] = [
   {
     slug: "ai3-info",
     title: "AI3.info",
-    summary: "Real-time blockchain analytics through an immersive 3D interface powered by Auto SDK.",
+    summary:
+      "Real-time blockchain analytics through an immersive 3D interface powered by Auto SDK.",
     description:
       "Simple web app that provides real-time insights into the Autonomys Network through an interactive 3D interface. Built with Next.js, React Three Fiber, and powered by the Auto SDK.",
     highlights: [
@@ -69,7 +71,8 @@ export const projects: ProjectData[] = [
   {
     slug: "astral-block-explorer",
     title: "Astral Block Explorer",
-    summary: "Production block explorer with staking, operator management, and wallet integrations.",
+    summary:
+      "Production block explorer with staking, operator management, and wallet integrations.",
     description:
       "Web application for interacting with the Autonomys Network and exploring the consensus chain. Register operators, stake, and nominate on Astral.",
     highlights: [
@@ -80,7 +83,6 @@ export const projects: ProjectData[] = [
     ],
     imageSrc: "/images/projects/astral-block-explorer.png",
     imageAlt: "Astral Block Explorer",
-    link: "https://astral.autonomys.xyz/",
     repoLink: "https://github.com/autonomys/astral",
     badges: ["Next.js", "React", "Polkadot.js", "TypeScript", "GraphQL"],
     projectType: "work",
@@ -89,7 +91,8 @@ export const projects: ProjectData[] = [
   {
     slug: "fileonchain",
     title: "FileOnChain",
-    summary: "Permanent file storage on Substrate chains. Built in 48 hours, won 3rd place at Consensus 2024.",
+    summary:
+      "Permanent file storage on Substrate chains. Built in 48 hours, won 3rd place at Consensus 2024.",
     description:
       "A small file uploader that allows you to upload files to substrate networks. Build in 2 days for the Consensus 2024 Hackathon. (won 3rd place)",
     highlights: [
@@ -109,7 +112,8 @@ export const projects: ProjectData[] = [
   {
     slug: "autonomys-auto-sdk",
     title: "Autonomys Auto-SDK",
-    summary: "TypeScript SDK powering most apps on Autonomys. Beginner-friendly, production-ready.",
+    summary:
+      "TypeScript SDK powering most apps on Autonomys. Beginner-friendly, production-ready.",
     description:
       "Software development kit for AI and Web3 developers that simplifies interacting with the Autonomys Network for those without a deep understanding of blockchains or smart contracts.",
     highlights: [
@@ -129,7 +133,8 @@ export const projects: ProjectData[] = [
   {
     slug: "oamo",
     title: "Oamo App",
-    summary: "Full-stack Web3 platform with wallet auth, smart contracts, and decentralized identity.",
+    summary:
+      "Full-stack Web3 platform with wallet auth, smart contracts, and decentralized identity.",
     description:
       "Implement a large amount of the business logic for the Oamo app, including web3 wallets, smart contract interactions, and all web2 OAuth flows.",
     highlights: [
