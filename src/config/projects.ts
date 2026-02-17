@@ -15,6 +15,27 @@ export interface ProjectData {
 
 export const projects: ProjectData[] = [
   {
+    slug: "vibeinprod",
+    title: "VibeInProd",
+    summary:
+      "AI codebase stabilization service for seed to Series A startups scaling beyond prototype.",
+    description:
+      "A service that helps AI startups stabilize their codebases in 10 days. Provides code audits, architecture assessments, and hands-on cleanup to transform fragile AI-generated code into production-ready systems that scale.",
+    highlights: [
+      "AI Stability Index™ scoring model",
+      "Code audit and risk assessment",
+      "Dead code removal and duplication consolidation",
+      "Security vulnerability fixes",
+      "Architecture integrity for Series A readiness",
+    ],
+    imageSrc: "/images/projects/vibeinprod.png",
+    imageAlt: "VibeInProd",
+    link: "https://vibeinprod.com",
+    badges: ["TypeScript", "Next.js", "React", "AI", "Consulting"],
+    projectType: "personal",
+    featured: true,
+  },
+  {
     slug: "eternal-mint",
     title: "EternalMint",
     summary:
