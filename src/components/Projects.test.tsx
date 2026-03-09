@@ -34,6 +34,7 @@ vi.mock("framer-motion", async () => {
         return <div {...domProps}>{children}</div>;
       },
     },
+    AnimatePresence: ({ children }: React.PropsWithChildren) => <>{children}</>,
   };
 });
 
@@ -93,5 +94,38 @@ describe("Projects", () => {
       targetProject.title,
       targetProject.slug
     );
+  });
+
+  it("expands to show full project thumbnails when clicking '+X more projects'", () => {
+    const featured = projects.filter((project) => project.featured);
+    const other = projects.filter((project) => !project.featured);
+    render(<Projects />);
+
+    expect(screen.getAllByTestId("project-card")).toHaveLength(featured.length);
+
+    const expandButton = screen.getByRole("button", {
+      name: `+${other.length} more projects`,
+    });
+    fireEvent.click(expandButton);
+
+    expect(screen.getByRole("button", { name: "Show less" })).toBeInTheDocument();
+    expect(screen.getAllByTestId("project-card")).toHaveLength(
+      featured.length + other.length
+    );
+  });
+
+  it("collapses back to links when clicking 'Show less'", () => {
+    const other = projects.filter((project) => !project.featured);
+    render(<Projects />);
+
+    fireEvent.click(
+      screen.getByRole("button", { name: `+${other.length} more projects` })
+    );
+    expect(screen.getByRole("button", { name: "Show less" })).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "Show less" }));
+    expect(
+      screen.getByRole("button", { name: `+${other.length} more projects` })
+    ).toBeInTheDocument();
   });
 });
