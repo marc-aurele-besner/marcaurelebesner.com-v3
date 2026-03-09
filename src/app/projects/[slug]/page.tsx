@@ -167,7 +167,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   rel="noopener noreferrer"
                   className="text-[var(--accent)] hover:brightness-110 transition-all duration-200 flex items-center gap-1.5 font-medium"
                 >
-                  Repository <span>&nearr;</span>
+                  Repository <span>↗</span>
                 </a>
               )}
               {project.link && (
@@ -177,7 +177,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   rel="noopener noreferrer"
                   className="text-[var(--accent)] hover:brightness-110 transition-all duration-200 flex items-center gap-1.5 font-medium"
                 >
-                  Website <span>&nearr;</span>
+                  Website <span>↗</span>
                 </a>
               )}
             </div>
