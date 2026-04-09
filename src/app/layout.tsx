@@ -3,11 +3,10 @@ import { siteConfig } from "@/config/site";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import Backdrop from "../components/Backdrop";
 import EasterEggs from "../components/EasterEggs";
+import BackgroundEffects from "../components/BackgroundEffects";
 import Header from "../components/Header";
 import Menu from "../components/Menu";
-import Spotlight from "../components/Spotlight";
 import ThemeProvider from "../components/ThemeProvider";
 import "./globals.css";
 
@@ -90,8 +89,7 @@ export default function RootLayout({
           </a>
           <ScrollProgress />
           {/* Background effects */}
-          <Backdrop />
-          <Spotlight />
+          <BackgroundEffects />
           <Header />
           <div className="flex min-h-screen md:flex-row flex-col">
             <aside className="md:w-72 bg-white/70 dark:bg-darkBlue/70 backdrop-blur border-r border-slate-200 dark:border-white/5 p-8 fixed h-full hidden md:block">
