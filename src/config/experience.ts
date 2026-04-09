@@ -220,6 +220,7 @@ export const experiences: ExperienceData[] = [
       "YouTube",
       "Public Speaking",
     ],
+    companyUrl: "https://www.youtube.com",
     isWeb3: false,
   },
 ];
