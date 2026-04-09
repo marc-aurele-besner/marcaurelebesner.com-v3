@@ -49,6 +49,9 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.svg",
   },
+  other: {
+    preconnect: ["https://vitals.vercel-insights.com", "https://vercel.live"],
+  },
   openGraph: {
     url: "/",
     siteName: siteConfig.name,
