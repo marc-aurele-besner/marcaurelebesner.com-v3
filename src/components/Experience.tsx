@@ -54,9 +54,7 @@ export default function Experience() {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="pt-4"
               >
-                <h3 className="text-sm uppercase tracking-widest text-slate-500 dark:text-grayTone/70 mb-4">
-                  Earlier Experience
-                </h3>
+                <SectionHeading>Earlier Experience</SectionHeading>
               </motion.div>
               {otherExperiences.map((experience, index) => (
                 <motion.div
