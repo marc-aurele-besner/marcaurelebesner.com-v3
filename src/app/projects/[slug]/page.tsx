@@ -187,6 +187,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <Image
               src={project.imageSrc}
               alt={project.imageAlt}
+              placeholder="blur"
+              blurDataURL={project.blurDataURL}
               className="w-full rounded-lg"
               width={800}
               height={600}
