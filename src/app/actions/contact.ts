@@ -2,7 +2,9 @@
 
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResendClient() {
+  return new Resend(process.env.RESEND_API_KEY);
+}
 
 export async function sendContactEmail(formData: FormData) {
   const name = formData.get("name") as string;
@@ -21,6 +23,7 @@ export async function sendContactEmail(formData: FormData) {
   }
 
   try {
+    const resend = getResendClient();
     const { data, error } = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || "Contact Form <onboarding@resend.dev>",
       to: process.env.RESEND_TO_EMAIL || "contact@marcaurelebesner.com",
