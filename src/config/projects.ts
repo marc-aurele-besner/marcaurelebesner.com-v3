@@ -248,4 +248,64 @@ export const projects: ProjectData[] = [
     projectType: "personal",
     featured: false,
   },
+  {
+    slug: "opendrift",
+    title: "OpenDrift",
+    summary:
+      "AI tool revealing the full spectrum of possible LLM responses using Verbalized Sampling.",
+    description:
+      "OpenDrift is an AI research tool that surfaces the full distribution of possible responses language models can generate, rather than just the single most likely answer. Uses 'Verbalized Sampling' to show responses ranked by probability—from conventional to surprising—including creative and unconventional outputs that RLHF training typically suppresses.",
+    highlights: [
+      "Verbalized Sampling technique",
+      "Multi-response generation ranked by probability",
+      "Integrates with OpenRouter (GPT-4o, Claude, Gemini, Mistral)",
+      "Adjustable creativity threshold controls",
+    ],
+    imageSrc: "/images/projects/opendrift.png",
+    imageAlt: "OpenDrift",
+    link: "https://opendrift.app",
+    badges: ["AI", "LLM", "TypeScript", "OpenRouter"],
+    projectType: "work",
+    featured: true,
+  },
+  {
+    slug: "circus-connect",
+    title: "CircusConnect",
+    summary:
+      "Open, community-driven knowledge base and directory for circus arts.",
+    description:
+      "CircusConnect is an online community-driven knowledge base for circus arts. Features a searchable Trick Directory with circus moves across disciplines and difficulty levels, a global Schools Directory with community reviews, and artist/coach profiles. Contributions are community-reviewed before publishing.",
+    highlights: [
+      "Community-built trick encyclopedia",
+      "Global circus schools directory with reviews",
+      "Artist and coach profile directory",
+      "Community moderation system",
+    ],
+    imageSrc: "/images/projects/circusconnect.png",
+    imageAlt: "CircusConnect",
+    link: "https://circusconnect.com",
+    badges: ["TypeScript", "Next.js", "React", "Community"],
+    projectType: "work",
+    featured: true,
+  },
+  {
+    slug: "payxor",
+    title: "PayXor",
+    summary:
+      "Reusable on-chain payment and entitlement system for EVM-based Web3 applications.",
+    description:
+      "PayXor is a payment infrastructure platform for Web3 apps enabling merchants to accept USD stablecoin payments across 8 chains (Ethereum, Arbitrum, Base, Polygon, Avalanche, Optimism, BNB, zkSync). Uses EIP-712 signatures for backend-authoritative pricing and smart contracts to unlock on-chain entitlements after payment verification. Charges 1% platform fee.",
+    highlights: [
+      "Multi-chain stablecoin payments (8 networks)",
+      "Backend-signed pricing with EIP-712",
+      "On-chain entitlement unlocking via smart contracts",
+      "TypeScript SDK and REST API integration",
+    ],
+    imageSrc: "/images/projects/payxor.png",
+    imageAlt: "PayXor",
+    link: "https://payxor.xyz",
+    badges: ["TypeScript", "Web3", "EVM", "Smart Contracts", "Payments"],
+    projectType: "work",
+    featured: true,
+  },
 ];
