@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import GlassCard from "./GlassCard";
 import SectionHeading from "./SectionHeading";
+import ContactForm from "./ContactForm";
 
 export default function Contact() {
   const socialLinks = [
@@ -57,40 +58,44 @@ export default function Contact() {
         </SectionHeading>
         <p className="text-slate-600 dark:text-grayTone max-w-2xl text-lg mt-3 leading-relaxed">
           I'm open to collaborating on interesting projects, discussing Web3, or
-          exploring new opportunities. The fastest way to reach me is via
-          LinkedIn, Twitter, or Instagram.
+          exploring new opportunities. Send me a message directly or reach out via social media.
         </p>
       </motion.div>
 
-      <GlassCard className="p-6 lg:p-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {socialLinks.map((link, index) => {
-            const Icon = link.icon;
-            return (
-              <motion.a
-                key={link.platform}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackSocialLink(link.platform, link.href)}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="group flex items-center gap-4 rounded-lg border-2 border-black/10 dark:border-white/10 bg-white/40 dark:bg-white/5 px-6 py-4 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] hover:bg-[var(--accent-bg-weak)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
-              >
-                <Icon className="text-2xl flex-shrink-0 transition-transform group-hover:scale-110" />
-                <span className="font-medium text-lg">{link.label}</span>
-                <span className="ml-auto text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                  ↗
-                </span>
-              </motion.a>
-            );
-          })}
-        </div>
-      </GlassCard>
+      <ContactForm />
+
+      <div className="mt-8">
+        <p className="text-sm text-slate-500 dark:text-gray-400 mb-4">Or connect with me on:</p>
+        <GlassCard className="p-6 lg:p-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {socialLinks.map((link, index) => {
+              const Icon = link.icon;
+              return (
+                <motion.a
+                  key={link.platform}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackSocialLink(link.platform, link.href)}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group flex items-center gap-4 rounded-lg border-2 border-black/10 dark:border-white/10 bg-white/40 dark:bg-white/5 px-6 py-4 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] hover:bg-[var(--accent-bg-weak)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
+                >
+                  <Icon className="text-2xl flex-shrink-0 transition-transform group-hover:scale-110" />
+                  <span className="font-medium text-lg">{link.label}</span>
+                  <span className="ml-auto text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                    ↗
+                  </span>
+                </motion.a>
+              );
+            })}
+          </div>
+        </GlassCard>
+      </div>
     </motion.section>
   );
 }
