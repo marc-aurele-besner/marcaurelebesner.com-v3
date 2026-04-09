@@ -13,6 +13,7 @@ export const Project: FC<ProjectData> = ({
   summary,
   imageSrc,
   imageAlt,
+  blurDataURL,
   link,
   repoLink,
   badges,
@@ -41,6 +42,8 @@ export const Project: FC<ProjectData> = ({
             <Image
               src={imageSrc}
               alt={imageAlt}
+              placeholder="blur"
+              blurDataURL={blurDataURL}
               className="w-full rounded-lg transition-transform duration-700 ease-out group-hover:scale-[1.05]"
               width={400}
               height={300}
