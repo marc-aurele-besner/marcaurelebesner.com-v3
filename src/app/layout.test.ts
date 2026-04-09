@@ -53,6 +53,7 @@ describe("Layout Metadata", () => {
     expect(metadata.robots).toEqual({ index: true, follow: true });
     expect(metadata.icons).toEqual({
       icon: "/favicon.svg",
+      apple: "/apple-touch-icon.png",
     });
     expect(metadata.openGraph).toEqual({
       url: "/",

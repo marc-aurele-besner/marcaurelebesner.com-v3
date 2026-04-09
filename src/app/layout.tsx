@@ -48,6 +48,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   icons: {
     icon: "/favicon.svg",
+    apple: "/apple-touch-icon.png",
   },
   other: {
     preconnect: ["https://vitals.vercel-insights.com", "https://vercel.live"],
