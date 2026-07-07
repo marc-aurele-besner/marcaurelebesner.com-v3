@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import Link from "next/link";
 import GlassCard from "./GlassCard";
@@ -20,9 +22,26 @@ export default function About() {
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.1] bg-gradient-to-r from-[var(--accent)] via-black dark:via-white to-slate-900 dark:to-white bg-clip-text text-transparent tracking-tight">
-            Senior Web3/AI Engineer | Smart Contracts, Agents, Infra &
-            DevTooling | Scaling Decentralized Systems | Product‑First Engineer
+            Senior Web3/AI Engineer
           </h1>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+        >
+          <h2 className="sr-only">Specialties</h2>
+          <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm sm:text-base font-medium text-slate-600 dark:text-gray-200/80">
+            <li>Smart Contracts</li>
+            <li aria-hidden className="text-slate-400 dark:text-grayTone/60">·</li>
+            <li>AI Agents</li>
+            <li aria-hidden className="text-slate-400 dark:text-grayTone/60">·</li>
+            <li>Decentralized Infrastructure</li>
+            <li aria-hidden className="text-slate-400 dark:text-grayTone/60">·</li>
+            <li>DevTooling &amp; SDKs</li>
+          </ul>
         </motion.div>
 
         <motion.p
@@ -52,7 +71,7 @@ export default function About() {
             <span aria-hidden>→</span>
           </Link>
           <Link
-            href="/#projects"
+            href="/projects"
             className="group inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] text-darkBlue font-semibold px-6 py-3 hover:brightness-110 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 transition-all duration-200 shadow-lg shadow-[var(--accent)]/20"
           >
             View Projects
@@ -64,7 +83,7 @@ export default function About() {
             </span>
           </Link>
           <Link
-            href="/#experience"
+            href="/experience"
             className="inline-flex items-center gap-2 rounded-lg border-2 border-[var(--accent-weak)] text-[var(--accent)] px-6 py-3 font-medium hover:bg-[var(--accent-bg-weak)] hover:border-[var(--accent)] backdrop-blur-sm transition-all duration-200 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
           >
             Experience

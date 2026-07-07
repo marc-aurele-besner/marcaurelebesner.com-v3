@@ -1,10 +1,17 @@
 import { experiences, getExperienceBySlug, getAdjacentExperiences } from "@/config/experience";
 import { siteConfig } from "@/config/site";
 import Badge from "@/components/Badge";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import DateRange from "@/components/DateRange";
 import GlassCard from "@/components/GlassCard";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import {
+  JsonLdScript,
+  breadcrumbListJsonLd,
+  organizationRoleJsonLd,
+} from "@/utils/jsonld";
 
 interface ExperiencePageProps {
   params: Promise<{ slug: string }>;
@@ -73,68 +80,34 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
 
   const { prev: prevExperience, next: nextExperience } = getAdjacentExperiences(slug);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      organizationRoleJsonLd(experience),
+      breadcrumbListJsonLd([
+        { name: "Home", item: siteConfig.url },
+        { name: "Experience", item: `${siteConfig.url}/experience` },
+        {
+          name: `${experience.title} at ${experience.company}`,
+          item: `${siteConfig.url}/experience/${slug}`,
+        },
+      ]),
+    ],
+  };
+
   return (
     <div className="max-w-4xl mx-auto py-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@graph": [
-              {
-                "@type": "Article",
-                headline: `${experience.title} at ${experience.company}`,
-                description: experience.summary,
-                author: {
-                  "@type": "Person",
-                  name: siteConfig.name,
-                  url: siteConfig.url,
-                },
-                publisher: {
-                  "@type": "Person",
-                  name: siteConfig.name,
-                  url: siteConfig.url,
-                },
-                mainEntityOfPage: {
-                  "@type": "WebPage",
-                  "@id": `${siteConfig.url}/experience/${slug}`,
-                },
-                about: {
-                  "@type": "Organization",
-                  name: experience.company,
-                  url: experience.companyUrl,
-                },
-                keywords: experience.skills.join(", "),
-              },
-              {
-                "@type": "BreadcrumbList",
-                itemListElement: [
-                  {
-                    "@type": "ListItem",
-                    position: 1,
-                    name: "Home",
-                    item: siteConfig.url,
-                  },
-                  {
-                    "@type": "ListItem",
-                    position: 2,
-                    name: "Experience",
-                    item: `${siteConfig.url}/#experience`,
-                  },
-                  {
-                    "@type": "ListItem",
-                    position: 3,
-                    name: `${experience.title} at ${experience.company}`,
-                    item: `${siteConfig.url}/experience/${slug}`,
-                  },
-                ],
-              },
-            ],
-          }),
-        }}
+      <JsonLdScript data={jsonLd} data-testid="json-ld" />
+      <Breadcrumbs
+        className="mb-6"
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Experience", href: "/experience" },
+          { label: `${experience.title} at ${experience.company}` },
+        ]}
       />
       <Link
-        href="/#experience"
+        href="/experience"
         className="inline-flex items-center gap-2 text-[var(--accent)] hover:brightness-110 transition-all duration-200 font-medium text-sm mb-8 hover:gap-3"
       >
         <span className="transition-transform">&larr;</span>
@@ -161,7 +134,12 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
             )}
           </p>
           <div className="flex flex-wrap gap-4 mt-4 text-sm text-slate-500 dark:text-grayTone">
-            <span>{experience.startDate} - {experience.endDate}</span>
+            <span>
+              <DateRange
+                startDate={experience.startDate}
+                endDate={experience.endDate}
+              />
+            </span>
             <span className="capitalize">{experience.location}</span>
             <span className="capitalize px-2 py-0.5 rounded-full border border-slate-300 dark:border-white/10">
               {experience.type}

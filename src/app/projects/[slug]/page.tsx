@@ -1,9 +1,15 @@
 import { projects, getProjectBySlug, getAdjacentProjects } from "@/config/projects";
 import { siteConfig } from "@/config/site";
 import Badge from "@/components/Badge";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import GlassCard from "@/components/GlassCard";
 import { DEFAULT_BLUR_DATA_URL } from "@/utils/blur";
 import { formatProjectType } from "@/utils/project-type";
+import {
+  JsonLdScript,
+  breadcrumbListJsonLd,
+  softwareApplicationJsonLd,
+} from "@/utils/jsonld";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -80,63 +86,31 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "SoftwareApplication",
-        name: project.title,
-        description: project.description,
-        image: `${siteConfig.url}${project.imageSrc}`,
-        url: project.link || `${siteConfig.url}/projects/${slug}`,
-        author: {
-          "@type": "Person",
-          name: siteConfig.name,
-          url: siteConfig.url,
+      softwareApplicationJsonLd(project, slug),
+      breadcrumbListJsonLd([
+        { name: "Home", item: siteConfig.url },
+        { name: "Projects", item: `${siteConfig.url}/projects` },
+        {
+          name: project.title,
+          item: `${siteConfig.url}/projects/${slug}`,
         },
-        applicationCategory: "WebApplication",
-        operatingSystem: "Web",
-        offers: {
-          "@type": "Offer",
-          price: "0",
-          priceCurrency: "USD",
-        },
-        ...(project.repoLink && {
-          codeRepository: project.repoLink,
-        }),
-        keywords: project.badges.join(", "),
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "Home",
-            item: siteConfig.url,
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "Projects",
-            item: `${siteConfig.url}/#projects`,
-          },
-          {
-            "@type": "ListItem",
-            position: 3,
-            name: project.title,
-            item: `${siteConfig.url}/projects/${slug}`,
-          },
-        ],
-      },
+      ]),
     ],
   };
 
   return (
     <div className="max-w-4xl mx-auto py-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      <JsonLdScript data={jsonLd} data-testid="json-ld" />
+      <Breadcrumbs
+        className="mb-6"
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Projects", href: "/projects" },
+          { label: project.title },
+        ]}
       />
       <Link
-        href="/#projects"
+        href="/projects"
         className="inline-flex items-center gap-2 text-[var(--accent)] hover:brightness-110 transition-all duration-200 font-medium text-sm mb-8 hover:gap-3"
       >
         <span className="transition-transform">&larr;</span>

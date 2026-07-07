@@ -179,7 +179,11 @@ describe("Experience Page", () => {
 
       expect(screen.getByRole("heading", { name: "Engineer" })).toBeInTheDocument();
       expect(screen.getByText("Company A")).toBeInTheDocument();
-      expect(screen.getByText("Jan 2020 - Dec 2020")).toBeInTheDocument();
+      // Date range renders as semantic <time> elements.
+      expect(screen.getByText("Jan 2020").tagName).toBe("TIME");
+      expect(screen.getByText("Jan 2020")).toHaveAttribute("datetime", "2020-01");
+      expect(screen.getByText("Dec 2020").tagName).toBe("TIME");
+      expect(screen.getByText("Dec 2020")).toHaveAttribute("datetime", "2020-12");
       expect(screen.getByText("Remote")).toBeInTheDocument();
       expect(screen.getByText("Full-time")).toBeInTheDocument();
       expect(screen.getByText("Full description of Exp 1")).toBeInTheDocument();
@@ -193,8 +197,21 @@ describe("Experience Page", () => {
       expect(script).toBeInTheDocument();
       const json = JSON.parse(script?.textContent || '{}');
       expect(json["@context"]).toBe("https://schema.org");
-      expect(json["@graph"][0].headline).toBe("Engineer at Company A");
-      expect(json["@graph"][1].itemListElement[2].name).toBe("Engineer at Company A");
+      // The detail page now uses OrganizationRole for the position and
+      // BreadcrumbList for navigation. Verify both shapes.
+      const orgRole = json["@graph"].find(
+        (n: { "@type": string }) => n["@type"] === "OrganizationRole",
+      );
+      expect(orgRole).toBeDefined();
+      expect(orgRole.roleName).toBe("Engineer");
+      expect(orgRole.organization["@type"]).toBe("Organization");
+      expect(orgRole.organization.name).toBe("Company A");
+      expect(orgRole.startDate).toBe("2020-01");
+      expect(orgRole.endDate).toBe("2020-12");
+      const breadcrumb = json["@graph"].find(
+        (n: { "@type": string }) => n["@type"] === "BreadcrumbList",
+      );
+      expect(breadcrumb.itemListElement[2].name).toBe("Engineer at Company A");
     });
 
     it("should render experience without a companyUrl correctly", async () => {

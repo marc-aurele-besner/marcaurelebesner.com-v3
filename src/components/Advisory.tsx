@@ -6,33 +6,16 @@ import SectionHeading from "./SectionHeading";
 import Link from "next/link";
 import { FaCode, FaLightbulb, FaRocket, FaUsers } from "react-icons/fa";
 import { trackAdvisoryCta } from "@/utils/analytics";
+import { advisoryServices } from "@/config/advisory";
 
-const services = [
-  {
-    icon: FaCode,
-    title: "Smart Contract Architecture",
-    description:
-      "Design and review of Solidity contracts, security best practices, gas optimization, and upgrade patterns.",
-  },
-  {
-    icon: FaRocket,
-    title: "SDK & DevTooling",
-    description:
-      "Build developer-friendly SDKs, APIs, and tooling that accelerate adoption and improve DX.",
-  },
-  {
-    icon: FaLightbulb,
-    title: "Product & Engineering Strategy",
-    description:
-      "Technical roadmap planning, architecture decisions, and helping teams ship faster with fewer missteps.",
-  },
-  {
-    icon: FaUsers,
-    title: "Team Augmentation",
-    description:
-      "Embedded engineering support for critical launches, migrations, or capacity gaps.",
-  },
-];
+// Map service name → icon. Keeping this map in one place so the homepage
+// Advisory section stays in sync with the canonical services list.
+const serviceIcon: Record<string, typeof FaCode> = {
+  "Smart Contract Architecture": FaCode,
+  "SDK & DevTooling": FaRocket,
+  "Product & Engineering Strategy": FaLightbulb,
+  "Team Augmentation": FaUsers,
+};
 
 const engagementTypes = [
   { label: "Hourly", description: "Flexible consulting for specific questions or code reviews" },
@@ -69,11 +52,11 @@ export default function Advisory() {
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-        {services.map((service, index) => {
-          const Icon = service.icon;
+        {advisoryServices.map((service, index) => {
+          const Icon = serviceIcon[service.name] ?? FaCode;
           return (
             <motion.div
-              key={service.title}
+              key={service.name}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -86,7 +69,7 @@ export default function Advisory() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                      {service.title}
+                      {service.name}
                     </h3>
                     <p className="text-sm text-slate-600 dark:text-grayTone leading-relaxed">
                       {service.description}

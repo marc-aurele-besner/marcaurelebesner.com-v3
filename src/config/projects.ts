@@ -11,6 +11,12 @@ export interface ProjectData {
   badges: string[];
   projectType: "personal" | "work";
   featured: boolean;
+  /**
+   * ISO-8601 month (YYYY-MM) representing when the entry was last
+   * meaningfully updated. Used by the sitemap to avoid resetting the
+   * `lastModified` field on every deploy.
+   */
+  updatedAt: string;
 }
 
 export const projects: ProjectData[] = [
@@ -29,11 +35,13 @@ export const projects: ProjectData[] = [
       "Architecture integrity for Series A readiness",
     ],
     imageSrc: "/images/projects/vibeinprod.png",
-    imageAlt: "VibeInProd",
+    imageAlt:
+      "VibeInProd — AI codebase stabilization dashboard for startups scaling beyond prototype",
     link: "https://vibeinprod.com",
     badges: ["TypeScript", "Next.js", "React", "AI", "Consulting"],
     projectType: "personal",
     featured: true,
+    updatedAt: "2025-09",
   },
   {
     slug: "opendrift",
@@ -49,11 +57,13 @@ export const projects: ProjectData[] = [
       "Adjustable creativity threshold controls",
     ],
     imageSrc: "/images/projects/opendrift.png",
-    imageAlt: "OpenDrift",
+    imageAlt:
+      "OpenDrift — multi-response LLM exploration interface showing ranked outputs from OpenRouter models",
     link: "https://opendrift.app",
     badges: ["AI", "LLM", "TypeScript", "OpenRouter"],
     projectType: "work",
     featured: true,
+    updatedAt: "2025-04",
   },
   {
     slug: "circus-connect",
@@ -69,11 +79,13 @@ export const projects: ProjectData[] = [
       "Community moderation system",
     ],
     imageSrc: "/images/projects/circusconnect.png",
-    imageAlt: "CircusConnect",
+    imageAlt:
+      "CircusConnect — community-driven circus arts knowledge base with trick and school directories",
     link: "https://circusconnect.com",
     badges: ["TypeScript", "Next.js", "React", "Community"],
     projectType: "work",
     featured: true,
+    updatedAt: "2025-04",
   },
   {
     slug: "payxor",
@@ -89,11 +101,13 @@ export const projects: ProjectData[] = [
       "TypeScript SDK and REST API integration",
     ],
     imageSrc: "/images/projects/payxor.png",
-    imageAlt: "PayXor",
+    imageAlt:
+      "PayXor — multi-chain stablecoin payment infrastructure with EIP-712 signed pricing",
     link: "https://payxor.xyz",
     badges: ["TypeScript", "Web3", "EVM", "Smart Contracts", "Payments"],
     projectType: "work",
     featured: true,
+    updatedAt: "2025-04",
   },
   {
     slug: "eternal-mint",
@@ -109,12 +123,14 @@ export const projects: ProjectData[] = [
       "Permanent on-chain data storage using IPLD/DAG structures",
     ],
     imageSrc: "/images/projects/eternal-mint.png",
-    imageAlt: "EternalMint",
+    imageAlt:
+      "EternalMint — NFT minting interface for Autonomys with permanent on-chain storage",
     link: "https://eternalmint.xyz/",
     repoLink: "https://github.com/marc-aurele-besner/eternalmint-xyz",
     badges: ["TypeScript", "Auto-SDK", "IPLD", "Blockchain", "Solidity"],
     projectType: "personal",
     featured: true,
+    updatedAt: "2024-09",
   },
   {
     slug: "ai3-info",
@@ -129,7 +145,8 @@ export const projects: ProjectData[] = [
       "Powered by Auto SDK for live data",
     ],
     imageSrc: "/images/projects/ai3-info.png",
-    imageAlt: "AI3.info",
+    imageAlt:
+      "AI3.info — interactive 3D dashboard for real-time Autonomys network statistics",
     link: "https://ai3.info",
     repoLink: "https://github.com/marc-aurele-besner/ai3-info",
     badges: [
@@ -141,6 +158,7 @@ export const projects: ProjectData[] = [
     ],
     projectType: "personal",
     featured: true,
+    updatedAt: "2024-09",
   },
   {
     slug: "astral-block-explorer",
@@ -156,11 +174,13 @@ export const projects: ProjectData[] = [
       "Wallet integration support",
     ],
     imageSrc: "/images/projects/astral-block-explorer.png",
-    imageAlt: "Astral Block Explorer",
+    imageAlt:
+      "Astral — production block explorer for the Autonomys Network with staking and operator management",
     repoLink: "https://github.com/autonomys/astral",
     badges: ["Next.js", "React", "Polkadot.js", "TypeScript", "GraphQL"],
     projectType: "work",
     featured: true,
+    updatedAt: "2025-01",
   },
   {
     slug: "fileonchain",
@@ -176,12 +196,14 @@ export const projects: ProjectData[] = [
       "Uses IPLD and DAG data structures",
     ],
     imageSrc: "/images/projects/fileonchain.png",
-    imageAlt: "FileOnChain",
+    imageAlt:
+      "FileOnChain — permanent file storage on Substrate chains, Consensus 2024 hackathon project",
     link: "https://fileonchain.org/",
     repoLink: "https://github.com/marc-aurele-besner/consensus-hackathon-2024",
     badges: ["TypeScript", "Polkadot.js", "IPLD", "Blockchain"],
     projectType: "personal",
     featured: true,
+    updatedAt: "2024-05",
   },
   {
     slug: "autonomys-auto-sdk",
@@ -197,12 +219,14 @@ export const projects: ProjectData[] = [
       "Comprehensive documentation",
     ],
     imageSrc: "/images/projects/autonomys-auto-sdk.png",
-    imageAlt: "Autonomys Auto-SDK",
+    imageAlt:
+      "Autonomys Auto-SDK — TypeScript SDK for AI and Web3 developers",
     link: "https://www.npmjs.com/package/@autonomys/auto-consensus",
     repoLink: "https://github.com/autonomys/auto-sdk",
     badges: ["TypeScript", "SDK", "Web3", "AI", "Blockchain"],
     projectType: "work",
     featured: true,
+    updatedAt: "2025-04",
   },
   {
     slug: "oamo",
@@ -218,11 +242,13 @@ export const projects: ProjectData[] = [
       "User profile and rewards systems",
     ],
     imageSrc: "/images/projects/oamo.png",
-    imageAlt: "Oamo App",
+    imageAlt:
+      "Oamo — full-stack Web3 platform with wallet auth, smart contracts, and decentralized identity",
     link: "https://oamo.io",
     badges: ["TypeScript", "Next.js", "React", "Web3", "Solidity", "OAuth"],
     projectType: "work",
     featured: true,
+    updatedAt: "2024-03",
   },
   {
     slug: "mymultisig",
@@ -236,12 +262,14 @@ export const projects: ProjectData[] = [
       "Multi-owner approval workflows",
     ],
     imageSrc: "/images/projects/my-multisig.png",
-    imageAlt: "MyMultisig",
+    imageAlt:
+      "MyMultisig — simple web app for creating and managing multisig wallets",
     link: "https://mymultisig.app/",
     repoLink: "https://github.com/marc-aurele-besner/mymultisig-contract",
     badges: ["TypeScript", "Next.js", "React", "Web3", "Solidity"],
     projectType: "personal",
     featured: false,
+    updatedAt: "2023-08",
   },
   {
     slug: "collage-of-myself",
@@ -255,12 +283,14 @@ export const projects: ProjectData[] = [
       "Built with React Three Fiber",
     ],
     imageSrc: "/images/projects/collage-of-myself.png",
-    imageAlt: "CollageOfMyself",
+    imageAlt:
+      "CollageOfMyself — 3D NFT gallery built with React Three Fiber",
     link: "https://collageofmyself.com/",
     repoLink: "https://github.com/collageofmyself/collageofmyself-contract",
     badges: ["TypeScript", "Next.js", "React", "Web3", "Solidity"],
     projectType: "personal",
     featured: false,
+    updatedAt: "2022-12",
   },
   {
     slug: "plantswap-finance",
@@ -275,12 +305,14 @@ export const projects: ProjectData[] = [
       "Built on Binance Smart Chain",
     ],
     imageSrc: "/images/projects/plantswap.png",
-    imageAlt: "PlantSwap Finance",
+    imageAlt:
+      "PlantSwap Finance — DeFi platform with DEX and yield farming on Binance Smart Chain",
     link: "https://plantswap.finance/",
     repoLink: "https://github.com/PlantSwapFinance/plantswapfinance-contracts",
     badges: ["TypeScript", "Next.js", "React", "Web3", "Solidity"],
     projectType: "personal",
     featured: false,
+    updatedAt: "2022-08",
   },
   {
     slug: "golf-alpine",
@@ -294,12 +326,14 @@ export const projects: ProjectData[] = [
       "Club information display",
     ],
     imageSrc: "/images/projects/golf-alpine.png",
-    imageAlt: "Golf Alpine",
+    imageAlt:
+      "Golf Alpine — web app for booking tee times and viewing club information",
     link: "https://golfalpine.ca/",
     repoLink: "https://github.com/marc-aurele-besner/golfalpine.ca",
     badges: ["TypeScript", "React", "CSS"],
     projectType: "personal",
     featured: false,
+    updatedAt: "2022-05",
   },
 ];
 

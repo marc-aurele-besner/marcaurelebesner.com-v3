@@ -75,6 +75,7 @@ const baseExperience = {
   type: "remote" as const,
   startDate: "Apr 2024",
   endDate: "Jun 2025",
+  updatedAt: "2025-06",
   summary: "Summary text",
   description: "Description text",
   highlights: ["One", "Two"],
@@ -90,7 +91,13 @@ describe("ExperienceCard", () => {
     expect(
       screen.getByText("Lead Software Engineer at Autonomys Network")
     ).toBeInTheDocument();
-    expect(screen.getByText("Apr 2024 - Jun 2025")).toBeInTheDocument();
+    // The date range is rendered via <time> elements. We assert on each
+    // piece separately because they are split into two semantic elements.
+    expect(screen.getByText("Apr 2024")).toBeInTheDocument();
+    expect(screen.getByText("Jun 2025")).toBeInTheDocument();
+    expect(screen.getByText("Apr 2024").tagName).toBe("TIME");
+    expect(screen.getByText("Apr 2024")).toHaveAttribute("datetime", "2024-04");
+    expect(screen.getByText("Jun 2025")).toHaveAttribute("datetime", "2025-06");
 
     const link = screen.getByRole("link", { name: /Read more/i });
     fireEvent.click(link);

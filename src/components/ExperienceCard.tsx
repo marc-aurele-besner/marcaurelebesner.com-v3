@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { FC } from "react";
 import Badge from "./Badge";
+import DateRange from "./DateRange";
 import GlassCard from "./GlassCard";
 
 interface ExperienceCardProps extends ExperienceData {
@@ -41,7 +42,7 @@ export const ExperienceCard: FC<ExperienceCardProps> = ({
                 {title} at {company}
               </h3>
               <p className="text-sm text-slate-500 dark:text-grayTone">
-                {startDate} - {endDate}
+                <DateRange startDate={startDate} endDate={endDate} />
               </p>
             </div>
             <Link
@@ -92,7 +93,9 @@ export const ExperienceCard: FC<ExperienceCardProps> = ({
                 </p>
               </div>
               <div className="text-sm text-slate-500 dark:text-grayTone text-right">
-                <p>{startDate} - {endDate}</p>
+                <p>
+                  <DateRange startDate={startDate} endDate={endDate} />
+                </p>
                 <p className="capitalize">{location} · {type}</p>
               </div>
             </div>

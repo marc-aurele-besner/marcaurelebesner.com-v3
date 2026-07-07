@@ -1,0 +1,44 @@
+# Marc‑Aurele Besner
+
+> Senior Web3/AI Engineer. Smart contracts, AI agents, decentralized infrastructure, and developer tools. Available for advisory.
+
+## About
+
+Marc‑Aurele Besner is a Senior Web3/AI Engineer based in Canada with 5+ years of experience shipping Web3 products, smart contracts, SDKs, block explorers, and AI agents. He has led engineering at Autonomys Network, Oamo, and Gluwa, and advises early-stage teams on product, engineering, and smart-contract architecture.
+
+## Specialties
+
+- Smart contracts (Solidity, EVM, security, gas optimization, upgrade patterns)
+- AI agents and AI-assisted developer tooling
+- Decentralized infrastructure (IPLD, Substrate, Polkadot.js, Ceramic, Lit Protocol)
+- SDK and developer-tooling design
+- TypeScript / Next.js / React application development
+
+## Key pages
+
+- [Home](https://marcaurelebesner.com/): overview and recent work
+- [Projects](https://marcaurelebesner.com/projects): full list of Web3, AI, and tooling projects
+- [Experience](https://marcaurelebesner.com/experience): career timeline with detailed role descriptions
+- [Advisory](https://marcaurelebesner.com/advisory): services, engagement models, and FAQs
+- [Contact](https://marcaurelebesner.com/contact): form, response time, and FAQs
+
+## Featured projects
+
+- [VibeInProd](https://vibeinprod.com): AI codebase stabilization for startups
+- [OpenDrift](https://opendrift.app): AI tool surfacing the full distribution of LLM responses
+- [PayXor](https://payxor.xyz): Multi-chain stablecoin payment infrastructure
+- [Astral Block Explorer](https://github.com/autonomys/astral): Production block explorer for Autonomys
+- [Autonomys Auto-SDK](https://github.com/autonomys/auto-sdk): TypeScript SDK for the Autonomys Network
+
+## Profiles
+
+- GitHub: https://github.com/marc-aurele-besner
+- LinkedIn: https://www.linkedin.com/in/marc-aurele-besner/
+- X / Twitter: https://x.com/marcaureleb
+- Instagram: https://www.instagram.com/mabesner/
+
+## Contact
+
+- Form: https://marcaurelebesner.com/contact
+- Response time: within 2 business days
+- Engagement models: hourly, retainer, project-based

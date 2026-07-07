@@ -1,0 +1,16 @@
+/* TEAM */
+  Engineer & Maintainer: Marc‑Aurele Besner
+  Contact: hello@marcaurelebesner.com (via /contact)
+  Twitter: @marcaureleb
+  From: Canada
+
+/* SITE */
+  Last update: 2025/07/07
+  Language: English
+  Doctype: HTML5
+  Framework: Next.js 16
+  Hosting: Vercel
+  Analytics: Google Analytics 4 (conditional)
+
+/* THANKS */
+  Built with help from the Next.js, React, Tailwind, and Vercel communities.
