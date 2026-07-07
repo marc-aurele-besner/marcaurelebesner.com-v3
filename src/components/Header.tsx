@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
-import { siteConfig } from "@/config/site";
+import { siteConfig, navItems } from "@/config/site";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -22,14 +22,6 @@ export default function Header() {
     if (isOpen) document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [isOpen]);
-
-  const items = [
-    { href: "#about", label: "About", id: "about" },
-    { href: "#experience", label: "Experience", id: "experience" },
-    { href: "#projects", label: "Projects", id: "projects" },
-    { href: "#advisory", label: "Advisory", id: "advisory" },
-    { href: "#contact", label: "Contact", id: "contact" },
-  ];
 
   return (
     <header className="md:hidden sticky top-0 z-50 bg-white/90 dark:bg-darkBlue/90 backdrop-blur-md border-b border-slate-200 dark:border-white/5 shadow-sm">
@@ -54,7 +46,7 @@ export default function Header() {
           <nav id="mobile-menu" className="px-2 pb-4 relative bg-white/95 dark:bg-darkBlue/95 backdrop-blur-md">
             <div className="pointer-events-none absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-[var(--accent)]/30 to-transparent" />
             <ul className="flex flex-col items-stretch gap-2 pt-2">
-              {items.map((item) => {
+              {navItems.map((item) => {
                 const isActive = activeId === item.id;
                 return (
                   <li className="w-full" key={item.id}>
@@ -92,7 +84,7 @@ export default function Header() {
               >
                 <div className="pointer-events-none absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-[var(--accent)]/30 to-transparent" />
                 <ul className="flex flex-col items-stretch gap-2 pt-2">
-                  {items.map((item, index) => {
+                  {navItems.map((item, index) => {
                     const isActive = activeId === item.id;
                     return (
                       <motion.li
