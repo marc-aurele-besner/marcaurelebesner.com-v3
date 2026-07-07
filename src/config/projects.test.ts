@@ -41,6 +41,19 @@ describe("projects config", () => {
       expect(project.imageSrc).toMatch(/^\/images\/projects\/.+\.(png|jpg|jpeg|webp)$/);
     });
   });
+
+  it("should have an updatedAt in YYYY-MM format", () => {
+    projects.forEach((project) => {
+      expect(project.updatedAt).toMatch(/^\d{4}-\d{2}$/);
+    });
+  });
+
+  it("should have descriptive imageAlt text (not just the project name)", () => {
+    projects.forEach((project) => {
+      // The alt must add context beyond the bare project title.
+      expect(project.imageAlt.length).toBeGreaterThan(project.title.length);
+    });
+  });
 });
 
 describe("getProjectBySlug", () => {

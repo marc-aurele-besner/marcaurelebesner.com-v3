@@ -6,6 +6,12 @@ export interface ExperienceData {
   type: "remote" | "onsite" | "hybrid";
   startDate: string;
   endDate: string;
+  /**
+   * ISO-8601 month (YYYY-MM) representing when the entry was last
+   * meaningfully updated. Used by the sitemap to avoid resetting the
+   * `lastModified` field on every deploy.
+   */
+  updatedAt: string;
   summary: string;
   description: string;
   highlights: string[];
@@ -23,6 +29,7 @@ export const experiences: ExperienceData[] = [
     type: "remote",
     startDate: "Apr 2024",
     endDate: "Jun 2025",
+    updatedAt: "2025-06",
     summary:
       "Led design and implementation of production indexing systems, block explorer, developer SDKs, and EVM tooling for the Autonomys blockchain network.",
     description:
@@ -58,6 +65,7 @@ export const experiences: ExperienceData[] = [
     type: "remote",
     startDate: "Mar 2023",
     endDate: "Apr 2024",
+    updatedAt: "2024-04",
     summary:
       "Authored Solidity smart contracts for rewards and profiles, integrated decentralized data systems using Ceramic Network and Lit Protocol for encryption workflows.",
     description:
@@ -90,6 +98,7 @@ export const experiences: ExperienceData[] = [
     type: "remote",
     startDate: "Feb 2022",
     endDate: "Jun 2023",
+    updatedAt: "2023-06",
     summary:
       "Developed staking systems, DAOs, and multisig wallets. Built internal dashboards and automated reporting tools for contract interaction.",
     description:
@@ -119,6 +128,7 @@ export const experiences: ExperienceData[] = [
     type: "remote",
     startDate: "Jan 2023",
     endDate: "Apr 2023",
+    updatedAt: "2023-04",
     summary:
       "Led hands-on courses teaching smart contract development with Solidity, Hardhat, and Foundry. Guided students through NFT and marketplace implementations.",
     description:
@@ -147,6 +157,7 @@ export const experiences: ExperienceData[] = [
     type: "remote",
     startDate: "May 2021",
     endDate: "2022",
+    updatedAt: "2023-01",
     summary:
       "Built multiple blockchain projects including a DeFi platform (PlantSwap Finance) and an NFT gallery with 3D web experience (Collage of Myself).",
     description:
@@ -176,6 +187,7 @@ export const experiences: ExperienceData[] = [
     type: "remote",
     startDate: "Jun 2020",
     endDate: "Apr 2021",
+    updatedAt: "2022-01",
     summary:
       "Provided technical support for POS software, enhanced PHP/SQL backend, and developed Zoho plugins to automate workflows.",
     description:
@@ -203,6 +215,7 @@ export const experiences: ExperienceData[] = [
     type: "onsite",
     startDate: "Aug 2019",
     endDate: "Nov 2019",
+    updatedAt: "2022-01",
     summary:
       "Created cryptocurrency news content 3-4 times weekly, learning video production, public speaking, and social media marketing.",
     description:

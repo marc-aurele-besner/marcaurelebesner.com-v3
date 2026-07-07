@@ -38,6 +38,12 @@ describe("experience config", () => {
       expect(typeof exp.isWeb3).toBe("boolean");
     });
   });
+
+  it("should have an updatedAt in YYYY-MM format", () => {
+    experiences.forEach((exp) => {
+      expect(exp.updatedAt).toMatch(/^\d{4}-\d{2}$/);
+    });
+  });
 });
 
 describe("getExperienceBySlug", () => {
