@@ -42,6 +42,7 @@ const mockExperiences = [
 
 describe("Experience OG Image", () => {
   let originalExperiences: typeof experienceModule.experiences;
+  let originalGetExperienceBySlug: typeof experienceModule.getExperienceBySlug;
   let originalSiteConfigUrl: string;
   let originalSiteConfigName: string;
 
@@ -49,6 +50,12 @@ describe("Experience OG Image", () => {
     originalExperiences = experienceModule.experiences;
     Object.defineProperty(experienceModule, "experiences", {
       value: mockExperiences,
+      writable: true,
+    });
+
+    originalGetExperienceBySlug = experienceModule.getExperienceBySlug;
+    Object.defineProperty(experienceModule, "getExperienceBySlug", {
+      value: (slug: string) => mockExperiences.find((e) => e.slug === slug),
       writable: true,
     });
 
@@ -61,6 +68,10 @@ describe("Experience OG Image", () => {
   afterEach(() => {
     Object.defineProperty(experienceModule, "experiences", {
       value: originalExperiences,
+      writable: true,
+    });
+    Object.defineProperty(experienceModule, "getExperienceBySlug", {
+      value: originalGetExperienceBySlug,
       writable: true,
     });
     siteConfigModule.siteConfig.url = originalSiteConfigUrl;

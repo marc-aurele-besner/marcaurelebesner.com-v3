@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { projects } from "@/config/projects";
+import { projects, getProjectBySlug } from "@/config/projects";
 import { ogImageSize, siteConfig } from "@/config/site";
 import { formatProjectType } from "@/utils/project-type";
 
@@ -19,7 +19,7 @@ export default async function TwitterImage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const project = getProjectBySlug(slug);
 
   if (!project) {
     return new ImageResponse(

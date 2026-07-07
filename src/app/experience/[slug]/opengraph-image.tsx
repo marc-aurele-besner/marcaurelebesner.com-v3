@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { experiences } from "@/config/experience";
+import { experiences, getExperienceBySlug } from "@/config/experience";
 import { ogImageSize, siteConfig } from "@/config/site";
 
 export const size = ogImageSize;
@@ -18,7 +18,7 @@ export default async function OGImage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const experience = experiences.find((exp) => exp.slug === slug);
+  const experience = getExperienceBySlug(slug);
 
   if (!experience) {
     return new ImageResponse(
