@@ -7,6 +7,7 @@ import { siteConfig } from "@/config/site";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { trackNavigation } from "@/utils/analytics";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -65,7 +66,10 @@ export default function Header() {
                           ? "text-[var(--accent)] bg-[var(--accent-bg-weak)] border-2 border-[var(--accent-weak)]"
                           : "text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:bg-black/5 dark:hover:bg-white/5 border-2 border-transparent hover:border-[var(--accent-weak)]"
                       }`}
-                      onClick={() => setIsOpen(false)}
+                      onClick={() => {
+                        trackNavigation(item.id);
+                        setIsOpen(false);
+                      }}
                     >
                       {item.label}
                     </Link>
@@ -106,7 +110,10 @@ export default function Header() {
                               ? "text-[var(--accent)] bg-[var(--accent-bg-weak)] border-2 border-[var(--accent-weak)]"
                               : "text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:bg-black/5 dark:hover:bg-white/5 border-2 border-transparent hover:border-[var(--accent-weak)]"
                           }`}
-                          onClick={() => setIsOpen(false)}
+                          onClick={() => {
+                            trackNavigation(item.id);
+                            setIsOpen(false);
+                          }}
                         >
                           {item.label}
                         </Link>
