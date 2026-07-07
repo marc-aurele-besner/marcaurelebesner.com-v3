@@ -1,3 +1,11 @@
+import { type IconType } from "react-icons";
+import {
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaTwitter,
+} from "react-icons/fa";
+
 export const ogImageSize = {
   width: 1200,
   height: 630,
@@ -48,3 +56,43 @@ export const siteConfig = {
 };
 
 export type SiteConfig = typeof siteConfig;
+
+// Single source of truth for social platforms (consumed by Menu and Contact).
+export const socialLinks = [
+  {
+    platform: "github",
+    href: siteConfig.links.github,
+    label: "GitHub",
+    title: "GitHub",
+    icon: FaGithub,
+  },
+  {
+    platform: "linkedin",
+    href: siteConfig.links.linkedin,
+    label: "LinkedIn",
+    title: "LinkedIn",
+    icon: FaLinkedin,
+  },
+  {
+    platform: "twitter",
+    href: siteConfig.links.twitter,
+    label: "Twitter",
+    title: "Twitter/X",
+    icon: FaTwitter,
+  },
+  {
+    platform: "instagram",
+    href: siteConfig.links.instagram,
+    label: "Instagram",
+    title: "Instagram",
+    icon: FaInstagram,
+  },
+] as const satisfies ReadonlyArray<{
+  platform: string;
+  href: string;
+  label: string;
+  title: string;
+  icon: IconType;
+}>;
+
+export type SocialPlatform = (typeof socialLinks)[number]["platform"];

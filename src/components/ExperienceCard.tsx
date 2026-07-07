@@ -23,7 +23,6 @@ export const ExperienceCard: FC<ExperienceCardProps> = ({
   summary,
   skills,
   companyUrl,
-  isWeb3: _isWeb3,
   minimal = false,
 }) => {
   if (minimal) {
