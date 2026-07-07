@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { DEFAULT_SECTIONS, type SectionId } from "@/config/site";
+import { trackSectionView } from "@/utils/analytics";
 
 // Re-exported for backward compatibility — SectionId lives in @/config/site now.
 export type { SectionId };
@@ -10,6 +11,17 @@ export function useActiveSection(sectionIds: readonly string[] = DEFAULT_SECTION
   const [activeId, setActiveId] = useState<string>(sectionIds[0] ?? "");
 
   const ids = useMemo(() => [...sectionIds], [sectionIds]);
+
+  // Fire one view_section event per active section. Ref guards against
+  // re-firing the same section when the IntersectionObserver callback
+  // reports the same entry repeatedly.
+  const lastTrackedRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (activeId && activeId !== lastTrackedRef.current) {
+      lastTrackedRef.current = activeId;
+      trackSectionView(activeId);
+    }
+  }, [activeId]);
 
   useEffect(() => {
     const elements = ids

@@ -1,5 +1,10 @@
 import { renderHook, act } from "@testing-library/react";
+import { sendGAEvent } from "@next/third-parties/google";
 import { useActiveSection } from "./useActiveSection";
+
+vi.mock("@next/third-parties/google", () => ({
+  sendGAEvent: vi.fn(),
+}));
 
 const mockIntersectionObserver = vi.fn((_callback: IntersectionObserverCallback) => ({
   observe: vi.fn(),
@@ -14,6 +19,7 @@ const sectionIds = ["about", "experience", "projects", "advisory", "contact"] as
 describe("useActiveSection", () => {
   beforeEach(() => {
     mockIntersectionObserver.mockClear();
+    vi.mocked(sendGAEvent).mockClear();
     sectionIds.forEach((id) => {
       const el = document.createElement("div");
       el.id = id;
@@ -101,5 +107,69 @@ describe("useActiveSection", () => {
     });
 
     expect(result.current.activeId).toBe("experience");
+  });
+
+  it("should track a view_section event for the initial section on mount", () => {
+    renderHook(() => useActiveSection());
+    expect(sendGAEvent).toHaveBeenCalledWith("event", "view_section", { section: "about" });
+  });
+
+  it("should track view_section only once per section change", () => {
+    const { result } = renderHook(() => useActiveSection());
+    const observerCallback =
+      mockIntersectionObserver.mock.calls[0]?.[0] as
+        | IntersectionObserverCallback
+        | undefined;
+    if (!observerCallback) throw new Error("Missing observer callback");
+    const projectsEl = document.getElementById("projects") as Element;
+    const experienceEl = document.getElementById("experience") as Element;
+    const advisoryEl = document.getElementById("advisory") as Element;
+
+    // Initial mount already fires "about"; clear so we count only transitions.
+    vi.mocked(sendGAEvent).mockClear();
+
+    act(() => {
+      observerCallback(
+        [{ isIntersecting: true, intersectionRatio: 0.8, target: projectsEl }] as unknown as IntersectionObserverEntry[],
+        {} as IntersectionObserver
+      );
+    });
+    expect(result.current.activeId).toBe("projects");
+    expect(sendGAEvent).toHaveBeenCalledTimes(1);
+    expect(sendGAEvent).toHaveBeenLastCalledWith("event", "view_section", { section: "projects" });
+
+    // Repeating the same entry should not re-fire.
+    act(() => {
+      observerCallback(
+        [{ isIntersecting: true, intersectionRatio: 0.9, target: projectsEl }] as unknown as IntersectionObserverEntry[],
+        {} as IntersectionObserver
+      );
+    });
+    expect(sendGAEvent).toHaveBeenCalledTimes(1);
+
+    act(() => {
+      observerCallback(
+        [{ isIntersecting: true, intersectionRatio: 0.6, target: experienceEl }] as unknown as IntersectionObserverEntry[],
+        {} as IntersectionObserver
+      );
+    });
+    expect(result.current.activeId).toBe("experience");
+    expect(sendGAEvent).toHaveBeenCalledTimes(2);
+    expect(sendGAEvent).toHaveBeenLastCalledWith("event", "view_section", { section: "experience" });
+
+    act(() => {
+      observerCallback(
+        [{ isIntersecting: true, intersectionRatio: 0.7, target: advisoryEl }] as unknown as IntersectionObserverEntry[],
+        {} as IntersectionObserver
+      );
+    });
+    expect(result.current.activeId).toBe("advisory");
+    expect(sendGAEvent).toHaveBeenCalledTimes(3);
+    expect(sendGAEvent).toHaveBeenLastCalledWith("event", "view_section", { section: "advisory" });
+  });
+
+  it("should not track view_section when activeId is empty", () => {
+    renderHook(() => useActiveSection([]));
+    expect(sendGAEvent).not.toHaveBeenCalled();
   });
 });
