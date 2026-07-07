@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { projects } from "@/config/projects";
 import { ogImageSize, siteConfig } from "@/config/site";
+import { formatProjectType } from "@/utils/project-type";
 
 export const size = ogImageSize;
 
@@ -43,7 +44,7 @@ export default async function TwitterImage({
   }
 
   const badgesText = project.badges.slice(0, 4).join(" • ");
-  const projectType = project.projectType === "personal" ? "Personal Project" : "Work Project";
+  const projectType = formatProjectType(project.projectType);
 
   return new ImageResponse(
     (

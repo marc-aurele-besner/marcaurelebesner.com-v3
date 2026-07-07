@@ -3,6 +3,7 @@ import { siteConfig } from "@/config/site";
 import Badge from "@/components/Badge";
 import GlassCard from "@/components/GlassCard";
 import { DEFAULT_BLUR_DATA_URL } from "@/utils/blur";
+import { formatProjectType } from "@/utils/project-type";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -43,7 +44,7 @@ export async function generateMetadata({
       "Web3",
       "Blockchain",
       "Project",
-      project.projectType === "personal" ? "Personal Project" : "Work Project",
+      formatProjectType(project.projectType),
     ],
     alternates: {
       canonical: url,
@@ -155,9 +156,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               <span
                 className={`inline-block px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-full border border-[var(--accent-weak)] text-[var(--accent)]`}
               >
-                {project.projectType === "personal"
-                  ? "Personal Project"
-                  : "Work Project"}
+                {formatProjectType(project.projectType)}
               </span>
             </div>
             <div className="flex items-center gap-4">

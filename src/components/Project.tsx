@@ -1,5 +1,6 @@
 import { ProjectData } from "@/config/projects";
 import { DEFAULT_BLUR_DATA_URL } from "@/utils/blur";
+import { formatProjectType } from "@/utils/project-type";
 import { trackProjectDetails, trackProjectLink } from "@/utils/analytics";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -53,11 +54,9 @@ export const Project: FC<ProjectData> = ({
           </div>
           <span
             className="inline-block px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-full border mt-3 transition-all duration-300 border-[var(--accent-weak)] text-[var(--accent)] bg-transparent hover:bg-[var(--accent-bg-weak)] hover:border-[var(--accent)]"
-            aria-label={`Project type: ${
-              projectType === "personal" ? "Personal Project" : "Work Project"
-            }`}
+            aria-label={`Project type: ${formatProjectType(projectType)}`}
           >
-            {projectType === "personal" ? "Personal Project" : "Work Project"}
+            {formatProjectType(projectType)}
           </span>
         </div>
       </Link>
