@@ -3,6 +3,19 @@ export const ogImageSize = {
   height: 630,
 };
 
+// Single source of truth for the section nav (used by Header, Menu, useActiveSection).
+export const navItems = [
+  { href: "#about", label: "About", id: "about" },
+  { href: "#experience", label: "Experience", id: "experience" },
+  { href: "#projects", label: "Projects", id: "projects" },
+  { href: "#advisory", label: "Advisory", id: "advisory" },
+  { href: "#contact", label: "Contact", id: "contact" },
+] as const;
+
+export type NavItem = typeof navItems[number];
+export type SectionId = NavItem["id"];
+export const DEFAULT_SECTIONS: readonly SectionId[] = navItems.map((item) => item.id);
+
 export const siteConfig = {
   name: "Marc‑Aurele Besner",
   role: "Web3 Full‑Stack Engineer",
