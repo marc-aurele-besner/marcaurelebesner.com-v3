@@ -52,11 +52,7 @@ export const Project: FC<ProjectData> = ({
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
           <span
-            className={`inline-block px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-full border mt-3 transition-all duration-300 ${
-              projectType === "personal"
-                ? "border-[var(--accent-weak)] text-[var(--accent)] bg-transparent hover:bg-[var(--accent-bg-weak)] hover:border-[var(--accent)]"
-                : "border-[var(--accent-weak)] text-[var(--accent)] bg-transparent hover:bg-[var(--accent-bg-weak)] hover:border-[var(--accent)]"
-            }`}
+            className="inline-block px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-full border mt-3 transition-all duration-300 border-[var(--accent-weak)] text-[var(--accent)] bg-transparent hover:bg-[var(--accent-bg-weak)] hover:border-[var(--accent)]"
             aria-label={`Project type: ${
               projectType === "personal" ? "Personal Project" : "Work Project"
             }`}
