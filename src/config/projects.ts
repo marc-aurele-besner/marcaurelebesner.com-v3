@@ -6,7 +6,6 @@ export interface ProjectData {
   highlights?: string[];
   imageSrc: string;
   imageAlt: string;
-  blurDataURL?: string;
   link?: string;
   repoLink?: string;
   badges: string[];
@@ -31,8 +30,6 @@ export const projects: ProjectData[] = [
     ],
     imageSrc: "/images/projects/vibeinprod.png",
     imageAlt: "VibeInProd",
-    blurDataURL:
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAB3RJTUUH4gMOCwAaJq3CzQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAADklEQVQY02NgGAWjAAMAABsAAZQ9/HoAAAAAElFTkSuQmCC",
     link: "https://vibeinprod.com",
     badges: ["TypeScript", "Next.js", "React", "AI", "Consulting"],
     projectType: "personal",
@@ -53,8 +50,6 @@ export const projects: ProjectData[] = [
     ],
     imageSrc: "/images/projects/opendrift.png",
     imageAlt: "OpenDrift",
-    blurDataURL:
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAB3RJTUUH4gMOCwAaJq3CzQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAADklEQVQY02NgGAWjAAMAABsAAZQ9/HoAAAAAElFTkSuQmCC",
     link: "https://opendrift.app",
     badges: ["AI", "LLM", "TypeScript", "OpenRouter"],
     projectType: "work",
@@ -75,8 +70,6 @@ export const projects: ProjectData[] = [
     ],
     imageSrc: "/images/projects/circusconnect.png",
     imageAlt: "CircusConnect",
-    blurDataURL:
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAB3RJTUUH4gMOCwAaJq3CzQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAADklEQVQY02NgGAWjAAMAABsAAZQ9/HoAAAAAElFTkSuQmCC",
     link: "https://circusconnect.com",
     badges: ["TypeScript", "Next.js", "React", "Community"],
     projectType: "work",
@@ -97,8 +90,6 @@ export const projects: ProjectData[] = [
     ],
     imageSrc: "/images/projects/payxor.png",
     imageAlt: "PayXor",
-    blurDataURL:
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAB3RJTUUH4gMOCwAaJq3CzQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAADklEQVQY02NgGAWjAAMAABsAAZQ9/HoAAAAAElFTkSuQmCC",
     link: "https://payxor.xyz",
     badges: ["TypeScript", "Web3", "EVM", "Smart Contracts", "Payments"],
     projectType: "work",
@@ -119,8 +110,6 @@ export const projects: ProjectData[] = [
     ],
     imageSrc: "/images/projects/eternal-mint.png",
     imageAlt: "EternalMint",
-    blurDataURL:
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAB3RJTUUH4gMOCwAaJq3CzQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAADklEQVQY02NgGAWjAAMAABsAAZQ9/HoAAAAAElFTkSuQmCC",
     link: "https://eternalmint.xyz/",
     repoLink: "https://github.com/marc-aurele-besner/eternalmint-xyz",
     badges: ["TypeScript", "Auto-SDK", "IPLD", "Blockchain", "Solidity"],
@@ -141,8 +130,6 @@ export const projects: ProjectData[] = [
     ],
     imageSrc: "/images/projects/ai3-info.png",
     imageAlt: "AI3.info",
-    blurDataURL:
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAB3RJTUUH4gMOCwAaJq3CzQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAADklEQVQY02NgGAWjAAMAABsAAZQ9/HoAAAAAElFTkSuQmCC",
     link: "https://ai3.info",
     repoLink: "https://github.com/marc-aurele-besner/ai3-info",
     badges: [
@@ -170,8 +157,6 @@ export const projects: ProjectData[] = [
     ],
     imageSrc: "/images/projects/astral-block-explorer.png",
     imageAlt: "Astral Block Explorer",
-    blurDataURL:
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAB3RJTUUH4gMOCwAaJq3CzQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAADklEQVQY02NgGAWjAAMAABsAAZQ9/HoAAAAAElFTkSuQmCC",
     repoLink: "https://github.com/autonomys/astral",
     badges: ["Next.js", "React", "Polkadot.js", "TypeScript", "GraphQL"],
     projectType: "work",
@@ -192,8 +177,6 @@ export const projects: ProjectData[] = [
     ],
     imageSrc: "/images/projects/fileonchain.png",
     imageAlt: "FileOnChain",
-    blurDataURL:
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAB3RJTUUH4gMOCwAaJq3CzQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAADklEQVQY02NgGAWjAAMAABsAAZQ9/HoAAAAAElFTkSuQmCC",
     link: "https://fileonchain.org/",
     repoLink: "https://github.com/marc-aurele-besner/consensus-hackathon-2024",
     badges: ["TypeScript", "Polkadot.js", "IPLD", "Blockchain"],
@@ -215,8 +198,6 @@ export const projects: ProjectData[] = [
     ],
     imageSrc: "/images/projects/autonomys-auto-sdk.png",
     imageAlt: "Autonomys Auto-SDK",
-    blurDataURL:
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAB3RJTUUH4gMOCwAaJq3CzQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAADklEQVQY02NgGAWjAAMAABsAAZQ9/HoAAAAAElFTkSuQmCC",
     link: "https://www.npmjs.com/package/@autonomys/auto-consensus",
     repoLink: "https://github.com/autonomys/auto-sdk",
     badges: ["TypeScript", "SDK", "Web3", "AI", "Blockchain"],
@@ -238,8 +219,6 @@ export const projects: ProjectData[] = [
     ],
     imageSrc: "/images/projects/oamo.png",
     imageAlt: "Oamo App",
-    blurDataURL:
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAB3RJTUUH4gMOCwAaJq3CzQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAADklEQVQY02NgGAWjAAMAABsAAZQ9/HoAAAAAElFTkSuQmCC",
     link: "https://oamo.io",
     badges: ["TypeScript", "Next.js", "React", "Web3", "Solidity", "OAuth"],
     projectType: "work",
@@ -258,8 +237,6 @@ export const projects: ProjectData[] = [
     ],
     imageSrc: "/images/projects/my-multisig.png",
     imageAlt: "MyMultisig",
-    blurDataURL:
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAB3RJTUUH4gMOCwAaJq3CzQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAADklEQVQY02NgGAWjAAMAABsAAZQ9/HoAAAAAElFTkSuQmCC",
     link: "https://mymultisig.app/",
     repoLink: "https://github.com/marc-aurele-besner/mymultisig-contract",
     badges: ["TypeScript", "Next.js", "React", "Web3", "Solidity"],
@@ -279,8 +256,6 @@ export const projects: ProjectData[] = [
     ],
     imageSrc: "/images/projects/collage-of-myself.png",
     imageAlt: "CollageOfMyself",
-    blurDataURL:
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAB3RJTUUH4gMOCwAaJq3CzQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAADklEQVQY02NgGAWjAAMAABsAAZQ9/HoAAAAAElFTkSuQmCC",
     link: "https://collageofmyself.com/",
     repoLink: "https://github.com/collageofmyself/collageofmyself-contract",
     badges: ["TypeScript", "Next.js", "React", "Web3", "Solidity"],
@@ -301,8 +276,6 @@ export const projects: ProjectData[] = [
     ],
     imageSrc: "/images/projects/plantswap.png",
     imageAlt: "PlantSwap Finance",
-    blurDataURL:
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAB3RJTUUH4gMOCwAaJq3CzQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAADklEQVQY02NgGAWjAAMAABsAAZQ9/HoAAAAAElFTkSuQmCC",
     link: "https://plantswap.finance/",
     repoLink: "https://github.com/PlantSwapFinance/plantswapfinance-contracts",
     badges: ["TypeScript", "Next.js", "React", "Web3", "Solidity"],
@@ -322,8 +295,6 @@ export const projects: ProjectData[] = [
     ],
     imageSrc: "/images/projects/golf-alpine.png",
     imageAlt: "Golf Alpine",
-    blurDataURL:
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAB3RJTUUH4gMOCwAaJq3CzQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAADklEQVQY02NgGAWjAAMAABsAAZQ9/HoAAAAAElFTkSuQmCC",
     link: "https://golfalpine.ca/",
     repoLink: "https://github.com/marc-aurele-besner/golfalpine.ca",
     badges: ["TypeScript", "React", "CSS"],
