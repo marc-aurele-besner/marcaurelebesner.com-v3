@@ -3,24 +3,16 @@ import TwitterImage from "./twitter-image";
 import { ImageResponse } from "next/og";
 import * as projectModule from "@/config/projects";
 import * as siteConfigModule from "@/config/site";
-import type React from "react";
+import {
+  stubExport,
+  getEyebrow,
+  getIdentity,
+  getNotFoundText,
+  type MockImageResponse,
+} from "@/test/og-image-test-utils";
 
-type MockImageResponse = {
-  element: React.ReactElement<{ children: unknown }>;
-  options: { width: number; height: number };
-};
+vi.mock("next/og", async () => (await import("@/test/og-image-test-utils")).mockNextOg());
 
-// Mock ImageResponse
-vi.mock("next/og", () => ({
-  ImageResponse: vi.fn(
-    (element: unknown, options: { width: number; height: number }) => ({
-      element,
-      options,
-    })
-  ), // Mock with a simple return
-}));
-
-// Mock project data
 const mockProjects = [
   {
     slug: "mock-project-1",
@@ -39,41 +31,22 @@ const mockProjects = [
 ];
 
 describe("Project Twitter Image", () => {
-  let originalProjects: typeof projectModule.projects;
-  let originalGetProjectBySlug: typeof projectModule.getProjectBySlug;
-  let originalSiteConfigName: string;
-  let originalSiteConfigTwitterHandle: string;
+  const restores: Array<() => void> = [];
 
   beforeEach(() => {
-    originalProjects = projectModule.projects;
-    Object.defineProperty(projectModule, "projects", {
-      value: mockProjects,
-      writable: true,
-    });
-
-    originalGetProjectBySlug = projectModule.getProjectBySlug;
-    Object.defineProperty(projectModule, "getProjectBySlug", {
-      value: (slug: string) => mockProjects.find((p) => p.slug === slug),
-      writable: true,
-    });
-
-    originalSiteConfigName = siteConfigModule.siteConfig.name;
-    siteConfigModule.siteConfig.name = "Mock Name";
-    originalSiteConfigTwitterHandle = siteConfigModule.siteConfig.twitterHandle;
-    siteConfigModule.siteConfig.twitterHandle = "@mockhandle";
+    restores.push(
+      stubExport(projectModule, "projects", mockProjects),
+      stubExport(projectModule, "getProjectBySlug", (slug: string) =>
+        mockProjects.find((p) => p.slug === slug)
+      ),
+      stubExport(siteConfigModule.siteConfig, "name", "Mock Name"),
+      stubExport(siteConfigModule.siteConfig, "twitterHandle", "@mockhandle")
+    );
   });
 
   afterEach(() => {
-    Object.defineProperty(projectModule, "projects", {
-      value: originalProjects,
-      writable: true,
-    });
-    Object.defineProperty(projectModule, "getProjectBySlug", {
-      value: originalGetProjectBySlug,
-      writable: true,
-    });
-    siteConfigModule.siteConfig.name = originalSiteConfigName;
-    siteConfigModule.siteConfig.twitterHandle = originalSiteConfigTwitterHandle;
+    restores.forEach((restore) => restore());
+    restores.length = 0;
     vi.restoreAllMocks();
   });
 
@@ -87,52 +60,32 @@ describe("Project Twitter Image", () => {
     expect(params).toEqual([{ slug: "mock-project-1" }, { slug: "mock-project-2" }]);
   });
 
-  it("should return an ImageResponse with correct content for a personal project", async () => {
-    const paramsPromise = Promise.resolve({ slug: "mock-project-1" });
-    const result = (await TwitterImage({ params: paramsPromise })) as unknown as MockImageResponse;
+  it("should render the project-type eyebrow for a personal project", async () => {
+    const result = (await TwitterImage({
+      params: Promise.resolve({ slug: "mock-project-1" }),
+    })) as unknown as MockImageResponse;
 
-    expect(ImageResponse).toHaveBeenCalledWith(
-      expect.any(Object), // The JSX element
-      { width: 1200, height: 630 }
-    );
-
-    const element = result.element as unknown as { props: { children: unknown } };
-    const children = element.props.children as Array<{
-      props: { children: unknown };
-    }>;
-    expect(children[0].props.children).toBe("Personal Project");
+    expect(ImageResponse).toHaveBeenCalledWith(expect.any(Object), {
+      width: 1200,
+      height: 630,
+    });
+    expect(getEyebrow(result)).toBe("Personal Project");
   });
 
-  it("should return an ImageResponse with correct content for a work project", async () => {
-    const paramsPromise = Promise.resolve({ slug: "mock-project-2" });
-    const result = (await TwitterImage({ params: paramsPromise })) as unknown as MockImageResponse;
+  it("should render the Twitter handle in the footer for a work project", async () => {
+    const result = (await TwitterImage({
+      params: Promise.resolve({ slug: "mock-project-2" }),
+    })) as unknown as MockImageResponse;
 
-    expect(ImageResponse).toHaveBeenCalledWith(
-      expect.any(Object), // The JSX element
-      { width: 1200, height: 630 }
-    );
-
-    const element = result.element as unknown as { props: { children: unknown } };
-    const children = element.props.children as Array<{
-      props: { children: unknown };
-    }>;
-    expect(children[0].props.children).toBe("Work Project");
-    expect(
-      ((children[2].props.children as Array<{ props: { children: unknown } }>)[1]
-        .props.children as Array<{ props: { children: unknown } }>)[1].props.children
-    ).toBe("@mockhandle");
+    expect(getEyebrow(result)).toBe("Work Project");
+    expect(getIdentity(result).line).toBe("@mockhandle");
   });
 
-  it("should return an ImageResponse with 'Project Not Found' for an unknown project", async () => {
-    const paramsPromise = Promise.resolve({ slug: "unknown-project" });
-    const result = (await TwitterImage({ params: paramsPromise })) as unknown as MockImageResponse;
+  it("should render 'Project Not Found' for an unknown project", async () => {
+    const result = (await TwitterImage({
+      params: Promise.resolve({ slug: "unknown-project" }),
+    })) as unknown as MockImageResponse;
 
-    expect(ImageResponse).toHaveBeenCalledWith(
-      expect.any(Object), // The JSX element
-      { width: 1200, height: 630 }
-    );
-
-    const element = result.element as unknown as { props: { children: unknown } };
-    expect(element.props.children).toBe("Project Not Found");
+    expect(getNotFoundText(result)).toBe("Project Not Found");
   });
 });
