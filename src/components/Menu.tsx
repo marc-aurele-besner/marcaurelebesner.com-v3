@@ -3,7 +3,7 @@
 import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { motion } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
-import { siteConfig } from "@/config/site";
+import { siteConfig, navItems } from "@/config/site";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -12,13 +12,6 @@ import { trackNavigation, trackSocialLink } from "@/utils/analytics";
 export default function Menu() {
   const { activeId } = useActiveSection();
   const pathname = usePathname();
-  const items = [
-    { href: "#about", label: "About", id: "about" },
-    { href: "#experience", label: "Experience", id: "experience" },
-    { href: "#projects", label: "Projects", id: "projects" },
-    { href: "#advisory", label: "Advisory", id: "advisory" },
-    { href: "#contact", label: "Contact", id: "contact" },
-  ];
 
   return (
     <div className="flex flex-col h-full justify-between">
@@ -30,7 +23,7 @@ export default function Menu() {
         </div>
         <nav aria-label="Primary">
           <ul className="space-y-3">
-            {items.map((item) => {
+            {navItems.map((item) => {
               const isActive = activeId === item.id;
               return (
                 <motion.li key={item.href} initial={{ opacity: 0.7 }} whileHover={{ opacity: 1, x: 4 }} transition={{ duration: 0.2 }}>

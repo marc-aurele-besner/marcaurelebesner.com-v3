@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { DEFAULT_SECTIONS, type SectionId } from "@/config/site";
 
-const DEFAULT_SECTIONS = ["about", "experience", "projects", "advisory", "contact"] as const;
-export type SectionId = typeof DEFAULT_SECTIONS[number];
+// Re-exported for backward compatibility — SectionId lives in @/config/site now.
+export type { SectionId };
 
 export function useActiveSection(sectionIds: readonly string[] = DEFAULT_SECTIONS) {
   const [activeId, setActiveId] = useState<string>(sectionIds[0] ?? "");
