@@ -71,12 +71,33 @@ const mockExperiences = [
 
 describe("Experience Page", () => {
   let originalExperiences: typeof experienceModule.experiences;
+  let originalGetExperienceBySlug: typeof experienceModule.getExperienceBySlug;
+  let originalGetAdjacentExperiences: typeof experienceModule.getAdjacentExperiences;
   let originalSiteConfig: typeof siteConfigModule.siteConfig;
 
   beforeEach(() => {
     originalExperiences = experienceModule.experiences;
     Object.defineProperty(experienceModule, "experiences", {
       value: mockExperiences,
+      writable: true,
+    });
+
+    originalGetExperienceBySlug = experienceModule.getExperienceBySlug;
+    Object.defineProperty(experienceModule, "getExperienceBySlug", {
+      value: (slug: string) => mockExperiences.find((e) => e.slug === slug),
+      writable: true,
+    });
+
+    originalGetAdjacentExperiences = experienceModule.getAdjacentExperiences;
+    Object.defineProperty(experienceModule, "getAdjacentExperiences", {
+      value: (slug: string) => {
+        const idx = mockExperiences.findIndex((e) => e.slug === slug);
+        if (idx === -1) return { prev: null, next: null };
+        return {
+          prev: idx > 0 ? mockExperiences[idx - 1] : null,
+          next: idx < mockExperiences.length - 1 ? mockExperiences[idx + 1] : null,
+        };
+      },
       writable: true,
     });
 
@@ -96,6 +117,14 @@ describe("Experience Page", () => {
   afterEach(() => {
     Object.defineProperty(experienceModule, "experiences", {
       value: originalExperiences,
+      writable: true,
+    });
+    Object.defineProperty(experienceModule, "getExperienceBySlug", {
+      value: originalGetExperienceBySlug,
+      writable: true,
+    });
+    Object.defineProperty(experienceModule, "getAdjacentExperiences", {
+      value: originalGetAdjacentExperiences,
       writable: true,
     });
     Object.defineProperty(siteConfigModule, "siteConfig", {

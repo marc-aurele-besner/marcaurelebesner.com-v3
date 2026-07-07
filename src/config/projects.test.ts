@@ -1,5 +1,10 @@
 import { describe, it, expect } from "vitest";
-import { projects, type ProjectData } from "./projects";
+import {
+  projects,
+  getProjectBySlug,
+  getAdjacentProjects,
+  type ProjectData,
+} from "./projects";
 
 describe("projects config", () => {
   it("should have at least one project", () => {
@@ -34,6 +39,44 @@ describe("projects config", () => {
   it("should have valid image paths", () => {
     projects.forEach((project) => {
       expect(project.imageSrc).toMatch(/^\/images\/projects\/.+\.(png|jpg|jpeg|webp)$/);
+    });
+  });
+});
+
+describe("getProjectBySlug", () => {
+  it("should return the matching project", () => {
+    const first = projects[0];
+    expect(getProjectBySlug(first.slug)).toBe(first);
+  });
+
+  it("should return undefined for an unknown slug", () => {
+    expect(getProjectBySlug("does-not-exist")).toBeUndefined();
+  });
+});
+
+describe("getAdjacentProjects", () => {
+  it("should return both neighbors for a project in the middle", () => {
+    const { prev, next } = getAdjacentProjects(projects[1].slug);
+    expect(prev).toBe(projects[0]);
+    expect(next).toBe(projects[2]);
+  });
+
+  it("should return null prev and a next for the first project", () => {
+    const { prev, next } = getAdjacentProjects(projects[0].slug);
+    expect(prev).toBeNull();
+    expect(next).toBe(projects[1]);
+  });
+
+  it("should return a prev and null next for the last project", () => {
+    const { prev, next } = getAdjacentProjects(projects[projects.length - 1].slug);
+    expect(prev).toBe(projects[projects.length - 2]);
+    expect(next).toBeNull();
+  });
+
+  it("should return null neighbors for an unknown slug", () => {
+    expect(getAdjacentProjects("does-not-exist")).toEqual({
+      prev: null,
+      next: null,
     });
   });
 });

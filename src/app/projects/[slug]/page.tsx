@@ -1,4 +1,4 @@
-import { projects } from "@/config/projects";
+import { projects, getProjectBySlug, getAdjacentProjects } from "@/config/projects";
 import { siteConfig } from "@/config/site";
 import Badge from "@/components/Badge";
 import GlassCard from "@/components/GlassCard";
@@ -23,7 +23,7 @@ export async function generateMetadata({
   params,
 }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const project = getProjectBySlug(slug);
 
   if (!project) {
     return {
@@ -67,17 +67,14 @@ export async function generateMetadata({
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const project = getProjectBySlug(slug);
 
   if (!project) {
     notFound();
     return null;
   }
 
-  const currentIndex = projects.findIndex((p) => p.slug === slug);
-  const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
-  const nextProject =
-    currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
+  const { prev: prevProject, next: nextProject } = getAdjacentProjects(slug);
 
   // JSON-LD structured data for software application
   const jsonLd = {

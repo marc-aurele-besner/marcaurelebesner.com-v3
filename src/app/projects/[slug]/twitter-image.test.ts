@@ -40,6 +40,7 @@ const mockProjects = [
 
 describe("Project Twitter Image", () => {
   let originalProjects: typeof projectModule.projects;
+  let originalGetProjectBySlug: typeof projectModule.getProjectBySlug;
   let originalSiteConfigName: string;
   let originalSiteConfigTwitterHandle: string;
 
@@ -47,6 +48,12 @@ describe("Project Twitter Image", () => {
     originalProjects = projectModule.projects;
     Object.defineProperty(projectModule, "projects", {
       value: mockProjects,
+      writable: true,
+    });
+
+    originalGetProjectBySlug = projectModule.getProjectBySlug;
+    Object.defineProperty(projectModule, "getProjectBySlug", {
+      value: (slug: string) => mockProjects.find((p) => p.slug === slug),
       writable: true,
     });
 
@@ -59,6 +66,10 @@ describe("Project Twitter Image", () => {
   afterEach(() => {
     Object.defineProperty(projectModule, "projects", {
       value: originalProjects,
+      writable: true,
+    });
+    Object.defineProperty(projectModule, "getProjectBySlug", {
+      value: originalGetProjectBySlug,
       writable: true,
     });
     siteConfigModule.siteConfig.name = originalSiteConfigName;

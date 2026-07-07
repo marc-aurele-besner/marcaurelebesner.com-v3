@@ -302,3 +302,35 @@ export const projects: ProjectData[] = [
     featured: false,
   },
 ];
+
+/**
+ * Look up a project by its slug.
+ *
+ * @returns the matching project, or `undefined` if none exists.
+ */
+export function getProjectBySlug(slug: string): ProjectData | undefined {
+  return projects.find((p) => p.slug === slug);
+}
+
+export interface AdjacentProjects {
+  /** Previous project in the list, or `null` if `slug` is the first project. */
+  prev: ProjectData | null;
+  /** Next project in the list, or `null` if `slug` is the last project. */
+  next: ProjectData | null;
+}
+
+/**
+ * Find the projects that come immediately before and after the given slug in
+ * the `projects` array. Returns `{ prev: null, next: null }` when the slug
+ * does not match any project.
+ */
+export function getAdjacentProjects(slug: string): AdjacentProjects {
+  const currentIndex = projects.findIndex((p) => p.slug === slug);
+  if (currentIndex === -1) {
+    return { prev: null, next: null };
+  }
+  return {
+    prev: currentIndex > 0 ? projects[currentIndex - 1] : null,
+    next: currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null,
+  };
+}

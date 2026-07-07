@@ -1,4 +1,4 @@
-import { experiences } from "@/config/experience";
+import { experiences, getExperienceBySlug, getAdjacentExperiences } from "@/config/experience";
 import { siteConfig } from "@/config/site";
 import Badge from "@/components/Badge";
 import GlassCard from "@/components/GlassCard";
@@ -20,7 +20,7 @@ export async function generateMetadata({
   params,
 }: ExperiencePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const experience = experiences.find((exp) => exp.slug === slug);
+  const experience = getExperienceBySlug(slug);
 
   if (!experience) {
     return {
@@ -64,17 +64,14 @@ export async function generateMetadata({
 
 export default async function ExperiencePage({ params }: ExperiencePageProps) {
   const { slug } = await params;
-  const experience = experiences.find((exp) => exp.slug === slug);
+  const experience = getExperienceBySlug(slug);
 
   if (!experience) {
     notFound();
     return null; // Explicitly return null after notFound()
   }
 
-  const currentIndex = experiences.findIndex((exp) => exp.slug === slug);
-  const prevExperience = currentIndex > 0 ? experiences[currentIndex - 1] : null;
-  const nextExperience =
-    currentIndex < experiences.length - 1 ? experiences[currentIndex + 1] : null;
+  const { prev: prevExperience, next: nextExperience } = getAdjacentExperiences(slug);
 
   return (
     <div className="max-w-4xl mx-auto py-8">

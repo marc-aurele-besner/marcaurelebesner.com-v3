@@ -75,12 +75,33 @@ const mockProjects = [
 
 describe("Project Page", () => {
   let originalProjects: typeof projectModule.projects;
+  let originalGetProjectBySlug: typeof projectModule.getProjectBySlug;
+  let originalGetAdjacentProjects: typeof projectModule.getAdjacentProjects;
   let originalSiteConfig: typeof siteConfigModule.siteConfig;
 
   beforeEach(() => {
     originalProjects = projectModule.projects;
     Object.defineProperty(projectModule, "projects", {
       value: mockProjects,
+      writable: true,
+    });
+
+    originalGetProjectBySlug = projectModule.getProjectBySlug;
+    Object.defineProperty(projectModule, "getProjectBySlug", {
+      value: (slug: string) => mockProjects.find((p) => p.slug === slug),
+      writable: true,
+    });
+
+    originalGetAdjacentProjects = projectModule.getAdjacentProjects;
+    Object.defineProperty(projectModule, "getAdjacentProjects", {
+      value: (slug: string) => {
+        const idx = mockProjects.findIndex((p) => p.slug === slug);
+        if (idx === -1) return { prev: null, next: null };
+        return {
+          prev: idx > 0 ? mockProjects[idx - 1] : null,
+          next: idx < mockProjects.length - 1 ? mockProjects[idx + 1] : null,
+        };
+      },
       writable: true,
     });
 
@@ -100,6 +121,14 @@ describe("Project Page", () => {
   afterEach(() => {
     Object.defineProperty(projectModule, "projects", {
       value: originalProjects,
+      writable: true,
+    });
+    Object.defineProperty(projectModule, "getProjectBySlug", {
+      value: originalGetProjectBySlug,
+      writable: true,
+    });
+    Object.defineProperty(projectModule, "getAdjacentProjects", {
+      value: originalGetAdjacentProjects,
       writable: true,
     });
     Object.defineProperty(siteConfigModule, "siteConfig", {
