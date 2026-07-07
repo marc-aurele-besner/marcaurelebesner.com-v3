@@ -1,41 +1,13 @@
 "use client";
 
-import { siteConfig } from "@/config/site";
+import { socialLinks } from "@/config/site";
 import { trackSocialLink } from "@/utils/analytics";
 import { motion } from "framer-motion";
-import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import GlassCard from "./GlassCard";
 import SectionHeading from "./SectionHeading";
 import ContactForm from "./ContactForm";
 
 export default function Contact() {
-  const socialLinks = [
-    {
-      href: siteConfig.links.github,
-      icon: FaGithub,
-      label: "GitHub",
-      platform: "github" as const,
-    },
-    {
-      href: siteConfig.links.linkedin,
-      icon: FaLinkedin,
-      label: "LinkedIn",
-      platform: "linkedin" as const,
-    },
-    {
-      href: siteConfig.links.twitter,
-      icon: FaTwitter,
-      label: "Twitter",
-      platform: "twitter" as const,
-    },
-    {
-      href: siteConfig.links.instagram,
-      icon: FaInstagram,
-      label: "Instagram",
-      platform: "instagram" as const,
-    },
-  ];
-
   return (
     <motion.section
       id="contact"

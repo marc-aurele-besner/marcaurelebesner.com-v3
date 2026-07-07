@@ -1,9 +1,8 @@
 "use client";
 
-import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { motion } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
-import { siteConfig, navItems } from "@/config/site";
+import { siteConfig, navItems, socialLinks } from "@/config/site";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -61,50 +60,23 @@ export default function Menu() {
           <div>
             <p className="text-xs uppercase tracking-widest text-slate-500 dark:text-grayTone/70 mb-2">On the web</p>
             <div className="flex items-center gap-2">
-              <a
-                href={siteConfig.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                title="GitHub"
-                aria-label="GitHub"
-                onClick={() => trackSocialLink("github", siteConfig.links.github)}
-                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
-              >
-                <FaGithub size={18} />
-              </a>
-              <a
-                href={siteConfig.links.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                title="LinkedIn"
-                aria-label="LinkedIn"
-                onClick={() => trackSocialLink("linkedin", siteConfig.links.linkedin)}
-                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
-              >
-                <FaLinkedin size={18} />
-              </a>
-              <a
-                href={siteConfig.links.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Twitter/X"
-                aria-label="Twitter"
-                onClick={() => trackSocialLink("twitter", siteConfig.links.twitter)}
-                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
-              >
-                <FaTwitter size={18} />
-              </a>
-              <a
-                href={siteConfig.links.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Instagram"
-                aria-label="Instagram"
-                onClick={() => trackSocialLink("instagram", siteConfig.links.instagram)}
-                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
-              >
-                <FaInstagram size={18} />
-              </a>
+              {socialLinks.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <a
+                    key={link.platform}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={link.title}
+                    aria-label={link.label}
+                    onClick={() => trackSocialLink(link.platform, link.href)}
+                    className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-600 dark:text-grayTone hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
+                  >
+                    <Icon size={18} />
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>
