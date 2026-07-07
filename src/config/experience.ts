@@ -223,3 +223,35 @@ export const experiences: ExperienceData[] = [
     isWeb3: false,
   },
 ];
+
+/**
+ * Look up an experience by its slug.
+ *
+ * @returns the matching experience, or `undefined` if none exists.
+ */
+export function getExperienceBySlug(slug: string): ExperienceData | undefined {
+  return experiences.find((exp) => exp.slug === slug);
+}
+
+export interface AdjacentExperiences {
+  /** Previous experience in the list, or `null` if `slug` is the first. */
+  prev: ExperienceData | null;
+  /** Next experience in the list, or `null` if `slug` is the last. */
+  next: ExperienceData | null;
+}
+
+/**
+ * Find the experiences that come immediately before and after the given slug
+ * in the `experiences` array. Returns `{ prev: null, next: null }` when the
+ * slug does not match any experience.
+ */
+export function getAdjacentExperiences(slug: string): AdjacentExperiences {
+  const currentIndex = experiences.findIndex((exp) => exp.slug === slug);
+  if (currentIndex === -1) {
+    return { prev: null, next: null };
+  }
+  return {
+    prev: currentIndex > 0 ? experiences[currentIndex - 1] : null,
+    next: currentIndex < experiences.length - 1 ? experiences[currentIndex + 1] : null,
+  };
+}

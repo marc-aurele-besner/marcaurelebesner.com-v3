@@ -1,5 +1,10 @@
 import { describe, it, expect } from "vitest";
-import { experiences, type ExperienceData } from "./experience";
+import {
+  experiences,
+  getExperienceBySlug,
+  getAdjacentExperiences,
+  type ExperienceData,
+} from "./experience";
 
 describe("experience config", () => {
   it("should have at least one experience", () => {
@@ -31,6 +36,44 @@ describe("experience config", () => {
       expect(exp.highlights.length).toBeGreaterThan(0);
       expect(exp.skills.length).toBeGreaterThan(0);
       expect(typeof exp.isWeb3).toBe("boolean");
+    });
+  });
+});
+
+describe("getExperienceBySlug", () => {
+  it("should return the matching experience", () => {
+    const first = experiences[0];
+    expect(getExperienceBySlug(first.slug)).toBe(first);
+  });
+
+  it("should return undefined for an unknown slug", () => {
+    expect(getExperienceBySlug("does-not-exist")).toBeUndefined();
+  });
+});
+
+describe("getAdjacentExperiences", () => {
+  it("should return both neighbors for an experience in the middle", () => {
+    const { prev, next } = getAdjacentExperiences(experiences[1].slug);
+    expect(prev).toBe(experiences[0]);
+    expect(next).toBe(experiences[2]);
+  });
+
+  it("should return null prev and a next for the first experience", () => {
+    const { prev, next } = getAdjacentExperiences(experiences[0].slug);
+    expect(prev).toBeNull();
+    expect(next).toBe(experiences[1]);
+  });
+
+  it("should return a prev and null next for the last experience", () => {
+    const { prev, next } = getAdjacentExperiences(experiences[experiences.length - 1].slug);
+    expect(prev).toBe(experiences[experiences.length - 2]);
+    expect(next).toBeNull();
+  });
+
+  it("should return null neighbors for an unknown slug", () => {
+    expect(getAdjacentExperiences("does-not-exist")).toEqual({
+      prev: null,
+      next: null,
     });
   });
 });
