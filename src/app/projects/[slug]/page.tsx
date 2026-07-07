@@ -2,6 +2,7 @@ import { projects } from "@/config/projects";
 import { siteConfig } from "@/config/site";
 import Badge from "@/components/Badge";
 import GlassCard from "@/components/GlassCard";
+import { DEFAULT_BLUR_DATA_URL } from "@/utils/blur";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -188,7 +189,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               src={project.imageSrc}
               alt={project.imageAlt}
               placeholder="blur"
-              blurDataURL={project.blurDataURL}
+              blurDataURL={DEFAULT_BLUR_DATA_URL}
               className="w-full rounded-lg"
               width={800}
               height={600}

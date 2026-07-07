@@ -1,4 +1,5 @@
 import { ProjectData } from "@/config/projects";
+import { DEFAULT_BLUR_DATA_URL } from "@/utils/blur";
 import { trackProjectDetails, trackProjectLink } from "@/utils/analytics";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -13,7 +14,6 @@ export const Project: FC<ProjectData> = ({
   summary,
   imageSrc,
   imageAlt,
-  blurDataURL,
   link,
   repoLink,
   badges,
@@ -43,7 +43,7 @@ export const Project: FC<ProjectData> = ({
               src={imageSrc}
               alt={imageAlt}
               placeholder="blur"
-              blurDataURL={blurDataURL}
+              blurDataURL={DEFAULT_BLUR_DATA_URL}
               className="w-full rounded-lg transition-transform duration-700 ease-out group-hover:scale-[1.05]"
               width={400}
               height={300}
