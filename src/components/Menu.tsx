@@ -67,7 +67,7 @@ export default function Menu() {
                     key={link.platform}
                     href={link.href}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="me noopener noreferrer"
                     title={link.title}
                     aria-label={link.label}
                     onClick={() => trackSocialLink(link.platform, link.href)}

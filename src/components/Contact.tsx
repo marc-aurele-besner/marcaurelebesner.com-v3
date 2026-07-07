@@ -3,14 +3,24 @@
 import { socialLinks } from "@/config/site";
 import { trackSocialLink } from "@/utils/analytics";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import GlassCard from "./GlassCard";
 import SectionHeading from "./SectionHeading";
 import ContactForm from "./ContactForm";
 
-export default function Contact() {
+interface ContactProps {
+  /**
+   * When true, the section is treated as a teaser on the homepage and
+   * a link to the dedicated `/contact` page is shown. The dedicated
+   * `/contact` page renders the full content without the teaser link.
+   */
+  teaser?: boolean;
+}
+
+export default function Contact({ teaser = false }: ContactProps) {
   return (
     <motion.section
-      id="contact"
+      id={teaser ? "contact" : undefined}
       aria-labelledby="contact-title"
       className="scroll-mt-28 py-16"
       initial={{ opacity: 0, y: 20 }}
@@ -32,6 +42,18 @@ export default function Contact() {
           I'm open to collaborating on interesting projects, discussing Web3, or
           exploring new opportunities. Send me a message directly or reach out via social media.
         </p>
+        {teaser && (
+          <p className="mt-3 text-sm text-slate-500 dark:text-grayTone/80">
+            Looking for response-time and FAQ details?{" "}
+            <Link
+              href="/contact"
+              className="text-[var(--accent)] underline underline-offset-2 hover:brightness-110"
+            >
+              See the full contact page
+            </Link>
+            .
+          </p>
+        )}
       </motion.div>
 
       <ContactForm />
@@ -47,7 +69,7 @@ export default function Contact() {
                   key={link.platform}
                   href={link.href}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="me noopener noreferrer"
                   onClick={() => trackSocialLink(link.platform, link.href)}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}

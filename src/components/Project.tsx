@@ -1,3 +1,5 @@
+"use client";
+
 import { ProjectData } from "@/config/projects";
 import { DEFAULT_BLUR_DATA_URL } from "@/utils/blur";
 import { formatProjectType } from "@/utils/project-type";

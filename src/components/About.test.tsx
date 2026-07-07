@@ -31,8 +31,18 @@ describe("About component", () => {
   it("should render the main heading", () => {
     render(<About />);
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-      "Senior Web3/AI Engineer | Smart Contracts, Agents, Infra & DevTooling | Scaling Decentralized Systems | Product‑First Engineer"
+      "Senior Web3/AI Engineer"
     );
+  });
+
+  it("should render a visually hidden specialties list", () => {
+    render(<About />);
+    const specialtiesHeading = screen.getByRole("heading", {
+      level: 2,
+      name: "Specialties",
+    });
+    expect(specialtiesHeading).toBeInTheDocument();
+    expect(specialtiesHeading).toHaveClass("sr-only");
   });
 
   it("should render the introductory paragraph", () => {
@@ -46,8 +56,8 @@ describe("About component", () => {
 
   it("should render the 'View Projects' and 'Experience' links", () => {
     render(<About />);
-    expect(screen.getByRole("link", { name: /View Projects/i })).toHaveAttribute("href", "/#projects");
-    expect(screen.getByRole("link", { name: "Experience" })).toHaveAttribute("href", "/#experience");
+    expect(screen.getByRole("link", { name: /View Projects/i })).toHaveAttribute("href", "/projects");
+    expect(screen.getByRole("link", { name: "Experience" })).toHaveAttribute("href", "/experience");
   });
 
   it("should render the GlassCard with additional info and contact link", () => {

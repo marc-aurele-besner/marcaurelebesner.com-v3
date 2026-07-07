@@ -84,6 +84,7 @@ const projectData = {
   badges: ["React", "Next.js", "Tailwind", "Framer", "Node", "Edge"],
   projectType: "personal" as const,
   featured: true,
+  updatedAt: "2025-01",
 };
 
 describe("Project", () => {
