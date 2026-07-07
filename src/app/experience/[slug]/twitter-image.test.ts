@@ -3,24 +3,18 @@ import TwitterImage from "./twitter-image";
 import { ImageResponse } from "next/og";
 import * as experienceModule from "@/config/experience";
 import * as siteConfigModule from "@/config/site";
-import type React from "react";
+import {
+  stubExport,
+  getEyebrow,
+  getBodyChildren,
+  getFooterText,
+  getIdentity,
+  getNotFoundText,
+  type MockImageResponse,
+} from "@/test/og-image-test-utils";
 
-type MockImageResponse = {
-  element: React.ReactElement<{ children: unknown }>;
-  options: { width: number; height: number };
-};
+vi.mock("next/og", async () => (await import("@/test/og-image-test-utils")).mockNextOg());
 
-// Mock ImageResponse
-vi.mock("next/og", () => ({
-  ImageResponse: vi.fn(
-    (element: unknown, options: { width: number; height: number }) => ({
-      element,
-      options,
-    })
-  ), // Mock with a simple return
-}));
-
-// Mock experience data
 const mockExperiences = [
   {
     slug: "mock-experience-1",
@@ -41,41 +35,22 @@ const mockExperiences = [
 ];
 
 describe("Experience Twitter Image", () => {
-  let originalExperiences: typeof experienceModule.experiences;
-  let originalGetExperienceBySlug: typeof experienceModule.getExperienceBySlug;
-  let originalSiteConfigName: string;
-  let originalSiteConfigTwitterHandle: string;
+  const restores: Array<() => void> = [];
 
   beforeEach(() => {
-    originalExperiences = experienceModule.experiences;
-    Object.defineProperty(experienceModule, "experiences", {
-      value: mockExperiences,
-      writable: true,
-    });
-
-    originalGetExperienceBySlug = experienceModule.getExperienceBySlug;
-    Object.defineProperty(experienceModule, "getExperienceBySlug", {
-      value: (slug: string) => mockExperiences.find((e) => e.slug === slug),
-      writable: true,
-    });
-
-    originalSiteConfigName = siteConfigModule.siteConfig.name;
-    siteConfigModule.siteConfig.name = "Mock Name";
-    originalSiteConfigTwitterHandle = siteConfigModule.siteConfig.twitterHandle;
-    siteConfigModule.siteConfig.twitterHandle = "@mockhandle";
+    restores.push(
+      stubExport(experienceModule, "experiences", mockExperiences),
+      stubExport(experienceModule, "getExperienceBySlug", (slug: string) =>
+        mockExperiences.find((e) => e.slug === slug)
+      ),
+      stubExport(siteConfigModule.siteConfig, "name", "Mock Name"),
+      stubExport(siteConfigModule.siteConfig, "twitterHandle", "@mockhandle")
+    );
   });
 
   afterEach(() => {
-    Object.defineProperty(experienceModule, "experiences", {
-      value: originalExperiences,
-      writable: true,
-    });
-    Object.defineProperty(experienceModule, "getExperienceBySlug", {
-      value: originalGetExperienceBySlug,
-      writable: true,
-    });
-    siteConfigModule.siteConfig.name = originalSiteConfigName;
-    siteConfigModule.siteConfig.twitterHandle = originalSiteConfigTwitterHandle;
+    restores.forEach((restore) => restore());
+    restores.length = 0;
     vi.restoreAllMocks();
   });
 
@@ -86,58 +61,39 @@ describe("Experience Twitter Image", () => {
 
   it("should generate static params correctly", async () => {
     const params = await generateStaticParams();
-    expect(params).toEqual([{ slug: "mock-experience-1" }, { slug: "mock-experience-2" }]);
+    expect(params).toEqual([
+      { slug: "mock-experience-1" },
+      { slug: "mock-experience-2" },
+    ]);
   });
 
-  it("should return an ImageResponse with correct content for a found experience", async () => {
-    const paramsPromise = Promise.resolve({ slug: "mock-experience-1" });
-    const result = (await TwitterImage({ params: paramsPromise })) as unknown as MockImageResponse;
+  it("should render title, company, skills, name, and handle for a found experience", async () => {
+    const result = (await TwitterImage({
+      params: Promise.resolve({ slug: "mock-experience-1" }),
+    })) as unknown as MockImageResponse;
 
-    expect(ImageResponse).toHaveBeenCalledWith(
-      expect.any(Object), // The JSX element
-      { width: 1200, height: 630 }
-    );
+    expect(ImageResponse).toHaveBeenCalledWith(expect.any(Object), {
+      width: 1200,
+      height: 630,
+    });
 
-    const element = result.element as unknown as { props: { children: unknown } };
-    const children = element.props.children as Array<{
-      props: { children: unknown };
-    }>;
-    expect(children[0].props.children).toBe("Experience");
-    expect(
-      (children[1].props.children as Array<{ props: { children: unknown } }>)[0].props
-        .children
-    ).toBe("Mock Title 1");
-    // Join the array of children for string comparison
-    expect(
-      (
-        (children[1].props.children as Array<{ props: { children: unknown } }>)[1]
-          .props.children as unknown[]
-      ).join("")
-    ).toBe("at Mock Company 1");
-    expect(
-      (children[2].props.children as Array<{ props: { children: unknown } }>)[0].props
-        .children
-    ).toBe("Skill 1 • Skill 2");
-    expect(
-      ((children[2].props.children as Array<{ props: { children: unknown } }>)[1]
-        .props.children as Array<{ props: { children: unknown } }>)[0].props.children
-    ).toBe("Mock Name");
-    expect(
-      ((children[2].props.children as Array<{ props: { children: unknown } }>)[1]
-        .props.children as Array<{ props: { children: unknown } }>)[1].props.children
-    ).toBe("@mockhandle");
+    const body = getBodyChildren(result);
+    expect(getEyebrow(result)).toBe("Experience");
+    expect(body[0].props.children).toBe("Mock Title 1");
+    // Company is rendered as `at {company}` → ["at ", "Mock Company 1"].
+    expect((body[1].props.children as unknown[]).join("")).toBe("at Mock Company 1");
+    expect(getFooterText(result)).toBe("Skill 1 • Skill 2");
+
+    const identity = getIdentity(result);
+    expect(identity.name).toBe("Mock Name");
+    expect(identity.line).toBe("@mockhandle");
   });
 
-  it("should return an ImageResponse with 'Experience Not Found' for an unknown experience", async () => {
-    const paramsPromise = Promise.resolve({ slug: "unknown-experience" });
-    const result = (await TwitterImage({ params: paramsPromise })) as unknown as MockImageResponse;
+  it("should render 'Experience Not Found' for an unknown experience", async () => {
+    const result = (await TwitterImage({
+      params: Promise.resolve({ slug: "unknown-experience" }),
+    })) as unknown as MockImageResponse;
 
-    expect(ImageResponse).toHaveBeenCalledWith(
-      expect.any(Object), // The JSX element
-      { width: 1200, height: 630 }
-    );
-
-    const element = result.element as unknown as { props: { children: unknown } };
-    expect(element.props.children).toBe("Experience Not Found");
+    expect(getNotFoundText(result)).toBe("Experience Not Found");
   });
 });
