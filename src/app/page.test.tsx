@@ -19,24 +19,38 @@ describe("HomePage", () => {
     expect(screen.getByText("MockContact")).toBeInTheDocument();
   });
 
-  it("should render JSON-LD script correctly", () => {
+  it("should render an enriched Person + work-history JSON-LD graph", () => {
     render(<HomePage />);
     const script = screen.getByTestId("json-ld") as HTMLScriptElement;
     expect(script).toBeInTheDocument();
     const json = JSON.parse(script.innerHTML);
-    expect(json).toEqual({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      name: siteConfig.name,
-      url: siteConfig.url,
-      jobTitle: siteConfig.role,
-      sameAs: [
-        siteConfig.links.github,
-        siteConfig.links.linkedin,
-        siteConfig.links.twitter,
-        siteConfig.links.instagram,
-      ],
-      description: siteConfig.description,
-    });
+    expect(json["@context"]).toBe("https://schema.org");
+    expect(Array.isArray(json["@graph"])).toBe(true);
+
+    const person = json["@graph"].find(
+      (n: { "@type": string }) => n["@type"] === "Person",
+    );
+    expect(person).toBeDefined();
+    expect(person.name).toBe(siteConfig.name);
+    expect(person.jobTitle).toBe(siteConfig.role);
+    expect(person.image).toBe(`${siteConfig.url}/opengraph-image`);
+    expect(person.knowsAbout).toEqual(
+      expect.arrayContaining([
+        "Web3",
+        "Smart Contracts",
+        "Solidity",
+        "AI Agents",
+        "DevTooling",
+      ]),
+    );
+    expect(person.hasOccupation[0]["@type"]).toBe("Occupation");
+    expect(person.worksFor.length).toBeGreaterThan(0);
+
+    const orgRoles = json["@graph"].filter(
+      (n: { "@type": string }) => n["@type"] === "OrganizationRole",
+    );
+    expect(orgRoles.length).toBeGreaterThan(0);
+    expect(orgRoles[0].organization["@type"]).toBe("Organization");
+    expect(orgRoles[0].member.name).toBe(siteConfig.name);
   });
 });

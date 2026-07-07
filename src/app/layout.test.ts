@@ -21,6 +21,13 @@ describe("Layout Metadata", () => {
     viewport = layoutModule.viewport;
   });
 
+  describe("verification tags", () => {
+    it("omits verification tags when env vars are not set", () => {
+      expect(metadata.verification?.google).toBeUndefined();
+      expect(metadata.verification?.other?.["msvalidate.01"]).toBeUndefined();
+    });
+  });
+
   it("should have correct viewport settings", () => {
     expect(viewport).toEqual({
       width: "device-width",

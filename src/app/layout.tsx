@@ -1,12 +1,14 @@
 import ScrollProgress from "@/components/ScrollProgress";
 import { siteConfig } from "@/config/site";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import EasterEggs from "../components/EasterEggs";
 import BackgroundEffects from "../components/BackgroundEffects";
 import Header from "../components/Header";
 import Menu from "../components/Menu";
+import MotionConfigProvider from "../components/MotionConfigProvider";
 import ThemeProvider from "../components/ThemeProvider";
 import "./globals.css";
 
@@ -49,6 +51,17 @@ export const metadata: Metadata = {
     icon: "/favicon.svg",
     apple: "/apple-touch-icon.png",
   },
+  // Google Search Console and Bing Webmaster Tools verification.
+  // Set NEXT_PUBLIC_GSC_VERIFICATION and NEXT_PUBLIC_BING_VERIFICATION
+  // in the environment to publish the corresponding <meta> tags.
+  verification: {
+    ...(siteConfig.googleSiteVerification
+      ? { google: siteConfig.googleSiteVerification }
+      : {}),
+    ...(siteConfig.bingSiteVerification
+      ? { other: { "msvalidate.01": siteConfig.bingSiteVerification } }
+      : {}),
+  },
   other: {
     preconnect: ["https://vitals.vercel-insights.com", "https://vercel.live"],
   },
@@ -80,33 +93,36 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-slate-800 dark:bg-darkBlue dark:text-grayTone relative overflow-x-hidden`}
       >
         <ThemeProvider>
-          <EasterEggs />
-          <a
-            href="#main-content"
-            className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 bg-[var(--accent)] text-darkBlue px-3 py-2 rounded"
-          >
-            Skip to main content
-          </a>
-          <ScrollProgress />
-          {/* Background effects */}
-          <BackgroundEffects />
-          <Header />
-          <div className="flex min-h-screen md:flex-row flex-col">
-            <aside className="md:w-72 bg-white/70 dark:bg-darkBlue/70 backdrop-blur border-r border-slate-200 dark:border-white/5 p-8 fixed h-full hidden md:block">
-              <Menu />
-            </aside>
-            <main
-              id="main-content"
-              className="flex-1 overflow-y-auto py-12 md:py-16 md:ml-72 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto"
+          <MotionConfigProvider>
+            <EasterEggs />
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 bg-[var(--accent)] text-darkBlue px-3 py-2 rounded"
             >
-              {children}
-            </main>
-          </div>
+              Skip to main content
+            </a>
+            <ScrollProgress />
+            {/* Background effects */}
+            <BackgroundEffects />
+            <Header />
+            <div className="flex min-h-screen md:flex-row flex-col">
+              <aside className="md:w-72 bg-white/70 dark:bg-darkBlue/70 backdrop-blur border-r border-slate-200 dark:border-white/5 p-8 fixed h-full hidden md:block">
+                <Menu />
+              </aside>
+              <main
+                id="main-content"
+                className="flex-1 overflow-y-auto py-12 md:py-16 md:ml-72 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto"
+              >
+                {children}
+              </main>
+            </div>
+          </MotionConfigProvider>
         </ThemeProvider>
       </body>
       {siteConfig.googleAnalyticsId && (
         <GoogleAnalytics gaId={siteConfig.googleAnalyticsId} />
       )}
+      <SpeedInsights />
     </html>
   );
 }

@@ -16,6 +16,9 @@ vi.mock("next/font/local", () => ({
 vi.mock("@/components/ThemeProvider", () => ({
   default: ({ children }: React.PropsWithChildren) => <div>{children}</div>,
 }));
+vi.mock("@/components/MotionConfigProvider", () => ({
+  default: ({ children }: React.PropsWithChildren) => <div>{children}</div>,
+}));
 vi.mock("@/components/EasterEggs", () => ({ default: () => <div>MockEasterEggs</div> }));
 vi.mock("@/components/ScrollProgress", () => ({ default: () => <div>MockScrollProgress</div> }));
 vi.mock("@/components/Backdrop", () => ({ default: () => <div>MockBackdrop</div> }));

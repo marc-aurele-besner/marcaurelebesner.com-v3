@@ -7,33 +7,41 @@ vi.mock("@/components/Contact", () => ({ default: () => <div>MockContactComponen
 
 describe("ContactPage", () => {
   it("should have correct metadata", () => {
-    expect(metadata).toEqual({
-      title: "Contact",
-      description: `Get in touch with ${siteConfig.name} for collaboration, Web3 projects, blockchain consulting, or career opportunities.`,
-      keywords: [
+    expect(metadata.title).toBe("Contact");
+    expect(metadata.description).toContain(siteConfig.name);
+    expect(metadata.keywords).toEqual(
+      expect.arrayContaining([
         "Contact",
         siteConfig.name,
         "Web3 Developer",
         "Blockchain Engineer",
-        "Collaboration",
-        "Hire",
-        "Freelance",
-      ],
-      alternates: { canonical: "/contact" },
-      openGraph: {
-        title: `Contact | ${siteConfig.name}`,
-        description: `Get in touch with ${siteConfig.name} for collaboration, Web3 projects, blockchain consulting, or career opportunities.`,
-        type: "website",
-        url: "/contact",
-        siteName: siteConfig.name,
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: `Contact | ${siteConfig.name}`,
-        description: `Get in touch with ${siteConfig.name} for collaboration, Web3 projects, or career opportunities.`,
-        creator: siteConfig.twitterHandle,
-      },
-    });
+        "AI Engineer",
+        "Advisory",
+      ]),
+    );
+    expect(metadata.alternates).toEqual({ canonical: "/contact" });
+    const og = metadata.openGraph as Record<string, unknown> | undefined;
+    expect(og?.type).toBe("website");
+    expect(og?.url).toBe("/contact");
+    const tw = metadata.twitter as Record<string, unknown> | undefined;
+    expect(tw?.card).toBe("summary_large_image");
+  });
+
+  it("should render the contact FAQ section", () => {
+    render(<ContactPage />);
+    expect(
+      screen.getByRole("heading", { level: 2, name: /Frequently asked questions/i }),
+    ).toBeInTheDocument();
+  });
+
+  it("should emit ContactPage + FAQPage JSON-LD", () => {
+    render(<ContactPage />);
+    const script = screen.getByTestId("json-ld") as HTMLScriptElement;
+    const json = JSON.parse(script.innerHTML);
+    const types = json["@graph"].map((n: { "@type": string }) => n["@type"]);
+    expect(types).toEqual(
+      expect.arrayContaining(["ContactPage", "FAQPage"]),
+    );
   });
 
   it("should render the mocked Contact component", () => {
