@@ -22,6 +22,36 @@ export interface ExperienceData {
 
 export const experiences: ExperienceData[] = [
   {
+    slug: "antler-labs",
+    title: "Principal Product Engineer",
+    company: "Antler Labs",
+    location: "Remote",
+    type: "remote",
+    startDate: "Jun 2025",
+    endDate: "Present",
+    updatedAt: "2026-08",
+    summary:
+      "Architect and build production software across AI, developer tooling, infrastructure, and blockchain systems.",
+    description:
+      "Own end-to-end product development at Antler Labs, from product definition and technical architecture through implementation, deployment, and iteration. Build multiple independent products spanning AI, developer tooling, infrastructure, and blockchain systems.",
+    highlights: [
+      "Architect and build production software across AI, developer tooling, infrastructure, and blockchain systems",
+      "Own end-to-end product development, from product definition and technical architecture through implementation, deployment, and iteration",
+      "Built multiple independent products using TypeScript, Next.js, Node.js, PostgreSQL, Solidity, and modern cloud infrastructure",
+    ],
+    skills: [
+      "TypeScript",
+      "Next.js",
+      "Node.js",
+      "PostgreSQL",
+      "Solidity",
+      "AI",
+      "Cloud Infrastructure",
+      "Developer Tooling",
+    ],
+    isWeb3: true,
+  },
+  {
     slug: "autonomys",
     title: "Lead Software Engineer",
     company: "Autonomys Network",
