@@ -6,11 +6,13 @@ vi.mock("@next/third-parties/google", () => ({
   sendGAEvent: vi.fn(),
 }));
 
-const mockIntersectionObserver = vi.fn((_callback: IntersectionObserverCallback) => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
+const mockIntersectionObserver = vi.fn(function (_callback: IntersectionObserverCallback) {
+  return {
+    observe: vi.fn(),
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
+  };
+});
 
 vi.stubGlobal("IntersectionObserver", mockIntersectionObserver);
 

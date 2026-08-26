@@ -20,10 +20,9 @@ type ChildEl = { props: { children: unknown } };
 export function mockNextOg() {
   return {
     ImageResponse: vi.fn(
-      (element: unknown, options: { width: number; height: number }) => ({
-        element,
-        options,
-      })
+      function (element: unknown, options: { width: number; height: number }) {
+        return { element, options };
+      }
     ),
   };
 }
