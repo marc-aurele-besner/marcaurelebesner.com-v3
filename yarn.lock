@@ -1852,7 +1852,16 @@
   dependencies:
     "@rolldown/pluginutils" "^1.0.1"
 
-"@vitest/browser@^4.0.0":
+"@vitest/browser-playwright@^4.0.0":
+  version "4.1.11"
+  resolved "https://registry.yarnpkg.com/@vitest/browser-playwright/-/browser-playwright-4.1.11.tgz#a49fa8f71d3528645217876a790fc9a9b2cbbb84"
+  integrity sha512-riLBxPqwnJ0lWs2DN2WeUfYeKLoAjbP2Xx8cLQdSddzMi20sksIa6K2mPz79DyMZKKVKH2ksOC2yJvtNcZg8cg==
+  dependencies:
+    "@vitest/browser" "4.1.11"
+    "@vitest/mocker" "4.1.11"
+    tinyrainbow "^3.1.0"
+
+"@vitest/browser@4.1.11", "@vitest/browser@^4.0.0":
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/@vitest/browser/-/browser-4.1.11.tgz#ccf94b82d4eaedba929a4290a092f16d55b89afb"
   integrity sha512-bwMovvAeuTFOK5kIFevw4VEf+1gVEICv4SYK4k3knJOxl6b1zEWud8mYKD73e1B0odAn174h1MofURy2TPWf3w==
