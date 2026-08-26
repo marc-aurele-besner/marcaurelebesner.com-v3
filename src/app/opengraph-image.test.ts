@@ -5,7 +5,11 @@ import * as siteConfigModule from "@/config/site";
 
 // Mock ImageResponse
 vi.mock("next/og", () => ({
-  ImageResponse: vi.fn((element, options) => ({ element, options })), // Mock with a simple return
+  ImageResponse: vi.fn(
+    function (element: unknown, options: { width: number; height: number }) {
+      return { element, options };
+    }
+  ),
 }));
 
 describe("OpenGraph Image", () => {
