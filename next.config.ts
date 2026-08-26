@@ -7,6 +7,15 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  experimental: {
+    // typescript-eslint 8.68.0 only supports the TypeScript <=6.1.0 API, and
+    // we alias `typescript` to @typescript/typescript6 so it can keep working
+    // until TS 7 support lands. Next.js 16 defaults `useTypeScriptCli` to true,
+    // which requires `node_modules/typescript/bin/tsc` (only `tsc6` ships from
+    // @typescript/typescript6). Force the API mode so Next.js type-checks
+    // through the same TS 6 module that typescript-eslint consumes.
+    useTypeScriptCli: false,
+  },
   async headers() {
     return [
       {
