@@ -4705,9 +4705,9 @@ require-from-string@^2.0.2:
   integrity sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==
 
 resend@^6.10.0:
-  version "6.32.0"
-  resolved "https://registry.yarnpkg.com/resend/-/resend-6.32.0.tgz#ba1d6cb35a4690751bb0a43524af3043d89a7c8d"
-  integrity sha512-bZZUeKlpKINFT+zGG2iIzfDewkyEHRaE7Xk1haseVz3Gfw6ekkizN6KdKgZSMjt5ywE8vMwr3wTdenlF8P475Q==
+  version "6.32.1"
+  resolved "https://registry.yarnpkg.com/resend/-/resend-6.32.1.tgz#d215f0c831bd8243e9f36684a5ba8f450e0d9c29"
+  integrity sha512-Z9DxkIZt5uvVNkjxjc+r4rCPI0MdDIJ7H+GvU50o9GkhrD0tVTwP6caE8KYEco90sos312l6R72jAEMCBFBiFQ==
   dependencies:
     postal-mime "2.7.6"
     standardwebhooks "1.1.1"
