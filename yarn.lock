@@ -213,12 +213,12 @@
     keyv "^5.6.0"
 
 "@chromatic-com/storybook@^5.0.0":
-  version "5.5.1"
-  resolved "https://registry.yarnpkg.com/@chromatic-com/storybook/-/storybook-5.5.1.tgz#0f1ca2c754e9a56d259986aeb559b1c7138a2638"
-  integrity sha512-DOtUEBIJHmqsOWg+Hi1t5m5FTNlyzL0NpZUwQob+ex30nDvL4p+MrYctmvEqH/QT72mf9mLXbz3Uj8aoWD2OYA==
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/@chromatic-com/storybook/-/storybook-5.6.0.tgz#030f5c97a8682b1e7c61e5b7cbc6c1f27b71dce5"
+  integrity sha512-Z7YMtr9DVwegQeWcBeQaiK5dLcAvgpX53Qr/eGGYTyAEqTb1meUr5VQNq1wmst0Lj+gT6lQEco0PuFfUuf3jzA==
   dependencies:
     "@neoconfetti/react" "^1.0.0"
-    chromatic "^18.0.1"
+    chromatic "^18.12.1"
     jsonfile "^6.1.0"
     strip-ansi "^7.1.0"
 
@@ -2489,10 +2489,10 @@ check-error@^2.1.1:
   resolved "https://registry.yarnpkg.com/check-error/-/check-error-2.1.3.tgz#2427361117b70cca8dc89680ead32b157019caf5"
   integrity sha512-PAJdDJusoxnwm1VwW07VWwUN1sl7smmC3OKggvndJFadxxDRyFJBX/ggnu/KE4kQAB7a3Dp8f/YXC1FlUprWmA==
 
-chromatic@^18.0.1:
-  version "18.12.0"
-  resolved "https://registry.yarnpkg.com/chromatic/-/chromatic-18.12.0.tgz#0499b4a1bcf162087c14acb6f42dec29ea3ed892"
-  integrity sha512-ACi49naCDfR/nCC716LrpjndBzCVhON7T5g1VY5CmonTJIOlXL/kMfya81InoSM0KtlY534MjfIS01UPlxiCqg==
+chromatic@^18.12.1:
+  version "18.13.1"
+  resolved "https://registry.yarnpkg.com/chromatic/-/chromatic-18.13.1.tgz#751f9f0301693bdbc85c717f4ef68edc219200da"
+  integrity sha512-c/5EoZZI0i0eJpAbwTRF3e19wr61dNKHgUnUM8jkLRf45tnxJFUkT8m+T05Ul1js0rD5e7nb7UwcqAR8bAoIbQ==
   dependencies:
     semver "^7.3.5"
 
