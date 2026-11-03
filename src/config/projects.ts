@@ -4,6 +4,12 @@ export interface ProjectData {
   summary: string;
   description: string;
   highlights?: string[];
+  /** Optional case-study copy: the problem the project addresses. */
+  problem?: string;
+  /** Optional case-study copy: what I did on the project. */
+  role?: string;
+  /** Optional case-study copy: what actually shipped. */
+  outcome?: string;
   imageSrc: string;
   imageAlt: string;
   link?: string;
@@ -17,6 +23,12 @@ export interface ProjectData {
    * `lastModified` field on every deploy.
    */
   updatedAt: string;
+  /**
+   * When true, the project page is kept reachable but excluded from the
+   * sitemap and marked `noindex`. Used for short entries that do not yet
+   * describe what shipped.
+   */
+  noindex?: boolean;
 }
 
 export const projects: ProjectData[] = [
@@ -270,6 +282,7 @@ export const projects: ProjectData[] = [
     badges: ["TypeScript", "Next.js", "React", "Web3", "Solidity"],
     projectType: "personal",
     featured: false,
+    noindex: true,
     updatedAt: "2023-08",
   },
   {
@@ -291,6 +304,7 @@ export const projects: ProjectData[] = [
     badges: ["TypeScript", "Next.js", "React", "Web3", "Solidity"],
     projectType: "personal",
     featured: false,
+    noindex: true,
     updatedAt: "2022-12",
   },
   {
@@ -313,6 +327,7 @@ export const projects: ProjectData[] = [
     badges: ["TypeScript", "Next.js", "React", "Web3", "Solidity"],
     projectType: "personal",
     featured: false,
+    noindex: true,
     updatedAt: "2022-08",
   },
   {
@@ -334,9 +349,18 @@ export const projects: ProjectData[] = [
     badges: ["TypeScript", "React", "CSS"],
     projectType: "personal",
     featured: false,
+    noindex: true,
     updatedAt: "2022-05",
   },
 ];
+
+/**
+ * Whether a project page should be listed in the sitemap and indexed by
+ * search engines.
+ */
+export function isProjectIndexable(project: ProjectData): boolean {
+  return !project.noindex;
+}
 
 /**
  * Look up a project by its slug.

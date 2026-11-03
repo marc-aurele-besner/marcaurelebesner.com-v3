@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import {
+  isProjectIndexable,
   projects,
   getProjectBySlug,
   getAdjacentProjects,
@@ -91,5 +92,23 @@ describe("getAdjacentProjects", () => {
       prev: null,
       next: null,
     });
+  });
+});
+
+describe("isProjectIndexable", () => {
+  it("should flag the thin project pages as not indexable", () => {
+    const hidden = projects
+      .filter((p) => !isProjectIndexable(p))
+      .map((p) => p.slug)
+      .sort();
+    expect(hidden).toEqual(
+      ["collage-of-myself", "golf-alpine", "mymultisig", "plantswap-finance"],
+    );
+  });
+
+  it("should never noindex a featured project", () => {
+    projects
+      .filter((p) => p.featured)
+      .forEach((p) => expect(isProjectIndexable(p)).toBe(true));
   });
 });
