@@ -11,10 +11,20 @@ import { siteConfig } from "@/config/site";
  * components, so structured data always ships in initial HTML.
  */
 
+/**
+ * A schema.org node. Nodes carry no `@context`: they are meant to be
+ * placed inside a `@graph` whose root declares the context once.
+ */
 export interface JsonLdNode {
-  "@context": "https://schema.org";
   "@type": string;
   [key: string]: unknown;
+}
+
+/**
+ * A standalone JSON-LD document with a single root node.
+ */
+export interface JsonLdDocument extends JsonLdNode {
+  "@context": "https://schema.org";
 }
 
 export interface JsonLdGraph {
@@ -24,7 +34,6 @@ export interface JsonLdGraph {
 
 function person(): JsonLdNode {
   return {
-    "@context": "https://schema.org",
     "@type": "Person",
     name: siteConfig.name,
     url: siteConfig.url,
@@ -47,11 +56,13 @@ function person(): JsonLdNode {
       siteConfig.links.twitter,
       siteConfig.links.instagram,
     ],
-    worksFor: experiences.slice(0, 3).map((exp) => ({
-      "@type": "Organization",
-      name: exp.company,
-      url: exp.companyUrl,
-    })),
+    worksFor: experiences
+      .filter((exp) => exp.endDate === "Present")
+      .map((exp) => ({
+        "@type": "Organization",
+        name: exp.company,
+        url: exp.companyUrl,
+      })),
   };
 }
 
@@ -59,8 +70,8 @@ function person(): JsonLdNode {
  * Homepage Person schema, exposed as a top-level (non-graph) document so
  * the JSON-LD in `<head>` is small and easy for crawlers to parse.
  */
-export function personJsonLd(): JsonLdNode {
-  return person();
+export function personJsonLd(): JsonLdDocument {
+  return { "@context": "https://schema.org", ...person() };
 }
 
 /**
@@ -75,7 +86,6 @@ export function breadcrumbListJsonLd(
   items: ReadonlyArray<BreadcrumbItem>,
 ): JsonLdNode {
   return {
-    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: items.map((entry, index) => ({
       "@type": "ListItem",
@@ -125,11 +135,12 @@ export function organizationRoleJsonLd(exp: ExperienceData): JsonLdNode {
   const start = toIsoOrNull(exp.startDate);
   const end = toIsoOrNull(exp.endDate);
   return {
-    "@context": "https://schema.org",
     "@type": "OrganizationRole",
     roleName: exp.title,
-    startDate: start,
-    endDate: end,
+    ...(start ? { startDate: start } : {}),
+    // Current roles ("Present") have no end date; omit it rather than
+    // serializing `null`.
+    ...(end ? { endDate: end } : {}),
     description: exp.description,
     skills: exp.skills.join(", "),
     member: {
@@ -167,7 +178,6 @@ export function softwareApplicationJsonLd(
   slug: string,
 ): JsonLdNode {
   return {
-    "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: project.title,
     description: project.description,
@@ -180,11 +190,6 @@ export function softwareApplicationJsonLd(
     },
     applicationCategory: "WebApplication",
     operatingSystem: "Web",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
     ...(project.repoLink ? { codeRepository: project.repoLink } : {}),
     keywords: project.badges.join(", "),
   };
@@ -204,7 +209,6 @@ export function professionalServiceJsonLd(
   return {
     "@context": "https://schema.org",
     "@graph": services.map((service) => ({
-      "@context": "https://schema.org" as const,
       "@type": "Service",
       name: service.name,
       description: service.description,
@@ -224,7 +228,6 @@ export function professionalServiceJsonLd(
  */
 export function contactPageJsonLd(url: string): JsonLdNode {
   return {
-    "@context": "https://schema.org",
     "@type": "ContactPage",
     url,
     name: `Contact ${siteConfig.name}`,
