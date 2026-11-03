@@ -53,18 +53,19 @@ export const experiences: ExperienceData[] = [
   },
   {
     slug: "autonomys",
-    title: "Lead Software Engineer",
+    title: "Senior Product Engineer",
     company: "Autonomys Network",
     location: "Palo Alto, California, United States",
     type: "remote",
     startDate: "Apr 2024",
     endDate: "Jun 2025",
-    updatedAt: "2025-06",
+    updatedAt: "2026-11",
     summary:
       "Led design and implementation of production indexing systems, block explorer, developer SDKs, and EVM tooling for the Autonomys blockchain network.",
     description:
-      "As a Lead Software Engineer in the product team at Autonomys, I focused on hands-on development to build and enhance blockchain and Web3 solutions, ensuring performance, scalability, and usability for both end-users and developers.",
+      "As a Senior Product Engineer (Apr 2024 to Apr 2025), then Lead Product Engineer (Apr 2025 to Jun 2025) in the product team at Autonomys, I focused on hands-on development to build and enhance blockchain and Web3 solutions, ensuring performance, scalability, and usability for both end-users and developers.",
     highlights: [
+      "Promoted from Senior Product Engineer to Lead Product Engineer in Apr 2025",
       "Led design and implementation of production indexing systems powering the block explorer",
       "Owned migration of block explorer frontend from React SPA to Next.js",
       "Designed and implemented Solidity smart contracts for testnet tooling and stablecoin functionality",
@@ -127,8 +128,8 @@ export const experiences: ExperienceData[] = [
     location: "San Francisco, California, United States",
     type: "remote",
     startDate: "Feb 2022",
-    endDate: "Jun 2023",
-    updatedAt: "2023-06",
+    endDate: "Jan 2023",
+    updatedAt: "2026-11",
     summary:
       "Developed staking systems, DAOs, and multisig wallets. Built internal dashboards and automated reporting tools for contract interaction.",
     description:
