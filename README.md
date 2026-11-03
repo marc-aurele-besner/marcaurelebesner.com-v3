@@ -36,11 +36,11 @@ yarn start
 Open http://localhost:3000 to view the site.
 
 ## Configuration
-- Environment variables
+- Environment variables (copy `.env.example` to `.env.local` and fill in the values)
   - `NEXT_PUBLIC_SITE_URL` (optional): Public site URL used for metadata. Defaults to `https://marcaurelebesner.com`.
   - `NEXT_PUBLIC_GA_ID` (optional): Google Analytics 4 measurement ID (e.g., `G-XXXXXXXXXX`). If not provided, Google Analytics will not be loaded.
   - `RESEND_API_KEY` (required): Resend API key for contact form emails. Get yours at [resend.com](https://resend.com).
-  - `RESEND_FROM_EMAIL` (optional): Email address to send from. Defaults to `onboarding@resend.dev`. Must be a verified domain in Resend.
+  - `RESEND_FROM_EMAIL` (recommended): Email address to send from, on a domain verified in Resend. Defaults to `onboarding@resend.dev`, which Resend only allows to send to your own Resend account email, so set this in production.
   - `RESEND_TO_EMAIL` (optional): Email address to receive contact form submissions. Defaults to `contact@marcaurelebesner.com`.
 - Content & SEO
   - Edit `src/config/site.ts` to update name, role, description, links, and SEO keywords.
@@ -79,7 +79,7 @@ src/
   1) Create a new project in Vercel and import this repo
   2) Add environment variables:
      - `RESEND_API_KEY` (required for contact form)
-     - `RESEND_FROM_EMAIL` (optional, must be a verified domain in Resend)
+     - `RESEND_FROM_EMAIL` (recommended, must be a verified domain in Resend)
      - `RESEND_TO_EMAIL` (optional)
      - `NEXT_PUBLIC_SITE_URL` (optional)
   3) Deploy. Vercel will run `next build` automatically.

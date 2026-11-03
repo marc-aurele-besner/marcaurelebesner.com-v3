@@ -28,12 +28,31 @@ function makeFormData(
 describe("sendContactEmail", () => {
   beforeEach(() => {
     sendMock.mockReset();
+    vi.stubEnv("RESEND_API_KEY", "re_test_key");
     // Silence "Resend error:" / "Error sending email:" output during test runs.
     vi.spyOn(console, "error").mockImplementation(() => {});
   });
 
   afterEach(() => {
     vi.restoreAllMocks();
+    vi.unstubAllEnvs();
+  });
+
+  describe("configuration", () => {
+    it("returns a friendly error without calling Resend when RESEND_API_KEY is unset", async () => {
+      vi.stubEnv("RESEND_API_KEY", "");
+
+      const result = await sendContactEmail(
+        makeFormData({ name: "Marc", email: "marc@example.com", message: "hi" }),
+      );
+
+      expect(sendMock).not.toHaveBeenCalled();
+      expect(result.success).toBe(false);
+      expect(result.error).toMatch(/temporarily unavailable/);
+      expect(console.error).toHaveBeenCalledWith(
+        expect.stringContaining("RESEND_API_KEY"),
+      );
+    });
   });
 
   describe("validation", () => {
@@ -90,6 +109,32 @@ describe("sendContactEmail", () => {
       expect(sendMock).not.toHaveBeenCalled();
     });
 
+    it("treats whitespace-only fields as missing", async () => {
+      const result = await sendContactEmail(
+        makeFormData({ name: "   ", email: "a@b.com", message: "hi" }),
+      );
+      expect(result).toEqual({
+        success: false,
+        error: "All fields are required",
+      });
+      expect(sendMock).not.toHaveBeenCalled();
+    });
+
+    it("rejects overly long messages", async () => {
+      const result = await sendContactEmail(
+        makeFormData({
+          name: "Marc",
+          email: "a@b.com",
+          message: "x".repeat(5001),
+        }),
+      );
+      expect(result).toEqual({
+        success: false,
+        error: "One or more fields are too long",
+      });
+      expect(sendMock).not.toHaveBeenCalled();
+    });
+
     it("returns an error for emails missing a domain dot", async () => {
       const result = await sendContactEmail(
         makeFormData({ name: "Marc", email: "marc@example", message: "hi" }),
@@ -121,6 +166,24 @@ describe("sendContactEmail", () => {
       // HTML body should escape the newline as <br>.
       expect(payload.html).toContain("Hello<br>World");
       expect(result).toEqual({ success: true, data: { id: "msg_123" } });
+    });
+
+    it("escapes HTML in user input and strips newlines from the subject", async () => {
+      sendMock.mockResolvedValueOnce({ data: { id: "msg_esc" }, error: null });
+
+      await sendContactEmail(
+        makeFormData({
+          name: "<b>Evil</b>\nBcc: x@y.com",
+          email: "marc@example.com",
+          message: '<script>alert("x")</script>',
+        }),
+      );
+
+      const payload = sendMock.mock.calls[0][0];
+      expect(payload.html).not.toContain("<script>");
+      expect(payload.html).toContain("&lt;script&gt;");
+      expect(payload.html).toContain("&lt;b&gt;Evil&lt;/b&gt;");
+      expect(payload.subject).not.toMatch(/[\r\n]/);
     });
 
     it("falls back to onboarding@resend.dev from address when env is unset", async () => {
