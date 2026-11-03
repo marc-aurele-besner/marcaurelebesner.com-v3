@@ -46,6 +46,12 @@ export const projects: ProjectData[] = [
       "Security vulnerability fixes",
       "Architecture integrity for Series A readiness",
     ],
+    problem:
+      "Seed to Series A AI startups that built their codebase with AI tools such as Cursor or Claude, without expert validation, and now need it to hold up beyond the prototype stage.",
+    role:
+      "I run the service: clients work directly with me on the audit and the cleanup. I also built the vibeinprod.com site.",
+    outcome:
+      "Three offers are live on vibeinprod.com: a free Mini Cleanup Report on the top five AI-code risks, an AI Code Audit Sprint that ends in a prioritized roadmap, and a Stabilization Week of hands-on cleanup.",
     imageSrc: "/images/projects/vibeinprod.png",
     imageAlt:
       "VibeInProd — AI codebase stabilization dashboard for startups scaling beyond prototype",
@@ -68,6 +74,12 @@ export const projects: ProjectData[] = [
       "Integrates with OpenRouter (GPT-4o, Claude, Gemini, Mistral)",
       "Adjustable creativity threshold controls",
     ],
+    problem:
+      "Language models are trained to give the most probable answer, and RLHF makes them predictable, so a single reply hides the rest of what the model could have said.",
+    role:
+      "I designed and built OpenDrift; the site credits me as its builder.",
+    outcome:
+      "Live at opendrift.app: one prompt returns several responses, each with the model's own estimate of how likely it was, ranked from typical to unusual, across OpenRouter models.",
     imageSrc: "/images/projects/opendrift.png",
     imageAlt:
       "OpenDrift — multi-response LLM exploration interface showing ranked outputs from OpenRouter models",
@@ -90,6 +102,12 @@ export const projects: ProjectData[] = [
       "Artist and coach profile directory",
       "Community moderation system",
     ],
+    problem:
+      "Circus artists needed an open handbook for their discipline: tricks, their names, schools, and people, documented by the community in English and French.",
+    role:
+      "Lead developer and main contributor to the CircusConnect codebase.",
+    outcome:
+      "Live at circusconnect.com: trick videos, community voting on trick names, a directory of schools, and a sequence builder for chaining tricks into routines, with content published under CC BY-SA 4.0.",
     imageSrc: "/images/projects/circusconnect.png",
     imageAlt:
       "CircusConnect — community-driven circus arts knowledge base with trick and school directories",
@@ -112,6 +130,12 @@ export const projects: ProjectData[] = [
       "On-chain entitlement unlocking via smart contracts",
       "TypeScript SDK and REST API integration",
     ],
+    problem:
+      "Web3 apps that charge in stablecoins need prices that users cannot tamper with, and a way to unlock on-chain access only after payment is verified.",
+    role:
+      "I built PayXor and am the main contributor to its codebase.",
+    outcome:
+      "Live at payxor.xyz: four payment modes (Session, Feature, Receipt, and Pass) backed by server-signed quotes, plus a REST API, a TypeScript SDK, a React package, and MCP servers for AI assistants.",
     imageSrc: "/images/projects/payxor.png",
     imageAlt:
       "PayXor — multi-chain stablecoin payment infrastructure with EIP-712 signed pricing",
@@ -134,6 +158,12 @@ export const projects: ProjectData[] = [
       "Mints NFTs on the Autonomys EVM Chain",
       "Permanent on-chain data storage using IPLD/DAG structures",
     ],
+    problem:
+      "NFTs whose image and metadata live off-chain can stop resolving. EternalMint keeps both on-chain so the token stays fully decentralized and accessible.",
+    role:
+      "Personal project: I designed and built the app and am the main author of the marc-aurele-besner/eternalmint-xyz repository.",
+    outcome:
+      "Live at eternalmint.xyz: users mint NFTs with a custom name, supply, description, and external link. The source is public in marc-aurele-besner/eternalmint-xyz.",
     imageSrc: "/images/projects/eternal-mint.png",
     imageAlt:
       "EternalMint — NFT minting interface for Autonomys with permanent on-chain storage",
@@ -156,6 +186,12 @@ export const projects: ProjectData[] = [
       "Interactive 3D interface with React Three Fiber",
       "Powered by Auto SDK for live data",
     ],
+    problem:
+      "The Autonomys community needed a readable view of live network figures, and a way to see how their own spare disk space compares with the storage pledged to the network.",
+    role:
+      "Personal project: I designed and built the app and am the main author of the marc-aurele-besner/ai3-info repository.",
+    outcome:
+      "Live at ai3.info: Mainnet readings for pledged storage, blockchain size, and block height, shareable per-network pages, a storage sandbox, and readable HTML metrics with a WebGL fallback.",
     imageSrc: "/images/projects/ai3-info.png",
     imageAlt:
       "AI3.info — interactive 3D dashboard for real-time Autonomys network statistics",
@@ -185,9 +221,16 @@ export const projects: ProjectData[] = [
       "Staking and nomination interface",
       "Wallet integration support",
     ],
+    problem:
+      "The Autonomys Network needed an explorer for its consensus chain where users can also register operators, stake, and nominate.",
+    role:
+      "As Lead Software Engineer at Autonomys, I led the design and implementation of the indexing systems behind the explorer and owned the frontend migration from a React SPA to Next.js.",
+    outcome:
+      "Live at explorer.autonomys.xyz. The autonomys/astral repository holds the Next.js explorer (explorer/) and the SubQuery indexers (indexers/), and the explorer ships staking views and wallet integrations.",
     imageSrc: "/images/projects/astral-block-explorer.png",
     imageAlt:
       "Astral — production block explorer for the Autonomys Network with staking and operator management",
+    link: "https://explorer.autonomys.xyz",
     repoLink: "https://github.com/autonomys/astral",
     badges: ["Next.js", "React", "Polkadot.js", "TypeScript", "GraphQL"],
     projectType: "work",
@@ -208,6 +251,12 @@ export const projects: ProjectData[] = [
       "Live on Autonomys, Solana, and EVM testnets",
       "Started at the Consensus 2024 Hackathon (3rd place)",
     ],
+    problem:
+      "Checking that a file, release, or AI-agent run is authentic usually means trusting whoever handed it over, or the registry that served it.",
+    role:
+      "I designed and built FileOnChain; fileonchain.org credits me as its builder.",
+    outcome:
+      "An MIT-licensed verifier that runs in the browser or as a CLI (fileonchain verify evidence.json) with no account, plus a reference SDK, a GitHub Action starter, and an MCP server.",
     imageSrc: "/images/projects/fileonchain.png",
     imageAlt:
       "FileOnChain — seal any file or AI-agent run into portable evidence anyone can verify",
@@ -231,6 +280,12 @@ export const projects: ProjectData[] = [
       "Full TypeScript support",
       "Comprehensive documentation",
     ],
+    problem:
+      "AI and Web3 developers needed to build on Autonomys from TypeScript without first learning the details of blockchains or smart contracts.",
+    role:
+      "As Lead Software Engineer at Autonomys, I built developer SDKs to simplify chain interaction and onboarding, and I am one of the main contributors to autonomys/auto-sdk.",
+    outcome:
+      "A monorepo of packages published to npm under the @autonomys scope, including auto-utils, auto-consensus, auto-dag-data, auto-drive, and auto-xdm (autonomys/auto-sdk, packages/).",
     imageSrc: "/images/projects/autonomys-auto-sdk.png",
     imageAlt:
       "Autonomys Auto-SDK — TypeScript SDK for AI and Web3 developers",
@@ -254,6 +309,12 @@ export const projects: ProjectData[] = [
       "Web2 OAuth authentication flows",
       "User profile and rewards systems",
     ],
+    problem:
+      "An early-stage team needed a customer-facing app and an app for organizations, each tying Web3 wallets and smart contracts to standard Web2 OAuth sign-in.",
+    role:
+      "Full-Stack Web3 Software Engineer (Mar 2023 to Apr 2024): I wrote the Solidity contracts for rewards and profiles, integrated Ceramic Network, and implemented encryption workflows with Lit Protocol.",
+    outcome:
+      "Two web applications, one customer-facing and one for organizational use, with decentralized identity flows built on DIDs plus Sybil resistance and user reputation systems.",
     imageSrc: "/images/projects/oamo.png",
     imageAlt:
       "Oamo — full-stack Web3 platform with wallet auth, smart contracts, and decentralized identity",

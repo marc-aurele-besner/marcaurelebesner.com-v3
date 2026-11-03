@@ -112,3 +112,16 @@ describe("isProjectIndexable", () => {
       .forEach((p) => expect(isProjectIndexable(p)).toBe(true));
   });
 });
+
+describe("featured project case studies", () => {
+  it("should give every featured project a problem, role, and outcome", () => {
+    projects
+      .filter((p) => p.featured)
+      .forEach((p) => {
+        expect(p.problem, p.slug).toBeTruthy();
+        expect(p.role, p.slug).toBeTruthy();
+        expect(p.outcome, p.slug).toBeTruthy();
+        expect(p.outcome, p.slug).not.toBe(p.summary);
+      });
+  });
+});
