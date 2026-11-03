@@ -32,8 +32,8 @@ export default function Projects() {
         >
           <SectionHeading eyebrow="Selected Work">Projects</SectionHeading>
           <p className="text-slate-600 dark:text-grayTone mt-3 text-lg max-w-2xl">
-            A few things I shipped recently. Each project represents a unique
-            challenge and learning experience.
+            Selected AI, Web3, and developer-tooling work from 2023 to today.
+            Each project represents a unique challenge and learning experience.
           </p>
         </motion.div>
         <div className="space-y-8">

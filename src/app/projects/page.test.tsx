@@ -51,6 +51,16 @@ describe("ProjectsPage", () => {
     expect(screen.getByRole("heading", { level: 1, name: "Projects" })).toBeInTheDocument();
   });
 
+  it("describes the project pages as they are", () => {
+    render(<ProjectsPage />);
+    expect(
+      screen.queryByText(/Each project page includes the problem/),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByText(/Featured project pages cover the problem, my role/),
+    ).toBeInTheDocument();
+  });
+
   it("renders the full list of projects as detail links", () => {
     render(<ProjectsPage />);
     for (const project of projects) {
