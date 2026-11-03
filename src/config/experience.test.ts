@@ -44,6 +44,22 @@ describe("experience config", () => {
       expect(exp.updatedAt).toMatch(/^\d{4}-\d{2}$/);
     });
   });
+
+  it("should not repeat the summary as a highlight", () => {
+    const normalize = (text: string) => text.trim().replace(/\.$/, "");
+    experiences.forEach((exp) => {
+      const summary = normalize(exp.summary);
+      exp.highlights.forEach((highlight) => {
+        expect(normalize(highlight)).not.toBe(summary);
+      });
+    });
+  });
+
+  it("should link Antler Labs to its website", () => {
+    expect(getExperienceBySlug("antler-labs")?.companyUrl).toBe(
+      "https://antlerlabs.dev"
+    );
+  });
 });
 
 describe("getExperienceBySlug", () => {

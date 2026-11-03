@@ -29,13 +29,13 @@ export const experiences: ExperienceData[] = [
     type: "remote",
     startDate: "Jun 2025",
     endDate: "Present",
-    updatedAt: "2026-08",
+    updatedAt: "2026-11",
     summary:
       "Architect and build production software across AI, developer tooling, infrastructure, and blockchain systems.",
     description:
-      "Own end-to-end product development at Antler Labs, from product definition and technical architecture through implementation, deployment, and iteration. Build multiple independent products spanning AI, developer tooling, infrastructure, and blockchain systems.",
+      "Antler Labs is an independent product and engineering studio, not affiliated with the Antler venture firm. Own end-to-end product development at Antler Labs, from product definition and technical architecture through implementation, deployment, and iteration. Build multiple independent products spanning AI, developer tooling, infrastructure, and blockchain systems.",
     highlights: [
-      "Architect and build production software across AI, developer tooling, infrastructure, and blockchain systems",
+      "Shipped OpenDrift and PayXor, with LaCrew, FileOnChain, and Channlize in development",
       "Own end-to-end product development, from product definition and technical architecture through implementation, deployment, and iteration",
       "Built multiple independent products using TypeScript, Next.js, Node.js, PostgreSQL, Solidity, and modern cloud infrastructure",
     ],
@@ -49,6 +49,7 @@ export const experiences: ExperienceData[] = [
       "Cloud Infrastructure",
       "Developer Tooling",
     ],
+    companyUrl: "https://antlerlabs.dev",
     isWeb3: true,
   },
   {
