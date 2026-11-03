@@ -188,13 +188,13 @@ export const projects: ProjectData[] = [
     summary:
       "Seal any file or AI-agent run into portable evidence anyone can verify. Open protocol, local verifier, hash-only by default.",
     description:
-      "FileOnChain is an open evidence protocol: hash, sign, and anchor a document, dataset, release, or full AI-agent run, then hand out one portable evidence package that proves it existed, unchanged, at that time. Anyone can check it with the open-source verifier, which runs locally in the browser or CLI. By default only the hash leaves your machine; the bytes can optionally be stored onchain. Started as a 48-hour project at the Consensus 2024 Hackathon, where it won 3rd place.",
+      "FileOnChain is an open evidence protocol: hash, sign, and anchor a document, dataset, release, or full AI-agent run, then hand out one portable evidence package that proves it existed, unchanged, at that time. Anyone can check it with the open-source verifier, which runs locally in the browser or CLI. By default only the hash leaves your machine; the bytes can optionally be stored onchain. Started as a 48-hour project at the Consensus 2024 Hackathon, where it won 2nd place in the Polkadot track.",
     highlights: [
       "Seals files, releases, and AI-agent runs into portable evidence packages",
       "Open-source verifier runs locally in the browser or CLI",
       "Hash-only by default, with optional onchain storage",
       "Live on Autonomys, Solana, and EVM testnets",
-      "Started at the Consensus 2024 Hackathon (3rd place)",
+      "Started at the Consensus 2024 Hackathon (2nd place, Polkadot track)",
     ],
     imageSrc: "/images/projects/fileonchain.png",
     imageAlt:
