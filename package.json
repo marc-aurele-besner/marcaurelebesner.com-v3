@@ -54,7 +54,7 @@
     "eslint-plugin-storybook": "^10.0.0",
     "globals": "^17.1.0",
     "happy-dom": "^21.0.0",
-    "jsdom": "^30.0.0",
+    "jsdom": "^31.0.0",
     "playwright": "^1.55.0",
     "postcss": "^8",
     "storybook": "^10.0.0",
