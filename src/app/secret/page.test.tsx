@@ -8,6 +8,7 @@ describe("SecretPage", () => {
   it("should have correct metadata", () => {
     expect(metadata).toEqual({
       robots: { index: false, follow: false },
+      alternates: { canonical: "/secret" },
     });
   });
 

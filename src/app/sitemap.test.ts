@@ -1,4 +1,4 @@
-import sitemap from "./sitemap";
+import sitemap, { HUB_UPDATED_AT } from "./sitemap";
 import { siteConfig } from "@/config/site";
 import { experiences } from "@/config/experience";
 import { projects } from "@/config/projects";
@@ -40,6 +40,48 @@ describe("sitemap", () => {
       (item) => item.url === `${siteConfig.url}/projects/${fixedProject.slug}`,
     );
     expect(oamo?.lastModified).toEqual(new Date(Date.UTC(2024, 2, 1)));
+  });
+
+  it("should derive hub lastModified from content, not the build clock", () => {
+    vi.useFakeTimers();
+    try {
+      vi.setSystemTime(new Date("2030-01-01T00:00:00Z"));
+      const first = sitemap();
+      vi.setSystemTime(new Date("2031-06-15T12:34:56Z"));
+      const second = sitemap();
+      expect(second).toEqual(first);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it("should date hubs from the entries they list", () => {
+    const byUrl = new Map(sitemap().map((item) => [item.url, item]));
+    const month = (value: string) => {
+      const [y, m] = value.split("-").map(Number);
+      return Date.UTC(y, m - 1, 1);
+    };
+    const latest = (values: string[]) => Math.max(...values.map(month));
+    const projectsTime = latest(projects.map((p) => p.updatedAt));
+    const experienceTime = latest(experiences.map((e) => e.updatedAt));
+
+    const projectsHub = byUrl.get(`${siteConfig.url}/projects`)!;
+    expect(projectsHub.lastModified).toEqual(new Date(projectsTime));
+    expect(projectsHub.changeFrequency).toBe("monthly");
+    expect(byUrl.get(`${siteConfig.url}/experience`)?.lastModified).toEqual(
+      new Date(experienceTime),
+    );
+    expect(byUrl.get(`${siteConfig.url}/advisory`)?.lastModified).toEqual(
+      new Date(month(HUB_UPDATED_AT.advisory)),
+    );
+    expect(byUrl.get(`${siteConfig.url}/contact`)?.lastModified).toEqual(
+      new Date(month(HUB_UPDATED_AT.contact)),
+    );
+    expect(byUrl.get(`${siteConfig.url}/`)?.lastModified).toEqual(
+      new Date(
+        Math.max(projectsTime, experienceTime, month(HUB_UPDATED_AT.advisory)),
+      ),
+    );
   });
 
   it("should exclude thin project pages flagged noindex", () => {

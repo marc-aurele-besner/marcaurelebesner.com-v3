@@ -15,39 +15,69 @@ function parseMonth(value: string, fallback: Date = new Date()): Date {
   return Number.isNaN(parsed.getTime()) ? fallback : parsed;
 }
 
+/**
+ * Last meaningful content change (YYYY-MM) for hubs that are not derived
+ * from a dataset. Bump these when the page copy changes, so `lastmod`
+ * stays stable across deploys that do not touch content.
+ */
+export const HUB_UPDATED_AT = {
+  advisory: "2026-07",
+  contact: "2026-07",
+} as const;
+
+/** Latest of several YYYY-MM dates, as a Date. */
+function latestMonth(values: ReadonlyArray<string>): Date {
+  return new Date(
+    Math.max(...values.map((value) => parseMonth(value, new Date(0)).getTime())),
+  );
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
 
-  // Static pages — homepage and content hubs that already exist or are
-  // added as part of the SEO improvements in this PR.
+  // Hub freshness comes from the entries each hub lists (or a stored date),
+  // never the build clock, so redeploys leave `lastmod` unchanged.
+  const projectsUpdatedAt = latestMonth(projects.map((p) => p.updatedAt));
+  const experienceUpdatedAt = latestMonth(experiences.map((e) => e.updatedAt));
+  const advisoryUpdatedAt = parseMonth(HUB_UPDATED_AT.advisory);
+  const contactUpdatedAt = parseMonth(HUB_UPDATED_AT.contact);
+  const homeUpdatedAt = new Date(
+    Math.max(
+      projectsUpdatedAt.getTime(),
+      experienceUpdatedAt.getTime(),
+      advisoryUpdatedAt.getTime(),
+    ),
+  );
+
+  // Static pages — homepage and content hubs.
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}/`,
-      lastModified: new Date(),
+      lastModified: homeUpdatedAt,
       changeFrequency: "monthly",
       priority: 1,
     },
     {
       url: `${baseUrl}/projects`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
+      lastModified: projectsUpdatedAt,
+      changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/experience`,
-      lastModified: new Date(),
+      lastModified: experienceUpdatedAt,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/advisory`,
-      lastModified: new Date(),
+      lastModified: advisoryUpdatedAt,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: new Date(),
+      lastModified: contactUpdatedAt,
       changeFrequency: "yearly",
       priority: 0.6,
     },
