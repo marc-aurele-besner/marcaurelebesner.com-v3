@@ -153,8 +153,8 @@ export const experiences: ExperienceData[] = [
     location: "San Francisco, California, United States",
     type: "remote",
     startDate: "Feb 2022",
-    endDate: "Jan 2023",
-    updatedAt: "2026-11",
+    endDate: "Jun 2023",
+    updatedAt: "2023-06",
     summary:
       "Developed staking systems, DAOs, and multisig wallets. Built internal dashboards and automated reporting tools for contract interaction.",
     description:
