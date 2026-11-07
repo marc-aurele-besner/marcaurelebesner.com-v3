@@ -7,6 +7,7 @@ import Link from "next/link";
 import { FC } from "react";
 import Badge from "./Badge";
 import DateRange from "./DateRange";
+import ExperiencePositions from "./ExperiencePositions";
 import GlassCard from "./GlassCard";
 
 interface ExperienceCardProps extends ExperienceData {
@@ -24,6 +25,7 @@ export const ExperienceCard: FC<ExperienceCardProps> = ({
   summary,
   skills,
   companyUrl,
+  positions,
   minimal = false,
 }) => {
   if (minimal) {
@@ -41,9 +43,13 @@ export const ExperienceCard: FC<ExperienceCardProps> = ({
               <h3 className="font-semibold text-lg text-slate-900 dark:text-white/95">
                 {title} at {company}
               </h3>
-              <p className="text-sm text-slate-500 dark:text-grayTone">
-                <DateRange startDate={startDate} endDate={endDate} />
-              </p>
+              {positions && positions.length > 1 ? (
+                <ExperiencePositions positions={positions} className="mt-1" />
+              ) : (
+                <p className="text-sm text-slate-500 dark:text-grayTone">
+                  <DateRange startDate={startDate} endDate={endDate} />
+                </p>
+              )}
             </div>
             <Link
               href={`/experience/${slug}`}
@@ -91,6 +97,9 @@ export const ExperienceCard: FC<ExperienceCardProps> = ({
                     company
                   )}
                 </p>
+                {positions && positions.length > 1 && (
+                  <ExperiencePositions positions={positions} className="mt-2" />
+                )}
               </div>
               <div className="text-sm text-slate-500 dark:text-grayTone text-right">
                 <p>

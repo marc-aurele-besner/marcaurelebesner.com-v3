@@ -98,4 +98,23 @@ describe("getAdjacentExperiences", () => {
       next: null,
     });
   });
+
+  it("should list both Autonomys titles with their own periods", () => {
+    const autonomys = getExperienceBySlug("autonomys");
+    expect(autonomys?.positions).toEqual([
+      { title: "Lead Product Engineer", startDate: "Apr 2025", endDate: "Jun 2025" },
+      { title: "Senior Product Engineer", startDate: "Apr 2024", endDate: "Apr 2025" },
+    ]);
+  });
+
+  it("should keep positions inside the overall tenure, newest first", () => {
+    experiences
+      .filter((exp) => exp.positions)
+      .forEach((exp) => {
+        const positions = exp.positions!;
+        expect(positions[0].title).toBe(exp.title);
+        expect(positions[0].endDate).toBe(exp.endDate);
+        expect(positions[positions.length - 1].startDate).toBe(exp.startDate);
+      });
+  });
 });

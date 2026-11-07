@@ -1,3 +1,9 @@
+export interface ExperiencePosition {
+  title: string;
+  startDate: string;
+  endDate: string;
+}
+
 export interface ExperienceData {
   slug: string;
   title: string;
@@ -17,6 +23,13 @@ export interface ExperienceData {
   highlights: string[];
   skills: string[];
   companyUrl?: string;
+  /**
+   * Distinct titles held at the same company, newest first. When set, each
+   * position is shown with its own date range, matching how the role is
+   * listed on LinkedIn. `title`, `startDate`, and `endDate` still describe
+   * the whole tenure (latest title, first start, last end).
+   */
+  positions?: ExperiencePosition[];
   isWeb3: boolean;
 }
 
@@ -54,7 +67,7 @@ export const experiences: ExperienceData[] = [
   },
   {
     slug: "autonomys",
-    title: "Senior Product Engineer",
+    title: "Lead Product Engineer",
     company: "Autonomys Network",
     location: "Palo Alto, California, United States",
     type: "remote",
@@ -64,9 +77,8 @@ export const experiences: ExperienceData[] = [
     summary:
       "Led design and implementation of production indexing systems, block explorer, developer SDKs, and EVM tooling for the Autonomys blockchain network.",
     description:
-      "As a Senior Product Engineer (Apr 2024 to Apr 2025), then Lead Product Engineer (Apr 2025 to Jun 2025) in the product team at Autonomys, I focused on hands-on development to build and enhance blockchain and Web3 solutions, ensuring performance, scalability, and usability for both end-users and developers.",
+      "As a Senior Product Engineer, then Lead Product Engineer in the product team at Autonomys, I focused on hands-on development to build and enhance blockchain and Web3 solutions, ensuring performance, scalability, and usability for both end-users and developers.",
     highlights: [
-      "Promoted from Senior Product Engineer to Lead Product Engineer in Apr 2025",
       "Led design and implementation of production indexing systems powering the block explorer",
       "Owned migration of block explorer frontend from React SPA to Next.js",
       "Designed and implemented Solidity smart contracts for testnet tooling and stablecoin functionality",
@@ -87,6 +99,18 @@ export const experiences: ExperienceData[] = [
       "IPLD",
     ],
     companyUrl: "https://autonomys.xyz",
+    positions: [
+      {
+        title: "Lead Product Engineer",
+        startDate: "Apr 2025",
+        endDate: "Jun 2025",
+      },
+      {
+        title: "Senior Product Engineer",
+        startDate: "Apr 2024",
+        endDate: "Apr 2025",
+      },
+    ],
     isWeb3: true,
   },
   {
