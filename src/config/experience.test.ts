@@ -44,6 +44,22 @@ describe("experience config", () => {
       expect(exp.updatedAt).toMatch(/^\d{4}-\d{2}$/);
     });
   });
+
+  it("should not repeat the summary as a highlight", () => {
+    const normalize = (text: string) => text.trim().replace(/\.$/, "");
+    experiences.forEach((exp) => {
+      const summary = normalize(exp.summary);
+      exp.highlights.forEach((highlight) => {
+        expect(normalize(highlight)).not.toBe(summary);
+      });
+    });
+  });
+
+  it("should link Antler Labs to its website", () => {
+    expect(getExperienceBySlug("antler-labs")?.companyUrl).toBe(
+      "https://antlerlabs.dev"
+    );
+  });
 });
 
 describe("getExperienceBySlug", () => {
@@ -81,5 +97,24 @@ describe("getAdjacentExperiences", () => {
       prev: null,
       next: null,
     });
+  });
+
+  it("should list both Autonomys titles with their own periods", () => {
+    const autonomys = getExperienceBySlug("autonomys");
+    expect(autonomys?.positions).toEqual([
+      { title: "Lead Product Engineer", startDate: "Apr 2025", endDate: "Jun 2025" },
+      { title: "Senior Product Engineer", startDate: "Apr 2024", endDate: "Apr 2025" },
+    ]);
+  });
+
+  it("should keep positions inside the overall tenure, newest first", () => {
+    experiences
+      .filter((exp) => exp.positions)
+      .forEach((exp) => {
+        const positions = exp.positions!;
+        expect(positions[0].title).toBe(exp.title);
+        expect(positions[0].endDate).toBe(exp.endDate);
+        expect(positions[positions.length - 1].startDate).toBe(exp.startDate);
+      });
   });
 });

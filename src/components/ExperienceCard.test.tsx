@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, within } from "@testing-library/react";
 import type React from "react";
 import { ExperienceCard } from "./ExperienceCard";
 import { trackExperienceDetails } from "@/utils/analytics";
@@ -140,5 +140,35 @@ describe("ExperienceCard", () => {
     expect(screen.queryByRole("link", { name: baseExperience.company })).not.toBeInTheDocument();
     expect(screen.getByText("Autonomys Network")).toBeInTheDocument();
     expect(screen.queryByText(/\+1 more/i)).not.toBeInTheDocument();
+  });
+
+  it("lists each position with its own dates when a company has several titles", () => {
+    const positions = [
+      { title: "Lead Product Engineer", startDate: "Apr 2025", endDate: "Jun 2025" },
+      { title: "Senior Product Engineer", startDate: "Apr 2024", endDate: "Apr 2025" },
+    ];
+
+    for (const minimal of [false, true]) {
+      const { unmount } = render(
+        <ExperienceCard
+          {...baseExperience}
+          title="Lead Product Engineer"
+          positions={positions}
+          minimal={minimal}
+        />
+      );
+
+      const items = within(screen.getByRole("list", { name: "Positions" })).getAllByRole(
+        "listitem"
+      );
+      expect(items).toHaveLength(2);
+      expect(items[0]).toHaveTextContent("Lead Product Engineer");
+      expect(items[0]).toHaveTextContent("Apr 2025");
+      expect(items[0]).toHaveTextContent("Jun 2025");
+      expect(items[1]).toHaveTextContent("Senior Product Engineer");
+      expect(items[1]).toHaveTextContent("Apr 2024");
+      expect(items[1]).toHaveTextContent("Apr 2025");
+      unmount();
+    }
   });
 });

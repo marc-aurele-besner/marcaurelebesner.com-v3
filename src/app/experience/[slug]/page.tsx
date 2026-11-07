@@ -3,6 +3,7 @@ import { siteConfig } from "@/config/site";
 import Badge from "@/components/Badge";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DateRange from "@/components/DateRange";
+import ExperiencePositions from "@/components/ExperiencePositions";
 import GlassCard from "@/components/GlassCard";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -133,6 +134,12 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
               experience.company
             )}
           </p>
+          {experience.positions && experience.positions.length > 1 && (
+            <ExperiencePositions
+              positions={experience.positions}
+              className="mt-4"
+            />
+          )}
           <div className="flex flex-wrap gap-4 mt-4 text-sm text-slate-500 dark:text-grayTone">
             <span>
               <DateRange

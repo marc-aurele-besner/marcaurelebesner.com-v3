@@ -1,3 +1,9 @@
+export interface ExperiencePosition {
+  title: string;
+  startDate: string;
+  endDate: string;
+}
+
 export interface ExperienceData {
   slug: string;
   title: string;
@@ -17,6 +23,13 @@ export interface ExperienceData {
   highlights: string[];
   skills: string[];
   companyUrl?: string;
+  /**
+   * Distinct titles held at the same company, newest first. When set, each
+   * position is shown with its own date range, matching how the role is
+   * listed on LinkedIn. `title`, `startDate`, and `endDate` still describe
+   * the whole tenure (latest title, first start, last end).
+   */
+  positions?: ExperiencePosition[];
   isWeb3: boolean;
 }
 
@@ -29,13 +42,13 @@ export const experiences: ExperienceData[] = [
     type: "remote",
     startDate: "Jun 2025",
     endDate: "Present",
-    updatedAt: "2026-08",
+    updatedAt: "2026-11",
     summary:
       "Architect and build production software across AI, developer tooling, infrastructure, and blockchain systems.",
     description:
-      "Own end-to-end product development at Antler Labs, from product definition and technical architecture through implementation, deployment, and iteration. Build multiple independent products spanning AI, developer tooling, infrastructure, and blockchain systems.",
+      "Antler Labs is an independent product and engineering studio, not affiliated with the Antler venture firm. Own end-to-end product development at Antler Labs, from product definition and technical architecture through implementation, deployment, and iteration. Build multiple independent products spanning AI, developer tooling, infrastructure, and blockchain systems.",
     highlights: [
-      "Architect and build production software across AI, developer tooling, infrastructure, and blockchain systems",
+      "Shipped OpenDrift and PayXor, with LaCrew, FileOnChain, and Channlize in development",
       "Own end-to-end product development, from product definition and technical architecture through implementation, deployment, and iteration",
       "Built multiple independent products using TypeScript, Next.js, Node.js, PostgreSQL, Solidity, and modern cloud infrastructure",
     ],
@@ -49,21 +62,22 @@ export const experiences: ExperienceData[] = [
       "Cloud Infrastructure",
       "Developer Tooling",
     ],
+    companyUrl: "https://antlerlabs.dev",
     isWeb3: true,
   },
   {
     slug: "autonomys",
-    title: "Lead Software Engineer",
+    title: "Lead Product Engineer",
     company: "Autonomys Network",
     location: "Palo Alto, California, United States",
     type: "remote",
     startDate: "Apr 2024",
     endDate: "Jun 2025",
-    updatedAt: "2025-06",
+    updatedAt: "2026-11",
     summary:
       "Led design and implementation of production indexing systems, block explorer, developer SDKs, and EVM tooling for the Autonomys blockchain network.",
     description:
-      "As a Lead Software Engineer in the product team at Autonomys, I focused on hands-on development to build and enhance blockchain and Web3 solutions, ensuring performance, scalability, and usability for both end-users and developers.",
+      "As a Senior Product Engineer, then Lead Product Engineer in the product team at Autonomys, I focused on hands-on development to build and enhance blockchain and Web3 solutions, ensuring performance, scalability, and usability for both end-users and developers.",
     highlights: [
       "Led design and implementation of production indexing systems powering the block explorer",
       "Owned migration of block explorer frontend from React SPA to Next.js",
@@ -85,6 +99,18 @@ export const experiences: ExperienceData[] = [
       "IPLD",
     ],
     companyUrl: "https://autonomys.xyz",
+    positions: [
+      {
+        title: "Lead Product Engineer",
+        startDate: "Apr 2025",
+        endDate: "Jun 2025",
+      },
+      {
+        title: "Senior Product Engineer",
+        startDate: "Apr 2024",
+        endDate: "Apr 2025",
+      },
+    ],
     isWeb3: true,
   },
   {
