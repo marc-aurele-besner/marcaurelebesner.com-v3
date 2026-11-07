@@ -4,6 +4,7 @@ import SecretScene from "@/components/SecretScene";
 export const dynamic = "force-static";
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
+  alternates: { canonical: "/secret" },
 };
 
 export default function SecretPage() {
