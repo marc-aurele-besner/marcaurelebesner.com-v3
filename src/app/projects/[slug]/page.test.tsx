@@ -44,6 +44,9 @@ const mockProjects = [
     link: "https://link1.com",
     badges: ["React", "Node"],
     highlights: ["Highlight 1", "Highlight 2"],
+    problem: "Problem of Proj 1",
+    role: "Role on Proj 1",
+    outcome: "Outcome of Proj 1",
   },
   {
     slug: "proj-2",
@@ -70,6 +73,7 @@ const mockProjects = [
     link: undefined,
     badges: ["Angular", "Go"],
     highlights: [],
+    noindex: true,
   },
 ];
 
@@ -152,6 +156,16 @@ describe("Project Page", () => {
       expect(metadata.keywords).toContain("Personal Project");
     });
 
+    it("should not set robots for indexable projects", async () => {
+      const metadata = await generateMetadata({ params: Promise.resolve({ slug: "proj-1" }) });
+      expect(metadata.robots).toBeUndefined();
+    });
+
+    it("should mark noindex projects as noindex, follow", async () => {
+      const metadata = await generateMetadata({ params: Promise.resolve({ slug: "proj-3" }) });
+      expect(metadata.robots).toEqual({ index: false, follow: true });
+    });
+
     it("should include work project keyword for non-personal projects", async () => {
       const metadata = await generateMetadata({ params: Promise.resolve({ slug: "proj-2" }) });
       expect(metadata.keywords).toContain("Work Project");
@@ -186,6 +200,25 @@ describe("Project Page", () => {
       expect(json["@graph"][0].name).toBe("Project 1");
     });
     
+    it("should render problem, role, and outcome sections when provided", async () => {
+      render(await ProjectPage({ params: Promise.resolve({ slug: "proj-1" }) }));
+
+      expect(screen.getByRole("heading", { name: "The Problem" })).toBeInTheDocument();
+      expect(screen.getByText("Problem of Proj 1")).toBeInTheDocument();
+      expect(screen.getByRole("heading", { name: "My Role" })).toBeInTheDocument();
+      expect(screen.getByText("Role on Proj 1")).toBeInTheDocument();
+      expect(screen.getByRole("heading", { name: "What Shipped" })).toBeInTheDocument();
+      expect(screen.getByText("Outcome of Proj 1")).toBeInTheDocument();
+    });
+
+    it("should omit case-study sections when fields are missing", async () => {
+      render(await ProjectPage({ params: Promise.resolve({ slug: "proj-2" }) }));
+
+      expect(screen.queryByRole("heading", { name: "The Problem" })).not.toBeInTheDocument();
+      expect(screen.queryByRole("heading", { name: "My Role" })).not.toBeInTheDocument();
+      expect(screen.queryByRole("heading", { name: "What Shipped" })).not.toBeInTheDocument();
+    });
+
     it("should render project without repo or website links", async () => {
       render(await ProjectPage({ params: Promise.resolve({ slug: "proj-3" }) }));
 

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/config/site";
 import { experiences } from "@/config/experience";
-import { projects } from "@/config/projects";
+import { isProjectIndexable, projects } from "@/config/projects";
 
 /**
  * Parse an ISO-8601 month string (YYYY-MM) into a Date. Falls back to
@@ -62,12 +62,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // Project pages — use the per-entry updatedAt for accurate freshness.
-  const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
-    url: `${baseUrl}/projects/${project.slug}`,
-    lastModified: parseMonth(project.updatedAt),
-    changeFrequency: "yearly" as const,
-    priority: 0.8,
-  }));
+  // Thin entries flagged `noindex` stay reachable but are left out here.
+  const projectPages: MetadataRoute.Sitemap = projects
+    .filter(isProjectIndexable)
+    .map((project) => ({
+      url: `${baseUrl}/projects/${project.slug}`,
+      lastModified: parseMonth(project.updatedAt),
+      changeFrequency: "yearly" as const,
+      priority: 0.8,
+    }));
 
   return [...staticPages, ...experiencePages, ...projectPages];
 }

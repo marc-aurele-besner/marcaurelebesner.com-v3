@@ -1,4 +1,9 @@
-import { projects, getProjectBySlug, getAdjacentProjects } from "@/config/projects";
+import {
+  projects,
+  getProjectBySlug,
+  getAdjacentProjects,
+  isProjectIndexable,
+} from "@/config/projects";
 import { siteConfig } from "@/config/site";
 import Badge from "@/components/Badge";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -55,6 +60,9 @@ export async function generateMetadata({
     alternates: {
       canonical: url,
     },
+    ...(isProjectIndexable(project)
+      ? {}
+      : { robots: { index: false, follow: true } }),
     openGraph: {
       title: `${title} | ${siteConfig.name}`,
       description,
@@ -81,6 +89,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   const { prev: prevProject, next: nextProject } = getAdjacentProjects(slug);
+
+  // Optional case-study fields; sections without content are skipped.
+  const caseStudySections = [
+    { heading: "The Problem", text: project.problem },
+    { heading: "My Role", text: project.role },
+    { heading: "What Shipped", text: project.outcome },
+  ];
 
   // JSON-LD structured data for software application
   const jsonLd = {
@@ -172,6 +187,20 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <p className="text-lg text-slate-700 dark:text-gray-200/90 leading-relaxed mb-8">
             {project.description}
           </p>
+
+          {caseStudySections.map(
+            ({ heading, text }) =>
+              text && (
+                <section key={heading} className="mb-8">
+                  <h2 className="text-xl font-bold text-slate-900 dark:text-white/95 mb-4">
+                    {heading}
+                  </h2>
+                  <p className="text-slate-700 dark:text-gray-200/90 leading-relaxed">
+                    {text}
+                  </p>
+                </section>
+              ),
+          )}
 
           {project.highlights && project.highlights.length > 0 && (
             <>

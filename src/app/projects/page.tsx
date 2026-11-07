@@ -87,8 +87,9 @@ export default function ProjectsPage() {
           Projects
         </h1>
         <p className="mt-4 text-lg text-slate-600 dark:text-grayTone max-w-2xl">
-          A cross-section of recent Web3, AI, and developer-tooling work. Each
-          project page includes the problem, stack, and what shipped.
+          A cross-section of Web3, AI, and developer-tooling work from 2022 to
+          today. Featured project pages cover the problem, my role, the stack,
+          and what shipped; the others are short summaries.
         </p>
         <p className="mt-2 text-sm text-slate-500 dark:text-grayTone/80">
           {projects.length} projects · {featured.length} featured

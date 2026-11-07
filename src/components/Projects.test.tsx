@@ -71,6 +71,14 @@ vi.mock("@/utils/analytics", () => ({
 }));
 
 describe("Projects", () => {
+  it("does not claim every featured project shipped recently", () => {
+    render(<Projects />);
+    expect(screen.queryByText(/A few things I shipped recently/)).not.toBeInTheDocument();
+    expect(
+      screen.getByText(/developer-tooling work from 2023 to today/),
+    ).toBeInTheDocument();
+  });
+
   it("renders featured project cards and extra project links", () => {
     const featured = projects.filter((project) => project.featured);
     const other = projects.filter((project) => !project.featured);
