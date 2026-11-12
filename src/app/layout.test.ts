@@ -59,7 +59,12 @@ describe("Layout Metadata", () => {
     expect(metadata.manifest).toBe("/manifest.webmanifest");
     expect(metadata.robots).toEqual({ index: true, follow: true });
     expect(metadata.icons).toEqual({
-      icon: "/favicon.svg",
+      icon: [
+        { url: "/favicon.ico", sizes: "48x48" },
+        { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+        { url: "/favicon.svg", type: "image/svg+xml" },
+      ],
+      shortcut: "/favicon.ico",
       apple: "/apple-touch-icon.png",
     });
     expect(metadata.openGraph).toEqual({

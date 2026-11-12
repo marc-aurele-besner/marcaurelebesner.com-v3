@@ -48,7 +48,12 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   robots: { index: true, follow: true },
   icons: {
-    icon: "/favicon.svg",
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
   // Google Search Console and Bing Webmaster Tools verification.
