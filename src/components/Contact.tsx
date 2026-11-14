@@ -35,7 +35,7 @@ export default function Contact({ teaser = false }: ContactProps) {
         transition={{ duration: 0.5 }}
         className="mb-8"
       >
-        <SectionHeading eyebrow="Contact">
+        <SectionHeading eyebrow="Contact" as={teaser ? "h2" : "h1"}>
           <span id="contact-title">Get in touch</span>
         </SectionHeading>
         <p className="text-slate-600 dark:text-grayTone max-w-2xl text-lg mt-3 leading-relaxed">
