@@ -25,12 +25,14 @@ export const metadata: Metadata = {
     type: "website",
     url: "/contact",
     siteName: siteConfig.name,
+    images: ["/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: `Contact | ${siteConfig.name}`,
     description: `Get in touch with ${siteConfig.name} for collaboration, Web3 projects, AI advisory, or career opportunities.`,
     creator: siteConfig.twitterHandle,
+    images: ["/twitter-image"],
   },
 };
 

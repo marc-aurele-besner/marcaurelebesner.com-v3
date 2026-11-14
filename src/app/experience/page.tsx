@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "/experience",
     siteName: siteConfig.name,
+    images: ["/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
@@ -35,6 +36,7 @@ export const metadata: Metadata = {
     description:
       "Career timeline of Marc‑Aurele Besner — Web3, AI, and developer-tooling roles.",
     creator: siteConfig.twitterHandle,
+    images: ["/twitter-image"],
   },
 };
 

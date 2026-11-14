@@ -53,4 +53,22 @@ describe("HomePage", () => {
     expect(orgRoles[0].organization["@type"]).toBe("Organization");
     expect(orgRoles[0].member.name).toBe(siteConfig.name);
   });
+
+  it("should mark the homepage as a ProfilePage of the Person on a WebSite", () => {
+    render(<HomePage />);
+    const json = JSON.parse(
+      (screen.getByTestId("json-ld") as HTMLScriptElement).innerHTML,
+    );
+    const byType = (type: string) =>
+      json["@graph"].find((n: { "@type": string }) => n["@type"] === type);
+
+    const person = byType("Person");
+    const website = byType("WebSite");
+    const profile = byType("ProfilePage");
+    expect(person["@id"]).toBe(`${siteConfig.url}/#person`);
+    expect(website.url).toBe(siteConfig.url);
+    expect(website.author["@id"]).toBe(person["@id"]);
+    expect(profile.mainEntity["@id"]).toBe(person["@id"]);
+    expect(profile.isPartOf["@id"]).toBe(website["@id"]);
+  });
 });
