@@ -34,6 +34,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "/projects",
     siteName: siteConfig.name,
+    images: ["/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
@@ -41,6 +42,7 @@ export const metadata: Metadata = {
     description:
       "Web3, AI, and developer-tooling projects by Marc‑Aurele Besner.",
     creator: siteConfig.twitterHandle,
+    images: ["/twitter-image"],
   },
 };
 

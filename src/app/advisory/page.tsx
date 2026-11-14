@@ -11,7 +11,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Advisory",
   description:
-    "Web3 and AI advisory with Marc‑Aurele Besner — smart contract architecture, SDK & DevTooling, product & engineering strategy, and team augmentation. Hourly, retainer, or project-based.",
+    "Web3 and AI advisory with Marc‑Aurele Besner: smart contract architecture, SDKs and DevTooling, and engineering strategy. Hourly, retainer, or project-based.",
   keywords: [
     "Web3 Advisory",
     "Smart Contract Consultant",
@@ -29,6 +29,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "/advisory",
     siteName: siteConfig.name,
+    images: ["/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
@@ -36,6 +37,7 @@ export const metadata: Metadata = {
     description:
       "Web3 and AI advisory with Marc‑Aurele Besner — smart contracts, SDKs, and engineering strategy.",
     creator: siteConfig.twitterHandle,
+    images: ["/twitter-image"],
   },
 };
 
