@@ -32,9 +32,14 @@ export interface JsonLdGraph {
   "@graph": JsonLdNode[];
 }
 
+/** Stable node ids so pages can reference the same Person and WebSite. */
+export const PERSON_ID = `${siteConfig.url}/#person`;
+export const WEBSITE_ID = `${siteConfig.url}/#website`;
+
 function person(): JsonLdNode {
   return {
     "@type": "Person",
+    "@id": PERSON_ID,
     name: siteConfig.name,
     url: siteConfig.url,
     jobTitle: siteConfig.role,
@@ -157,16 +162,54 @@ export function organizationRoleJsonLd(exp: ExperienceData): JsonLdNode {
 }
 
 /**
- * Work history graph for the homepage. Combines the Person schema with
- * one OrganizationRole per experience, surfaced as a `@graph` so that
- * the homepage advertises the work history directly.
+ * WebSite node: names the site and ties it to its author, which helps
+ * search engines show the right site name and AI engines attribute it.
+ */
+export function websiteJsonLd(): JsonLdNode {
+  return {
+    "@type": "WebSite",
+    "@id": WEBSITE_ID,
+    url: siteConfig.url,
+    name: siteConfig.name,
+    description: siteConfig.description,
+    inLanguage: "en",
+    author: { "@id": PERSON_ID },
+    publisher: { "@id": PERSON_ID },
+  };
+}
+
+/**
+ * ProfilePage node: Google's recommended markup for a page about one
+ * person, with the Person as its main entity.
+ */
+export function profilePageJsonLd(): JsonLdNode {
+  return {
+    "@type": "ProfilePage",
+    "@id": `${siteConfig.url}/#profilepage`,
+    url: siteConfig.url,
+    name: `${siteConfig.name} — ${siteConfig.role}`,
+    isPartOf: { "@id": WEBSITE_ID },
+    mainEntity: { "@id": PERSON_ID },
+    about: { "@id": PERSON_ID },
+  };
+}
+
+/**
+ * Work history graph for the homepage. Combines the WebSite, ProfilePage
+ * and Person schema with one OrganizationRole per experience, surfaced
+ * as a `@graph` so that the homepage advertises the work history directly.
  */
 export function workHistoryJsonLd(
   items: ReadonlyArray<ExperienceData>,
 ): JsonLdGraph {
   return {
     "@context": "https://schema.org",
-    "@graph": [person(), ...items.map(organizationRoleJsonLd)],
+    "@graph": [
+      websiteJsonLd(),
+      profilePageJsonLd(),
+      person(),
+      ...items.map(organizationRoleJsonLd),
+    ],
   };
 }
 
