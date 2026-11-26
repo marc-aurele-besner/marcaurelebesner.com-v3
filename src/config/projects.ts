@@ -214,7 +214,7 @@ export const projects: ProjectData[] = [
     summary:
       "Production block explorer with staking, operator management, and wallet integrations.",
     description:
-      "Web application for interacting with the Autonomys Network and exploring the consensus chain. Register operators, stake, and nominate on Astral.",
+      "Web application for interacting with the Autonomys Network and exploring the consensus chain. Users could register operators, stake, and nominate on Astral.",
     highlights: [
       "Complete blockchain data exploration",
       "Operator registration and management",
@@ -224,18 +224,17 @@ export const projects: ProjectData[] = [
     problem:
       "The Autonomys Network needed an explorer for its consensus chain where users can also register operators, stake, and nominate.",
     role:
-      "As Lead Software Engineer at Autonomys, I led the design and implementation of the indexing systems behind the explorer and owned the frontend migration from a React SPA to Next.js.",
+      "As a Senior Product Engineer, then Lead Product Engineer at Autonomys, I led the design and implementation of the indexing systems behind the explorer and owned the frontend migration from a React SPA to Next.js.",
     outcome:
-      "Live at explorer.autonomys.xyz. The autonomys/astral repository holds the Next.js explorer (explorer/) and the SubQuery indexers (indexers/), and the explorer ships staking views and wallet integrations.",
+      "I worked on Astral from April 2024 to June 2025, when it served as the Autonomys Network explorer with staking views and wallet integrations. Autonomys retired Astral in 2025 and now recommends Subscan, so explorer.autonomys.xyz redirects there. The archived autonomys/astral repository still holds the Next.js explorer (explorer/) and the SubQuery indexers (indexers/).",
     imageSrc: "/images/projects/astral-block-explorer.png",
     imageAlt:
       "Astral — production block explorer for the Autonomys Network with staking and operator management",
-    link: "https://explorer.autonomys.xyz",
     repoLink: "https://github.com/autonomys/astral",
     badges: ["Next.js", "React", "Polkadot.js", "TypeScript", "GraphQL"],
     projectType: "work",
     featured: true,
-    updatedAt: "2025-01",
+    updatedAt: "2026-11",
   },
   {
     slug: "fileonchain",
