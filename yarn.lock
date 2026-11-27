@@ -1883,9 +1883,9 @@
   integrity sha512-DpLMlAqlrk4zBVK3DiDjwKD0oq7pZNy+8BiIBRuByqb6dm5jsdoLMhIiyh/xR7+WejaW/1Ui+XgbgMNa4+zWJg==
 
 "@vercel/speed-insights@^2.0.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@vercel/speed-insights/-/speed-insights-2.1.0.tgz#3b7fe1facc2ad6e25507ed4a335910811f830c08"
-  integrity sha512-tkDiIEjjmlwPpTFnOK14hBhsRLMo5yoCeK2Er3AHWlL7WTzHgFSyItps3TOW0HukErUlYlaUeHiVLCyfiE4WAA==
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@vercel/speed-insights/-/speed-insights-2.1.1.tgz#6fdbcdf5b1fa1868e73caa9ec03c04fc65a47e8d"
+  integrity sha512-gaaFVQ4Rv5IfuGU5qpvN1h+A+XvezAJZOMHAziapyWqLPzq3dmS+hUNeuAJcD55zUYAfrJIMTbSh39+xElp0+Q==
 
 "@vitejs/plugin-react@^6.0.0":
   version "6.3.0"
